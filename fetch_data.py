@@ -1,6 +1,5 @@
 """
 每天自动抓取 A 股盘面数据，输出 data.json
-包含：三大指数、成交额 + 15 日历史、涨跌家数、涨停跌停 + 15 日历史、连板梯队、题材聚合
 """
 import json
 import requests
@@ -79,7 +78,6 @@ def get_amount():
     return sum(x.get("f6") or 0 for x in data["data"].get("diff",[]))
 
 def get_amount_kline(secid, days):
-    """用 K 线接口拿每日成交额"""
     url = "https://push2his.eastmoney.com/api/qt/stock/kline/get"
     params = {"secid":secid,"fields1":"f1,f2,f3,f4,f5,f6",
               "fields2":"f51,f57","klt":"101","fqt":"1",
@@ -94,7 +92,6 @@ def get_amount_kline(secid, days):
     return out
 
 def get_history():
-    """抓过去 N 个交易日：成交额（K 线） + 涨停跌停（逐日）"""
     print(f"  抓取过去 {HISTORY_DAYS} 个交易日历史...")
     amt_sh = get_amount_kline("1.000001", HISTORY_DAYS + 5)
     amt_sz = get_amount_kline("0.399001", HISTORY_DAYS + 5)
@@ -113,6 +110,14 @@ def get_history():
         "zt": [zt_hist[d] for d in common],
         "dt": [dt_hist[d] for d in common],
     }
+
+def load_previous_snapshot():
+    """读取上一次成功运行的 data.json，作为周末/节假日的兜底"""
+    try:
+        with open("data.json", "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return None
 
 def find_latest_trade_date():
     now = datetime.now(BJ_TZ)
@@ -139,18 +144,33 @@ def main():
     limit_up = zt["count"]
     ladder = zt["ladder"]
     max_board = max([s["boards"] for s in ladder], default=0)
-    print(f"涨停 {limit_up} 家，最高 {max_board} 板")
-
     limit_down = get_dt_count(trade_date_str)
-    print(f"跌停 {limit_down} 家")
+    print(f"涨停 {limit_up} 家，最高 {max_board} 板，跌停 {limit_down} 家")
 
-    breadth = get_breadth()
-    print(f"涨 {breadth['up']} / 跌 {breadth['down']} / 平 {breadth['flat']}")
+    # ★ 先读旧快照
+    prev = load_previous_snapshot()
 
-    amount = get_amount()
-    print(f"成交额 {amount/1e8:.0f} 亿")
-
+    # 抓历史
     history = get_history()
+
+    # 抓实时（周末会是0）
+    breadth = get_breadth()
+    amount = get_amount()
+
+    # ★ 兜底：实时为0时，用历史或旧快照
+    if amount == 0 and history["amount"]:
+        amount = history["amount"][-1]
+        print(f"  实时成交额为0 → 用最近交易日 {amount/1e8:.0f} 亿")
+
+    if breadth["up"] == 0 and breadth["down"] == 0 and breadth["flat"] == 0:
+        if prev:
+            ob = prev.get("breadth", {})
+            if ob.get("up", 0) > 0:
+                breadth = {"up": ob["up"], "down": ob["down"], "flat": ob["flat"]}
+                print(f"  涨跌家数为0 → 用上次快照：涨{breadth['up']} 跌{breadth['down']} 平{breadth['flat']}")
+
+    print(f"  上涨 {breadth['up']}，下跌 {breadth['down']}，平盘 {breadth['flat']}")
+    print(f"  成交额 {amount/1e8:.0f} 亿")
 
     theme_map = {}
     for s in ladder:
@@ -166,6 +186,15 @@ def main():
     turnover = [{"name":s["name"],"code":s["code"],"rate":0.0,"change":s["change"]}
                 for s in ladder[:5]]
 
+    # ★ 涨跌家数历史（保留上次的，追加今天的）
+    breadth_hist = history["amount"]  # 占位
+    prev_bh = (prev or {}).get("breadth", {}).get("history", [])
+    if breadth["up"] > 0:
+        # 今天有效数据，追加
+        breadth_history = (prev_bh + [[breadth["up"], breadth["down"]]])[-HISTORY_DAYS:]
+    else:
+        breadth_history = prev_bh if prev_bh else [[0,0]] * len(history["dates"])
+
     now = datetime.now(BJ_TZ)
     result = {
         "updated_at": now.strftime("%Y-%m-%d %H:%M"),
@@ -176,7 +205,7 @@ def main():
         "amount": {"total": amount, "history": history["amount"]},
         "breadth": {
             "up": breadth["up"], "down": breadth["down"], "flat": breadth["flat"],
-            "history": [[breadth["up"], breadth["down"]] for _ in history["dates"]],
+            "history": breadth_history,
         },
         "limit": {
             "up": limit_up, "down": limit_down,
@@ -190,7 +219,7 @@ def main():
 
     with open("data.json","w",encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
-    print("已写入 data.json")
+    print(f"已写入 data.json（交易日 {trade_dt.strftime('%Y-%m-%d')}）")
 
 if __name__ == "__main__":
     main()
