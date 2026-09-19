@@ -1,9 +1,25 @@
 {
-  "updated_at": "2026-09-19 22:01",
+  "updated_at": "2026-09-19 22:10",
   "trade_date": "2026-09-18",
   "source": "东方财富 + 同花顺公开接口",
   "dates": [],
-  "indices": [],
+  "indices": [
+    {
+      "name": "上证指数",
+      "value": 3911.87,
+      "change": 0.94
+    },
+    {
+      "name": "深证成指",
+      "value": 13640.87,
+      "change": 1.72
+    },
+    {
+      "name": "创业板指",
+      "value": 3372.68,
+      "change": 2.25
+    }
+  ],
   "amount": {
     "total": 0,
     "history": []
