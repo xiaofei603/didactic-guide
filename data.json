@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-09-19 22:10",
+  "updated_at": "2026-09-19 22:28",
   "trade_date": "2026-09-18",
-  "source": "东方财富 + 同花顺公开接口",
+  "source": "东方财富 + 腾讯公开接口",
   "dates": [],
   "indices": [
     {
@@ -105,7 +105,10 @@
         "code": "001216",
         "boards": 4,
         "change": 10.01,
-        "concepts": [],
+        "industry": "家居用品",
+        "concepts": [
+          "家居用品"
+        ],
         "reason": ""
       },
       {
@@ -113,7 +116,10 @@
         "code": "603248",
         "boards": 4,
         "change": 9.98,
-        "concepts": [],
+        "industry": "风电设备",
+        "concepts": [
+          "风电设备"
+        ],
         "reason": ""
       },
       {
@@ -121,7 +127,10 @@
         "code": "603230",
         "boards": 3,
         "change": 10.04,
-        "concepts": [],
+        "industry": "出版",
+        "concepts": [
+          "出版"
+        ],
         "reason": ""
       },
       {
@@ -129,7 +138,10 @@
         "code": "002285",
         "boards": 3,
         "change": 9.89,
-        "concepts": [],
+        "industry": "房地产服",
+        "concepts": [
+          "房地产服"
+        ],
         "reason": ""
       },
       {
@@ -137,7 +149,10 @@
         "code": "002453",
         "boards": 2,
         "change": 10.1,
-        "concepts": [],
+        "industry": "化学制品",
+        "concepts": [
+          "化学制品"
+        ],
         "reason": ""
       },
       {
@@ -145,7 +160,10 @@
         "code": "301390",
         "boards": 2,
         "change": 20.0,
-        "concepts": [],
+        "industry": "工程咨询",
+        "concepts": [
+          "工程咨询"
+        ],
         "reason": ""
       },
       {
@@ -153,7 +171,10 @@
         "code": "600448",
         "boards": 2,
         "change": 9.94,
-        "concepts": [],
+        "industry": "纺织制造",
+        "concepts": [
+          "纺织制造"
+        ],
         "reason": ""
       },
       {
@@ -161,7 +182,10 @@
         "code": "000504",
         "boards": 2,
         "change": 10.0,
-        "concepts": [],
+        "industry": "医疗服务",
+        "concepts": [
+          "医疗服务"
+        ],
         "reason": ""
       },
       {
@@ -169,7 +193,10 @@
         "code": "600630",
         "boards": 2,
         "change": 9.95,
-        "concepts": [],
+        "industry": "服装家纺",
+        "concepts": [
+          "服装家纺"
+        ],
         "reason": ""
       },
       {
@@ -177,7 +204,10 @@
         "code": "603626",
         "boards": 2,
         "change": 10.0,
-        "concepts": [],
+        "industry": "消费电子",
+        "concepts": [
+          "消费电子"
+        ],
         "reason": ""
       },
       {
@@ -185,7 +215,10 @@
         "code": "002836",
         "boards": 2,
         "change": 9.96,
-        "concepts": [],
+        "industry": "包装印刷",
+        "concepts": [
+          "包装印刷"
+        ],
         "reason": ""
       },
       {
@@ -193,7 +226,10 @@
         "code": "600127",
         "boards": 2,
         "change": 9.98,
-        "concepts": [],
+        "industry": "农产品加",
+        "concepts": [
+          "农产品加"
+        ],
         "reason": ""
       },
       {
@@ -201,7 +237,10 @@
         "code": "001376",
         "boards": 1,
         "change": 9.99,
-        "concepts": [],
+        "industry": "电力",
+        "concepts": [
+          "电力"
+        ],
         "reason": ""
       },
       {
@@ -209,7 +248,10 @@
         "code": "603686",
         "boards": 1,
         "change": 10.03,
-        "concepts": [],
+        "industry": "环境治理",
+        "concepts": [
+          "环境治理"
+        ],
         "reason": ""
       },
       {
@@ -217,7 +259,10 @@
         "code": "001233",
         "boards": 1,
         "change": 9.99,
-        "concepts": [],
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
         "reason": ""
       },
       {
@@ -225,7 +270,10 @@
         "code": "002298",
         "boards": 1,
         "change": 10.02,
-        "concepts": [],
+        "industry": "电网设备",
+        "concepts": [
+          "电网设备"
+        ],
         "reason": ""
       },
       {
@@ -233,7 +281,10 @@
         "code": "600640",
         "boards": 1,
         "change": 10.04,
-        "concepts": [],
+        "industry": "广告营销",
+        "concepts": [
+          "广告营销"
+        ],
         "reason": ""
       },
       {
@@ -241,7 +292,10 @@
         "code": "002589",
         "boards": 1,
         "change": 10.1,
-        "concepts": [],
+        "industry": "医药商业",
+        "concepts": [
+          "医药商业"
+        ],
         "reason": ""
       },
       {
@@ -249,7 +303,10 @@
         "code": "001317",
         "boards": 1,
         "change": 10.01,
-        "concepts": [],
+        "industry": "铁路公路",
+        "concepts": [
+          "铁路公路"
+        ],
         "reason": ""
       },
       {
@@ -257,7 +314,10 @@
         "code": "000910",
         "boards": 1,
         "change": 10.06,
-        "concepts": [],
+        "industry": "家居用品",
+        "concepts": [
+          "家居用品"
+        ],
         "reason": ""
       },
       {
@@ -265,7 +325,10 @@
         "code": "002134",
         "boards": 1,
         "change": 9.98,
-        "concepts": [],
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
         "reason": ""
       },
       {
@@ -273,7 +336,10 @@
         "code": "603120",
         "boards": 1,
         "change": 9.99,
-        "concepts": [],
+        "industry": "化学制品",
+        "concepts": [
+          "化学制品"
+        ],
         "reason": ""
       },
       {
@@ -281,7 +347,10 @@
         "code": "603316",
         "boards": 1,
         "change": 10.02,
-        "concepts": [],
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
         "reason": ""
       },
       {
@@ -289,7 +358,10 @@
         "code": "603138",
         "boards": 1,
         "change": 10.04,
-        "concepts": [],
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
         "reason": ""
       },
       {
@@ -297,7 +369,10 @@
         "code": "601579",
         "boards": 1,
         "change": 10.02,
-        "concepts": [],
+        "industry": "非白酒",
+        "concepts": [
+          "非白酒"
+        ],
         "reason": ""
       },
       {
@@ -305,7 +380,10 @@
         "code": "000509",
         "boards": 1,
         "change": 9.91,
-        "concepts": [],
+        "industry": "光学光电",
+        "concepts": [
+          "光学光电"
+        ],
         "reason": ""
       },
       {
@@ -313,7 +391,10 @@
         "code": "002849",
         "boards": 1,
         "change": 10.02,
-        "concepts": [],
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
         "reason": ""
       },
       {
@@ -321,7 +402,10 @@
         "code": "002161",
         "boards": 1,
         "change": 10.02,
-        "concepts": [],
+        "industry": "其他电子",
+        "concepts": [
+          "其他电子"
+        ],
         "reason": ""
       },
       {
@@ -329,7 +413,10 @@
         "code": "603353",
         "boards": 1,
         "change": 9.99,
-        "concepts": [],
+        "industry": "炼化及贸",
+        "concepts": [
+          "炼化及贸"
+        ],
         "reason": ""
       },
       {
@@ -337,7 +424,10 @@
         "code": "002300",
         "boards": 1,
         "change": 10.03,
-        "concepts": [],
+        "industry": "电网设备",
+        "concepts": [
+          "电网设备"
+        ],
         "reason": ""
       },
       {
@@ -345,7 +435,10 @@
         "code": "002713",
         "boards": 1,
         "change": 9.97,
-        "concepts": [],
+        "industry": "装修装饰",
+        "concepts": [
+          "装修装饰"
+        ],
         "reason": ""
       },
       {
@@ -353,7 +446,10 @@
         "code": "603402",
         "boards": 1,
         "change": 10.01,
-        "concepts": [],
+        "industry": "旅游及景",
+        "concepts": [
+          "旅游及景"
+        ],
         "reason": ""
       },
       {
@@ -361,7 +457,10 @@
         "code": "600343",
         "boards": 1,
         "change": 10.0,
-        "concepts": [],
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
         "reason": ""
       },
       {
@@ -369,7 +468,10 @@
         "code": "688292",
         "boards": 1,
         "change": 20.02,
-        "concepts": [],
+        "industry": "计算机设",
+        "concepts": [
+          "计算机设"
+        ],
         "reason": ""
       },
       {
@@ -377,7 +479,10 @@
         "code": "002965",
         "boards": 1,
         "change": 10.01,
-        "concepts": [],
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
         "reason": ""
       },
       {
@@ -385,7 +490,10 @@
         "code": "600847",
         "boards": 1,
         "change": 10.04,
-        "concepts": [],
+        "industry": "电池",
+        "concepts": [
+          "电池"
+        ],
         "reason": ""
       },
       {
@@ -393,7 +501,10 @@
         "code": "002471",
         "boards": 1,
         "change": 9.96,
-        "concepts": [],
+        "industry": "电网设备",
+        "concepts": [
+          "电网设备"
+        ],
         "reason": ""
       },
       {
@@ -401,7 +512,10 @@
         "code": "605188",
         "boards": 1,
         "change": 9.97,
-        "concepts": [],
+        "industry": "一般零售",
+        "concepts": [
+          "一般零售"
+        ],
         "reason": ""
       },
       {
@@ -409,7 +523,10 @@
         "code": "603122",
         "boards": 1,
         "change": 10.0,
-        "concepts": [],
+        "industry": "医疗服务",
+        "concepts": [
+          "医疗服务"
+        ],
         "reason": ""
       },
       {
@@ -417,7 +534,10 @@
         "code": "601123",
         "boards": 1,
         "change": 10.02,
-        "concepts": [],
+        "industry": "冶钢原料",
+        "concepts": [
+          "冶钢原料"
+        ],
         "reason": ""
       },
       {
@@ -425,7 +545,10 @@
         "code": "603068",
         "boards": 1,
         "change": 10.0,
-        "concepts": [],
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
         "reason": ""
       },
       {
@@ -433,7 +556,10 @@
         "code": "601086",
         "boards": 1,
         "change": 10.0,
-        "concepts": [],
+        "industry": "一般零售",
+        "concepts": [
+          "一般零售"
+        ],
         "reason": ""
       },
       {
@@ -441,7 +567,10 @@
         "code": "603001",
         "boards": 1,
         "change": 10.02,
-        "concepts": [],
+        "industry": "服装家纺",
+        "concepts": [
+          "服装家纺"
+        ],
         "reason": ""
       },
       {
@@ -449,7 +578,10 @@
         "code": "003041",
         "boards": 1,
         "change": 10.0,
-        "concepts": [],
+        "industry": "服装家纺",
+        "concepts": [
+          "服装家纺"
+        ],
         "reason": ""
       },
       {
@@ -457,7 +589,10 @@
         "code": "002185",
         "boards": 1,
         "change": 10.01,
-        "concepts": [],
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
         "reason": ""
       },
       {
@@ -465,7 +600,10 @@
         "code": "603232",
         "boards": 1,
         "change": 9.98,
-        "concepts": [],
+        "industry": "软件开发",
+        "concepts": [
+          "软件开发"
+        ],
         "reason": ""
       },
       {
@@ -473,7 +611,10 @@
         "code": "603725",
         "boards": 1,
         "change": 10.02,
-        "concepts": [],
+        "industry": "家居用品",
+        "concepts": [
+          "家居用品"
+        ],
         "reason": ""
       },
       {
@@ -481,7 +622,10 @@
         "code": "603375",
         "boards": 1,
         "change": 10.0,
-        "concepts": [],
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
         "reason": ""
       },
       {
@@ -489,7 +633,10 @@
         "code": "001238",
         "boards": 1,
         "change": 9.99,
-        "concepts": [],
+        "industry": "文娱用品",
+        "concepts": [
+          "文娱用品"
+        ],
         "reason": ""
       },
       {
@@ -497,7 +644,10 @@
         "code": "002623",
         "boards": 1,
         "change": 9.98,
-        "concepts": [],
+        "industry": "光伏设备",
+        "concepts": [
+          "光伏设备"
+        ],
         "reason": ""
       },
       {
@@ -505,7 +655,10 @@
         "code": "001211",
         "boards": 1,
         "change": 9.99,
-        "concepts": [],
+        "industry": "家居用品",
+        "concepts": [
+          "家居用品"
+        ],
         "reason": ""
       },
       {
@@ -513,7 +666,10 @@
         "code": "002029",
         "boards": 1,
         "change": 10.02,
-        "concepts": [],
+        "industry": "服装家纺",
+        "concepts": [
+          "服装家纺"
+        ],
         "reason": ""
       },
       {
@@ -521,7 +677,10 @@
         "code": "601026",
         "boards": 1,
         "change": 10.0,
-        "concepts": [],
+        "industry": "风电设备",
+        "concepts": [
+          "风电设备"
+        ],
         "reason": ""
       },
       {
@@ -529,7 +688,10 @@
         "code": "001399",
         "boards": 1,
         "change": 10.02,
-        "concepts": [],
+        "industry": "光学光电",
+        "concepts": [
+          "光学光电"
+        ],
         "reason": ""
       },
       {
@@ -537,7 +699,10 @@
         "code": "601133",
         "boards": 1,
         "change": 9.98,
-        "concepts": [],
+        "industry": "专业工程",
+        "concepts": [
+          "专业工程"
+        ],
         "reason": ""
       },
       {
@@ -545,7 +710,10 @@
         "code": "002971",
         "boards": 1,
         "change": 10.0,
-        "concepts": [],
+        "industry": "化学制品",
+        "concepts": [
+          "化学制品"
+        ],
         "reason": ""
       },
       {
@@ -553,7 +721,10 @@
         "code": "600838",
         "boards": 1,
         "change": 9.99,
-        "concepts": [],
+        "industry": "一般零售",
+        "concepts": [
+          "一般零售"
+        ],
         "reason": ""
       },
       {
@@ -561,7 +732,10 @@
         "code": "920298",
         "boards": 1,
         "change": 30.0,
-        "concepts": [],
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
         "reason": ""
       },
       {
@@ -569,7 +743,10 @@
         "code": "688175",
         "boards": 1,
         "change": 19.98,
-        "concepts": [],
+        "industry": "军工电子",
+        "concepts": [
+          "军工电子"
+        ],
         "reason": ""
       },
       {
@@ -577,7 +754,10 @@
         "code": "002005",
         "boards": 1,
         "change": 9.92,
-        "concepts": [],
+        "industry": "小家电",
+        "concepts": [
+          "小家电"
+        ],
         "reason": ""
       },
       {
@@ -585,7 +765,10 @@
         "code": "601811",
         "boards": 1,
         "change": 9.97,
-        "concepts": [],
+        "industry": "出版",
+        "concepts": [
+          "出版"
+        ],
         "reason": ""
       },
       {
@@ -593,7 +776,10 @@
         "code": "001229",
         "boards": 1,
         "change": 10.01,
-        "concepts": [],
+        "industry": "计算机设",
+        "concepts": [
+          "计算机设"
+        ],
         "reason": ""
       },
       {
@@ -601,7 +787,10 @@
         "code": "301583",
         "boards": 1,
         "change": 20.0,
-        "concepts": [],
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
         "reason": ""
       },
       {
@@ -609,7 +798,10 @@
         "code": "001212",
         "boards": 1,
         "change": 9.99,
-        "concepts": [],
+        "industry": "装修建材",
+        "concepts": [
+          "装修建材"
+        ],
         "reason": ""
       },
       {
@@ -617,7 +809,10 @@
         "code": "603118",
         "boards": 1,
         "change": 10.03,
-        "concepts": [],
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
         "reason": ""
       },
       {
@@ -625,7 +820,10 @@
         "code": "600621",
         "boards": 1,
         "change": 9.98,
-        "concepts": [],
+        "industry": "证券Ⅱ",
+        "concepts": [
+          "证券Ⅱ"
+        ],
         "reason": ""
       },
       {
@@ -633,7 +831,10 @@
         "code": "000532",
         "boards": 1,
         "change": 10.02,
-        "concepts": [],
+        "industry": "多元金融",
+        "concepts": [
+          "多元金融"
+        ],
         "reason": ""
       },
       {
@@ -641,7 +842,10 @@
         "code": "600577",
         "boards": 1,
         "change": 9.96,
-        "concepts": [],
+        "industry": "电网设备",
+        "concepts": [
+          "电网设备"
+        ],
         "reason": ""
       },
       {
@@ -649,7 +853,10 @@
         "code": "600606",
         "boards": 1,
         "change": 9.85,
-        "concepts": [],
+        "industry": "房地产开",
+        "concepts": [
+          "房地产开"
+        ],
         "reason": ""
       },
       {
@@ -657,7 +864,10 @@
         "code": "600719",
         "boards": 1,
         "change": 10.07,
-        "concepts": [],
+        "industry": "电力",
+        "concepts": [
+          "电力"
+        ],
         "reason": ""
       },
       {
@@ -665,7 +875,10 @@
         "code": "301689",
         "boards": 1,
         "change": 20.0,
-        "concepts": [],
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
         "reason": ""
       },
       {
@@ -673,7 +886,10 @@
         "code": "603016",
         "boards": 1,
         "change": 10.0,
-        "concepts": [],
+        "industry": "电网设备",
+        "concepts": [
+          "电网设备"
+        ],
         "reason": ""
       },
       {
@@ -681,7 +897,10 @@
         "code": "000410",
         "boards": 1,
         "change": 10.08,
-        "concepts": [],
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
         "reason": ""
       },
       {
@@ -689,7 +908,10 @@
         "code": "002980",
         "boards": 1,
         "change": 10.0,
-        "concepts": [],
+        "industry": "电网设备",
+        "concepts": [
+          "电网设备"
+        ],
         "reason": ""
       },
       {
@@ -697,7 +919,10 @@
         "code": "001332",
         "boards": 1,
         "change": 10.01,
-        "concepts": [],
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
         "reason": ""
       },
       {
@@ -705,7 +930,10 @@
         "code": "600261",
         "boards": 1,
         "change": 10.03,
-        "concepts": [],
+        "industry": "照明设备",
+        "concepts": [
+          "照明设备"
+        ],
         "reason": ""
       },
       {
@@ -713,7 +941,10 @@
         "code": "000002",
         "boards": 1,
         "change": 9.93,
-        "concepts": [],
+        "industry": "房地产开",
+        "concepts": [
+          "房地产开"
+        ],
         "reason": ""
       },
       {
@@ -721,12 +952,131 @@
         "code": "600881",
         "boards": 1,
         "change": 10.29,
-        "concepts": [],
+        "industry": "综合Ⅱ",
+        "concepts": [
+          "综合Ⅱ"
+        ],
         "reason": ""
       }
     ]
   },
-  "themes": [],
+  "themes": [
+    {
+      "name": "电网设备",
+      "limitUp": 6,
+      "maxBoard": 1,
+      "leaders": [
+        "中电鑫龙",
+        "太阳电缆",
+        "中超控股"
+      ]
+    },
+    {
+      "name": "半导体",
+      "limitUp": 5,
+      "maxBoard": 1,
+      "leaders": [
+        "诚邦股份",
+        "博通集成",
+        "华天科技"
+      ]
+    },
+    {
+      "name": "家居用品",
+      "limitUp": 4,
+      "maxBoard": 4,
+      "leaders": [
+        "华瓷股份",
+        "大亚圣象",
+        "天安新材"
+      ]
+    },
+    {
+      "name": "服装家纺",
+      "limitUp": 4,
+      "maxBoard": 2,
+      "leaders": [
+        "龙头股份",
+        "奥康国际",
+        "真爱美家"
+      ]
+    },
+    {
+      "name": "通用设备",
+      "limitUp": 4,
+      "maxBoard": 1,
+      "leaders": [
+        "威星智能",
+        "航天动力",
+        "电科思仪"
+      ]
+    },
+    {
+      "name": "化学制品",
+      "limitUp": 3,
+      "maxBoard": 2,
+      "leaders": [
+        "华软科技",
+        "肯特催化",
+        "和远气体"
+      ]
+    },
+    {
+      "name": "一般零售",
+      "limitUp": 3,
+      "maxBoard": 1,
+      "leaders": [
+        "国光连锁",
+        "国芳集团",
+        "上海九百"
+      ]
+    },
+    {
+      "name": "风电设备",
+      "limitUp": 2,
+      "maxBoard": 4,
+      "leaders": [
+        "锡华科技",
+        "道生天合"
+      ]
+    },
+    {
+      "name": "出版",
+      "limitUp": 2,
+      "maxBoard": 3,
+      "leaders": [
+        "内蒙新华",
+        "新华文轩"
+      ]
+    },
+    {
+      "name": "医疗服务",
+      "limitUp": 2,
+      "maxBoard": 2,
+      "leaders": [
+        "南华生物",
+        "合富中国"
+      ]
+    },
+    {
+      "name": "电力",
+      "limitUp": 2,
+      "maxBoard": 1,
+      "leaders": [
+        "百通能源",
+        "大连热电"
+      ]
+    },
+    {
+      "name": "汽车零部",
+      "limitUp": 2,
+      "maxBoard": 1,
+      "leaders": [
+        "海安集团",
+        "祥鑫科技"
+      ]
+    }
+  ],
   "lhb": [
     {
       "name": "华天科技",
