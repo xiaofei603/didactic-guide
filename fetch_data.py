@@ -96,14 +96,12 @@ def get_history():
     amt_sh = get_amount_kline("1.000001", HISTORY_DAYS + 5)
     amt_sz = get_amount_kline("0.399001", HISTORY_DAYS + 5)
     common = sorted(set(amt_sh.keys()) & set(amt_sz.keys()))[-HISTORY_DAYS:]
-
     zt_hist, dt_hist = {}, {}
     for d in common:
         ds = d.replace("-","")
         zt_hist[d] = get_zt_pool(ds)["count"]
         dt_hist[d] = get_dt_count(ds)
         print(f"    {d}: 涨停 {zt_hist[d]}, 跌停 {dt_hist[d]}")
-
     return {
         "dates": [d[5:] for d in common],
         "amount": [amt_sh[d] + amt_sz[d] for d in common],
@@ -112,39 +110,28 @@ def get_history():
     }
 
 def get_lhb(date_str):
-    """
-    ★ 新增：获取指定日期龙虎榜数据
-    返回上榜股票的买入 / 卖出 / 净额
-    """
     date_fmt = date_str[:4] + "-" + date_str[4:6] + "-" + date_str[6:]
     url = "https://datacenter-web.eastmoney.com/api/data/v1/get"
     params = {
         "reportName": "RPT_DAILYBILLBOARD_DETAILSNEW",
         "columns": "SECURITY_CODE,SECURITY_NAME_ABBR,TRADE_DATE,EXPLANATION,"
-                   "CHANGE_RATE,BILLBOARD_NET_AMT,BILLBOARD_BUY_AMT,BILLBOARD_SELL_AMT,"
-                   "BILLBOARD_DEAL_AMT",
+                   "CHANGE_RATE,BILLBOARD_NET_AMT,BILLBOARD_BUY_AMT,BILLBOARD_SELL_AMT",
         "filter": f"(TRADE_DATE<='{date_fmt}')(TRADE_DATE>='{date_fmt}')",
-        "pageNumber": "1",
-        "pageSize": "50",
-        "sortColumns": "BILLBOARD_NET_AMT",
-        "sortTypes": "-1",
-        "source": "WEB",
-        "client": "WEB",
+        "pageNumber": "1","pageSize": "50",
+        "sortColumns": "BILLBOARD_NET_AMT","sortTypes": "-1",
+        "source": "WEB","client": "WEB",
     }
     data = fetch(url, params)
     if not data or not data.get("result") or not data["result"].get("data"):
         print(f"  龙虎榜无数据（{date_fmt}）")
         return []
-
     rows = data["result"]["data"]
     out = []
     for r in rows:
-        reason = r.get("EXPLANATION") or "—"
-        # 简单去重（同一只股票可能有多条上榜原因）
         out.append({
             "name": r.get("SECURITY_NAME_ABBR") or "",
             "code": r.get("SECURITY_CODE") or "",
-            "reason": reason,
+            "reason": r.get("EXPLANATION") or "—",
             "change": round(r.get("CHANGE_RATE") or 0, 2),
             "buy": r.get("BILLBOARD_BUY_AMT") or 0,
             "sell": r.get("BILLBOARD_SELL_AMT") or 0,
@@ -205,7 +192,6 @@ def main():
     print(f"  上涨 {breadth['up']}，下跌 {breadth['down']}，平盘 {breadth['flat']}")
     print(f"  成交额 {amount/1e8:.0f} 亿")
 
-    # ★ 龙虎榜
     lhb = get_lhb(trade_date_str)
     if not lhb and prev:
         prev_lhb = prev.get("lhb", [])
