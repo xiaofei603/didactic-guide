@@ -79,7 +79,7 @@ h1 em{font-style:normal;color:var(--gold)}
 .limits small{font-size:11.5px;color:var(--dim2)}
 .limits .mid{flex:0 0 auto;background:none;padding:0;font-size:12px;color:var(--dim2);text-align:center}
 .limits .mid b{font-size:17px}
-.streak-list{display:flex;flex-direction:column;gap:9px}
+.streak-list{display:flex;flex-direction:column;gap:11px}
 .streak-row{display:flex;align-items:flex-start;gap:10px}
 .streak-badge{flex:0 0 auto;width:46px;text-align:center;font-size:10.5px;color:var(--dim2);background:#1b2230;border:1px solid var(--line);border-radius:8px;padding:3px 0 4px;line-height:1.15}
 .streak-badge b{display:block;font-size:17px;font-weight:700;color:var(--dim)}
@@ -87,12 +87,18 @@ h1 em{font-style:normal;color:var(--gold)}
 .streak-badge.max b{color:var(--up)}
 .streak-badge.top{background:rgba(255,159,67,.09);border-color:rgba(255,159,67,.32)}
 .streak-badge.top b{color:#ff9f43}
-.streak-stocks{display:flex;flex-wrap:wrap;gap:6px;flex:1;min-width:0;padding-top:2px}
-.chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;padding:3px 8px;border-radius:6px;background:#1b2230;color:#c3cdd9;border:1px solid var(--line);white-space:nowrap}
-.chip em{font-style:normal;font-size:10px;color:var(--dim2)}
-.chip i{font-style:normal;font-size:10px;padding:1px 5px;border-radius:4px;background:rgba(232,179,57,.12);color:var(--gold)}
-.chip.hot{background:rgba(255,77,79,.10);border-color:rgba(255,77,79,.34);color:#ffd9d9}
-.chip.more{background:transparent;border-style:dashed;color:var(--dim2)}
+.streak-stocks{display:flex;flex-direction:column;gap:8px;flex:1;min-width:0;padding-top:2px}
+.stock-card{background:#1a2130;border:1px solid var(--line);border-radius:8px;padding:7px 10px;display:flex;flex-direction:column;gap:5px;cursor:help;transition:.15s}
+.stock-card:hover{border-color:var(--gold);background:#1c2436}
+.stock-card.hot{background:rgba(255,77,79,.08);border-color:rgba(255,77,79,.32)}
+.stock-card.hot:hover{border-color:var(--up);background:rgba(255,77,79,.12)}
+.stock-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.stock-name{font-size:12.5px;font-weight:600;color:#e6edf3}
+.stock-name.hot{color:#ffd9d9}
+.stock-code{font-size:10.5px;color:var(--dim2);letter-spacing:.2px}
+.stock-change{font-size:12px;font-weight:600;margin-left:auto}
+.tag-con{display:inline-block;font-size:10.5px;padding:2px 7px;border-radius:4px;background:rgba(232,179,57,.13);color:var(--gold);border:1px solid rgba(232,179,57,.28);white-space:nowrap}
+.tag-more{font-size:10.5px;color:var(--dim2);padding:2px 5px}
 .theme-list{display:flex;flex-direction:column;gap:12px}
 .theme-row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
 .theme-rank{width:22px;height:22px;border-radius:6px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;background:#1e2733;color:var(--dim2)}
@@ -122,6 +128,10 @@ table.tbl .num{text-align:right}
 .lhb-summary>div{flex:1;text-align:center;background:var(--card2);border-radius:8px;padding:8px 6px}
 .lhb-summary b{display:block;font-size:16px;font-weight:700;margin-top:2px}
 .lhb-summary small{font-size:10.5px;color:var(--dim2)}
+.reason-tip{position:fixed;background:rgba(20,25,34,.98);border:1px solid var(--gold);border-radius:10px;padding:12px 16px;font-size:12px;color:#c3cdd9;line-height:1.75;max-width:440px;display:none;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,.7);pointer-events:none}
+.reason-tip .rt-title{color:var(--gold);font-weight:600;margin-bottom:6px;font-size:13px}
+.reason-tip .rt-tags{margin-bottom:8px;line-height:1.8}
+.reason-tip .rt-content{white-space:pre-line;color:#d5dde8}
 .calc{background:linear-gradient(135deg,#161d29,#12171f)}
 .calc-body{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;align-items:start}
 @media(max-width:760px){.calc-body{grid-template-columns:1fr}}
@@ -143,6 +153,8 @@ footer b{color:var(--gold);font-weight:600}
 </style>
 </head>
 <body>
+
+<div id="reasonTip" class="reason-tip"></div>
 
 <div class="rest" id="restBanner">
   <span class="rest-ico" id="restIcon">🌙</span>
@@ -284,6 +296,7 @@ function sign(v){return(v>0?"+":"")+Number(v).toFixed(2)}
 function cls(v){return v>0?"up":v<0?"down":"flat"}
 function fmtAmount(y){var yi=y/1e8;return yi>=10000?(yi/10000).toFixed(2)+"<small>万亿</small>":yi.toFixed(0)+"<small>亿</small>"}
 function fmtYi(y){var v=Math.abs(y)/1e8;if(v>=1)return v.toFixed(2)+"亿";return (Math.abs(y)/1e4).toFixed(0)+"万"}
+function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 
 function checkTradeDay(d){
   var tradeDate=d.trade_date||"";if(!tradeDate)return null;
@@ -454,23 +467,49 @@ function renderStreak(sk){
   var lvs=Object.keys(g).map(Number).sort(function(a,b){return b-a});
   var mx=lvs[0]||1;var ms=g[mx][0];
   $("streakMax").innerHTML='最高 <b style="color:var(--up)">'+mx+'</b> 板 · '+(ms?ms.name:"");
+  var MAX_SHOW=5;
   b.innerHTML=lvs.map(function(lv){
-    var ss=g[lv];var iM=lv===mx;var sh=ss.slice(0,6);var r=ss.length-sh.length;
+    var ss=g[lv];var iM=lv===mx;
+    var sh=ss.slice(0,MAX_SHOW);var r=ss.length-sh.length;
     var bc=iM?"max":(lv>=mx-1?"top":"");
-    var ch=sh.map(function(x){return'<span class="chip '+(iM?"hot":"")+'">'+x.name+'<em>'+(x.code||"")+'</em>'+(x.theme?'<i>'+x.theme+'</i>':"")+'</span>'}).join("")
-      +(r>0?'<span class="chip more">+'+r+'</span>':"");
-    return'<div class="streak-row"><div class="streak-badge '+bc+'"><b>'+lv+'</b>板</div><div class="streak-stocks">'+ch+'</div></div>';
+    var cards=sh.map(function(x){
+      var cons = (x.concepts||[]).slice(0,4).map(function(c){return '<span class="tag-con">'+esc(c)+'</span>'}).join("");
+      var more = (x.concepts||[]).length>4 ? '<span class="tag-more">+'+(x.concepts.length-4)+'</span>' : '';
+      var hasReason = x.reason && x.reason.length > 0;
+      var reasonData = hasReason ? (' data-reason="'+esc(x.reason)+'" data-name="'+esc(x.name)+'" data-concepts="'+esc((x.concepts||[]).join(" · "))+'"') : '';
+      return '<div class="stock-card '+(iM?"hot":"")+'"'+reasonData+'>'+
+        '<div class="stock-row">'+
+          '<span class="stock-name '+(iM?"hot":"")+'">'+esc(x.name)+'</span>'+
+          '<span class="stock-code mono">'+esc(x.code)+'</span>'+
+          (hasReason?'<span style="font-size:10px;color:var(--gold)">💡 悬停看解读</span>':'')+
+          '<span class="stock-change '+cls(x.change)+'">'+sign(x.change)+'%</span>'+
+        '</div>'+
+        (cons||more ? '<div class="stock-row">'+cons+more+'</div>' : '')+
+        '</div>';
+    }).join("");
+    var moreLine = r>0 ? '<div class="stock-row" style="padding-left:4px"><span class="tag-more">...还有 '+r+' 只</span></div>' : '';
+    return '<div class="streak-row"><div class="streak-badge '+bc+'"><b>'+lv+'</b>板</div>'+
+      '<div class="streak-stocks">'+cards+moreLine+'</div></div>';
   }).join("");
 }
-function tScore(t){if(typeof t.score==="number")return t.score;return(t.limitUp||0)*8+(t.maxBoard||0)*6+((t.leaders||[]).length)*3}
+
+function tScore(t){return(t.limitUp||0)*8+(t.maxBoard||0)*6+((t.leaders||[]).length)*3}
 function renderThemes(l){
-  var b=$("themeBox");if(!l||!l.length){b.innerHTML='<p class="empty">暂无题材数据</p>';return}
+  var b=$("themeBox");if(!l||!l.length){b.innerHTML='<p class="empty">暂无题材数据（需至少 2 家涨停的概念）</p>';return}
   var s=l.slice().sort(function(a,b){return tScore(b)-tScore(a)});var ts=tScore(s[0])||1;
   b.innerHTML=s.map(function(t,i){
     var sc=tScore(t);var pc=Math.max(7,Math.min(100,sc/ts*100));
     var rc=i===0?"r1":i===1?"r2":i===2?"r3":"";var hc=i===0?"hot":i<=2?"warm":"";
     var ld=(t.leaders||[]).slice(0,3).join(" / ");
-    return'<div class="theme-row"><div class="theme-rank '+rc+'">'+(i+1)+'</div><div class="theme-main"><div class="theme-name">'+t.name+'</div><div class="theme-meta">最高 '+(t.maxBoard||"—")+' 板'+(ld?" · "+ld:"")+'</div><div class="theme-bar"><span style="width:'+pc.toFixed(1)+'%"></span></div></div><div class="theme-stats"><b class="'+hc+'">'+(t.limitUp||0)+'</b>涨停</div></div>';
+    return '<div class="theme-row">'+
+      '<div class="theme-rank '+rc+'">'+(i+1)+'</div>'+
+      '<div class="theme-main">'+
+        '<div class="theme-name">'+esc(t.name)+'</div>'+
+        '<div class="theme-meta">最高 '+(t.maxBoard||"—")+' 板'+(ld?" · "+esc(ld):"")+'</div>'+
+        '<div class="theme-bar"><span style="width:'+pc.toFixed(1)+'%"></span></div>'+
+      '</div>'+
+      '<div class="theme-stats"><b class="'+hc+'">'+(t.limitUp||0)+'</b>涨停</div>'+
+    '</div>';
   }).join("");
 }
 
@@ -489,12 +528,11 @@ function renderLHB(list,d){
     '<div><small>卖出总额</small><b class="down">'+fmtYi(sell)+'</b></div>'+
     '<div><small>净买入</small><b class="'+(net>=0?"up":"down")+'">'+(net>=0?"+":"")+fmtYi(net)+'</b></div>'+
     '<div><small>上榜个股</small><b>'+list.length+'</b></div>';
-
   box.innerHTML='<table class="tbl"><thead><tr><th>股票 / 上榜原因</th><th class="num">涨幅</th><th class="num">买入</th><th class="num">卖出</th><th class="num">净额</th></tr></thead><tbody>'
     + list.slice(0,20).map(function(x){
         return '<tr>'+
-          '<td><span class="name">'+x.name+'</span><span class="code mono">'+x.code+'</span>'+
-          '<span class="lhb-reason" title="'+x.reason+'">'+x.reason+'</span></td>'+
+          '<td><span class="name">'+esc(x.name)+'</span><span class="code mono">'+esc(x.code)+'</span>'+
+          '<span class="lhb-reason" title="'+esc(x.reason)+'">'+esc(x.reason)+'</span></td>'+
           '<td class="num mono '+cls(x.change)+'">'+sign(x.change)+'%</td>'+
           '<td class="num mono up">'+fmtYi(x.buy)+'</td>'+
           '<td class="num mono down">'+fmtYi(x.sell)+'</td>'+
@@ -504,13 +542,54 @@ function renderLHB(list,d){
     +'</tbody></table>';
 }
 
+/* ★ 涨停原因悬停浮层 */
+(function bindReasonTip(){
+  var tip = document.getElementById("reasonTip");
+  var currentCard = null;
+
+  document.addEventListener("mouseover", function(e){
+    var card = e.target.closest(".stock-card");
+    if (!card || !card.hasAttribute("data-reason")) {
+      if (currentCard) { tip.style.display = "none"; currentCard = null; }
+      return;
+    }
+    if (card === currentCard) return;
+    currentCard = card;
+    var name = card.getAttribute("data-name") || "";
+    var concepts = card.getAttribute("data-concepts") || "";
+    var reason = card.getAttribute("data-reason") || "";
+    var tags = concepts ? concepts.split(" · ").map(function(c){return '<span class="tag-con">'+esc(c)+'</span>'}).join(" ") : "";
+    tip.innerHTML = '<div class="rt-title">'+esc(name)+' · 涨停解读</div>'
+                  + (tags ? '<div class="rt-tags">'+tags+'</div>' : '')
+                  + '<div class="rt-content">'+esc(reason)+'</div>';
+    tip.style.display = "block";
+  });
+
+  document.addEventListener("mousemove", function(e){
+    if (!currentCard || tip.style.display !== "block") return;
+    var x = e.clientX + 18, y = e.clientY + 18;
+    var w = tip.offsetWidth, h = tip.offsetHeight;
+    if (x + w > window.innerWidth - 8) x = e.clientX - w - 18;
+    if (y + h > window.innerHeight - 8) y = e.clientY - h - 18;
+    tip.style.left = Math.max(8, x) + "px";
+    tip.style.top = Math.max(8, y) + "px";
+  });
+
+  document.addEventListener("mouseout", function(e){
+    if (currentCard && !e.relatedTarget) { tip.style.display = "none"; currentCard = null; }
+    else if (currentCard && !currentCard.contains(e.relatedTarget) && !e.target.closest(".stock-card")) {
+      tip.style.display = "none"; currentCard = null;
+    }
+  });
+})();
+
 var CTX=null;
 function render(d){
   var s=analyse(d);CTX=s;
   showRest(d);
   $("stampDate").textContent=d.trade_date||"—";
   $("stampTime").textContent="更新于 "+(d.updated_at||"—");
-  $("indices").innerHTML=(d.indices||[]).map(function(x){return'<div class="idx"><span>'+x.name+'</span><b class="mono">'+Number(x.value).toFixed(2)+'</b><s class="mono '+cls(x.change)+'">'+sign(x.change)+'%</s></div>'}).join("");
+  $("indices").innerHTML=(d.indices||[]).map(function(x){return'<div class="idx"><span>'+esc(x.name)+'</span><b class="mono">'+Number(x.value).toFixed(2)+'</b><s class="mono '+cls(x.change)+'">'+sign(x.change)+'%</s></div>'}).join("");
   var dn=$("donut");dn.style.setProperty("--p",s.score);dn.style.setProperty("--ring",s.color);
   $("scoreNum").textContent=s.score;$("scoreNum").style.color=s.color;
   var bd=$("cycleBadge");bd.style.color=s.color;
