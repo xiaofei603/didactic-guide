@@ -1,5 +1,5 @@
 """
-每天自动抓取 A 股盘面数据，输出 data.json
+每天自动抓取 A 股盘面数据 + 龙虎榜，输出 data.json
 """
 import json
 import requests
@@ -15,7 +15,7 @@ def fetch(url, params=None):
     }
     for i in range(3):
         try:
-            r = requests.get(url, params=params, headers=headers, timeout=15)
+            r = requests.get(url, params=params, headers=headers, timeout=20)
             r.raise_for_status()
             return r.json()
         except Exception as e:
@@ -111,8 +111,49 @@ def get_history():
         "dt": [dt_hist[d] for d in common],
     }
 
+def get_lhb(date_str):
+    """
+    ★ 新增：获取指定日期龙虎榜数据
+    返回上榜股票的买入 / 卖出 / 净额
+    """
+    date_fmt = date_str[:4] + "-" + date_str[4:6] + "-" + date_str[6:]
+    url = "https://datacenter-web.eastmoney.com/api/data/v1/get"
+    params = {
+        "reportName": "RPT_DAILYBILLBOARD_DETAILSNEW",
+        "columns": "SECURITY_CODE,SECURITY_NAME_ABBR,TRADE_DATE,EXPLANATION,"
+                   "CHANGE_RATE,BILLBOARD_NET_AMT,BILLBOARD_BUY_AMT,BILLBOARD_SELL_AMT,"
+                   "BILLBOARD_DEAL_AMT",
+        "filter": f"(TRADE_DATE<='{date_fmt}')(TRADE_DATE>='{date_fmt}')",
+        "pageNumber": "1",
+        "pageSize": "50",
+        "sortColumns": "BILLBOARD_NET_AMT",
+        "sortTypes": "-1",
+        "source": "WEB",
+        "client": "WEB",
+    }
+    data = fetch(url, params)
+    if not data or not data.get("result") or not data["result"].get("data"):
+        print(f"  龙虎榜无数据（{date_fmt}）")
+        return []
+
+    rows = data["result"]["data"]
+    out = []
+    for r in rows:
+        reason = r.get("EXPLANATION") or "—"
+        # 简单去重（同一只股票可能有多条上榜原因）
+        out.append({
+            "name": r.get("SECURITY_NAME_ABBR") or "",
+            "code": r.get("SECURITY_CODE") or "",
+            "reason": reason,
+            "change": round(r.get("CHANGE_RATE") or 0, 2),
+            "buy": r.get("BILLBOARD_BUY_AMT") or 0,
+            "sell": r.get("BILLBOARD_SELL_AMT") or 0,
+            "net": r.get("BILLBOARD_NET_AMT") or 0,
+        })
+    print(f"  龙虎榜：{len(out)} 条")
+    return out
+
 def load_previous_snapshot():
-    """读取上一次成功运行的 data.json，作为周末/节假日的兜底"""
     try:
         with open("data.json", "r", encoding="utf-8") as f:
             return json.load(f)
@@ -138,8 +179,6 @@ def main():
     print(f"最近交易日：{trade_dt.strftime('%Y-%m-%d')}")
 
     indices = get_indices()
-    print(f"指数 {len(indices)} 个")
-
     zt = get_zt_pool(trade_date_str)
     limit_up = zt["count"]
     ladder = zt["ladder"]
@@ -147,17 +186,11 @@ def main():
     limit_down = get_dt_count(trade_date_str)
     print(f"涨停 {limit_up} 家，最高 {max_board} 板，跌停 {limit_down} 家")
 
-    # ★ 先读旧快照
     prev = load_previous_snapshot()
-
-    # 抓历史
     history = get_history()
-
-    # 抓实时（周末会是0）
     breadth = get_breadth()
     amount = get_amount()
 
-    # ★ 兜底：实时为0时，用历史或旧快照
     if amount == 0 and history["amount"]:
         amount = history["amount"][-1]
         print(f"  实时成交额为0 → 用最近交易日 {amount/1e8:.0f} 亿")
@@ -172,6 +205,14 @@ def main():
     print(f"  上涨 {breadth['up']}，下跌 {breadth['down']}，平盘 {breadth['flat']}")
     print(f"  成交额 {amount/1e8:.0f} 亿")
 
+    # ★ 龙虎榜
+    lhb = get_lhb(trade_date_str)
+    if not lhb and prev:
+        prev_lhb = prev.get("lhb", [])
+        if prev_lhb:
+            lhb = prev_lhb
+            print(f"  龙虎榜为空 → 用上次快照 {len(lhb)} 条")
+
     theme_map = {}
     for s in ladder:
         t = s["theme"]
@@ -183,14 +224,8 @@ def main():
             theme_map[t]["leaders"].append(s["name"])
     themes = sorted(theme_map.values(), key=lambda x:x["limitUp"], reverse=True)[:10]
 
-    turnover = [{"name":s["name"],"code":s["code"],"rate":0.0,"change":s["change"]}
-                for s in ladder[:5]]
-
-    # ★ 涨跌家数历史（保留上次的，追加今天的）
-    breadth_hist = history["amount"]  # 占位
     prev_bh = (prev or {}).get("breadth", {}).get("history", [])
     if breadth["up"] > 0:
-        # 今天有效数据，追加
         breadth_history = (prev_bh + [[breadth["up"], breadth["down"]]])[-HISTORY_DAYS:]
     else:
         breadth_history = prev_bh if prev_bh else [[0,0]] * len(history["dates"])
@@ -213,8 +248,7 @@ def main():
         },
         "streak": {"max": max_board, "ladder": ladder},
         "themes": themes,
-        "turnover": turnover,
-        "lhb": [],
+        "lhb": lhb,
     }
 
     with open("data.json","w",encoding="utf-8") as f:
