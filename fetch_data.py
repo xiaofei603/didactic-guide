@@ -1,5 +1,6 @@
 """
-每天自动抓取 A 股盘面数据 + 龙虎榜 + 同花顺涨停原因
+每天自动抓取 A 股盘面数据 + 龙虎榜 + 涨停概念
+数据源：东方财富 + 腾讯（K线兜底）
 """
 import json
 import time
@@ -8,12 +9,14 @@ from datetime import datetime, timedelta, timezone
 
 BJ_TZ = timezone(timedelta(hours=8))
 HISTORY_DAYS = 15
+GH_RAW = "https://raw.githubusercontent.com/xiaofei603/didactic-guide/main/data.json"
 
 def _headers(referer="https://quote.eastmoney.com/"):
     return {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
         "Referer": referer,
-        "Accept": "application/json, text/plain, */*",
+        "Accept": "*/*",
+        "Accept-Language": "zh-CN,zh;q=0.9",
     }
 
 def fetch_json(url, params=None, referer="https://quote.eastmoney.com/", retry=3, timeout=20):
@@ -26,30 +29,29 @@ def fetch_json(url, params=None, referer="https://quote.eastmoney.com/", retry=3
             if i == retry - 1:
                 print(f"[ERR] {url}: {e}")
                 return None
-            time.sleep(1.2 * (i + 1))
+            time.sleep(1.5 * (i + 1))
     return None
 
-# ============== 同花顺 Session ==============
-_ths_session = None
-def get_ths_session():
-    global _ths_session
-    if _ths_session is not None:
-        return _ths_session
-    s = requests.Session()
-    s.headers.update({
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Referer": "https://data.10jqka.com.cn/",
-        "Accept": "application/json, text/plain, */*",
-        "Accept-Language": "zh-CN,zh;q=0.9",
-    })
+# ============ 备用兜底：从 GitHub raw 读上一次 data.json ============
+def load_prev_from_github():
     try:
-        s.get("https://data.10jqka.com.cn/", timeout=10)
-    except Exception:
-        pass
-    _ths_session = s
-    return s
+        r = requests.get(GH_RAW + "?_=" + str(int(time.time())), timeout=20)
+        if r.status_code == 200:
+            d = r.json()
+            print("  ✓ 从 GitHub 读到上次快照")
+            return d
+    except Exception as e:
+        print(f"  GitHub 兜底失败: {e}")
+    return None
 
-# ============== 各接口 ==============
+def load_prev():
+    try:
+        with open("data.json", "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+# ============ 各接口 ============
 
 def get_indices():
     url = "https://push2.eastmoney.com/api/qt/ulist.np/get"
@@ -84,10 +86,14 @@ def get_zt_pool(date_str):
     ladder = []
     for x in pool:
         code = str(x.get("c","")).zfill(6)
+        hybk = x.get("hybk","") or ""
         ladder.append({
             "name": x.get("n",""), "code": code,
             "boards": x.get("lbc",1) or 1,
             "change": round(x.get("zdp") or 0, 2),
+            "industry": hybk,
+            "concepts": [hybk] if hybk else [],
+            "reason": "",
         })
     ladder.sort(key=lambda x:x["boards"], reverse=True)
     return {"count":len(pool),"ladder":ladder}
@@ -109,44 +115,81 @@ def get_amount():
     if not data or not data.get("data"): return 0
     return sum(x.get("f6") or 0 for x in data["data"].get("diff",[]))
 
-def get_amount_kline(secid, days):
-    """K 线接口，4 次重试"""
+def get_amount_kline_tencent(code):
+    """
+    腾讯K线接口（对 GitHub 服务器友好，比东财稳）
+    返回 {日期: 成交额(元)}
+    腾讯 day 数组每项: [日期, 开, 收, 高, 低, 成交量(手)]
+    成交额估算 = 成交量 × 100股 × (开盘+收盘+最高+最低)/4
+    """
+    url = "https://web.ifzq.gtimg.cn/appstock/app/kline/kline"
+    params = {"param": f"{code},day,,,{HISTORY_DAYS + 5},qfq"}
+    try:
+        r = requests.get(url, params=params, timeout=20,
+                         headers={"User-Agent": "Mozilla/5.0", "Referer": "https://gu.qq.com/"})
+        data = r.json()
+        day_list = (data.get("data", {}).get(code) or {}).get("day", []) or []
+        out = {}
+        for row in day_list:
+            if len(row) >= 6:
+                try:
+                    d = row[0]
+                    o, c, h, l = float(row[1]), float(row[2]), float(row[3]), float(row[4])
+                    vol = float(row[5])  # 手
+                    avg = (o + c + h + l) / 4
+                    out[d] = vol * 100 * avg
+                except: pass
+        if out:
+            print(f"  腾讯K线 {code}: {len(out)} 天")
+        return out
+    except Exception as e:
+        print(f"  腾讯K线失败 {code}: {e}")
+        return {}
+
+def get_amount_kline_east(secid, days):
+    """东方财富K线（首选）"""
     url = "https://push2his.eastmoney.com/api/qt/stock/kline/get"
     params = {"secid":secid,"fields1":"f1,f2,f3,f4,f5,f6",
               "fields2":"f51,f57","klt":"101","fqt":"1",
-              "end":"20500101","lmt":str(days)}
-    for i in range(4):
-        data = fetch_json(url, params, referer="https://quote.eastmoney.com/center/", timeout=25)
-        if data and data.get("data"):
-            klines = data["data"].get("klines", []) or []
-            out = {}
-            for line in klines:
-                parts = line.split(",")
-                if len(parts) >= 2:
-                    try:
-                        out[parts[0]] = float(parts[1])
-                    except:
-                        pass
-            if out:
-                return out
-        time.sleep(1.5 * (i + 1))
-    print(f"  [WARN] K线接口失败 {secid}")
+              "beg":"0","end":"20500101","lmt":str(days),
+              "ut":"fa5fd1943c7b386f172d6893dbfba10b",
+              "_":str(int(datetime.now().timestamp()*1000))}
+    data = fetch_json(url, params, retry=2, timeout=25)
+    if data and data.get("data"):
+        klines = data["data"].get("klines", []) or []
+        out = {}
+        for line in klines:
+            parts = line.split(",")
+            if len(parts) >= 2:
+                try: out[parts[0]] = float(parts[1])
+                except: pass
+        if out:
+            print(f"  东财K线 {secid}: {len(out)} 天")
+            return out
     return {}
 
 def get_history(prev):
+    """优先东财，失败用腾讯；都失败用上次快照"""
     print(f"  抓取过去 {HISTORY_DAYS} 个交易日...")
-    amt_sh = get_amount_kline("1.000001", HISTORY_DAYS + 5)
-    amt_sz = get_amount_kline("0.399001", HISTORY_DAYS + 5)
+    amt_sh = get_amount_kline_east("1.000001", HISTORY_DAYS + 5)
+    amt_sz = get_amount_kline_east("0.399001", HISTORY_DAYS + 5)
+
+    if not amt_sh or not amt_sz:
+        print("  东财K线失败 → 用腾讯接口")
+        amt_sh = get_amount_kline_tencent("sh000001")
+        amt_sz = get_amount_kline_tencent("sz399001")
+
     common = sorted(set(amt_sh.keys()) & set(amt_sz.keys()))[-HISTORY_DAYS:]
 
-    if not common and prev:
-        pa = prev.get("amount", {}).get("history") or []
-        pz = prev.get("limit", {}).get("history") or []
-        pd = prev.get("limit", {}).get("downHistory") or []
-        pdates = prev.get("dates") or []
-        if pa:
-            print("  K线失败 → 用上次历史数据")
-            return {"dates": pdates, "amount": pa, "zt": pz, "dt": pd}
+    if not common:
+        print("  所有K线接口失败 → 用上次快照")
+        if prev:
+            pa = (prev.get("amount") or {}).get("history") or []
+            pz = (prev.get("limit") or {}).get("history") or []
+            pd = (prev.get("limit") or {}).get("downHistory") or []
+            pdates = prev.get("dates") or []
+            if pa:
+                return {"dates": pdates, "amount": pa, "zt": pz, "dt": pd}
         return {"dates": [], "amount": [], "zt": [], "dt": []}
 
     zt_hist, dt_hist = {}, {}
@@ -163,42 +206,6 @@ def get_history(prev):
         "dt": [dt_hist[d] for d in common],
     }
 
-def get_ths_zt_reason(date_str):
-    """同花顺涨停原因（带 cookie 的 Session）"""
-    s = get_ths_session()
-    url = "https://data.10jqka.com.cn/dataapi/limit_up/limit_up_pool"
-    params = {
-        "page": "1", "limit": "300",
-        "field": "199112,10,9001,330323,330324,330325,9002,330329,133971,133970,1968584,3475914,9003,9004",
-        "filter": "HS,GEM2STAR",
-        "order_field": "330324", "order_type": "0",
-        "date": date_str,
-    }
-    for i in range(2):
-        try:
-            r = s.get(url, params=params, timeout=20)
-            if r.status_code != 200:
-                print(f"  同花顺 HTTP {r.status_code}")
-                continue
-            data = r.json()
-            if data.get("status_code") != 0:
-                print(f"  同花顺状态异常: {data.get('status_msg')}")
-                continue
-            info = data.get("data", {}).get("info", []) or []
-            result = {}
-            for x in info:
-                code = str(x.get("code", "")).zfill(6)
-                reason_tags = x.get("330323", "") or ""
-                reason_detail = x.get("330329", "") or ""
-                concepts = [t.strip() for t in reason_tags.split("+") if t.strip()]
-                result[code] = {"concepts": concepts, "reason": reason_detail}
-            print(f"  同花顺：{len(result)} 只")
-            return result
-        except Exception as e:
-            print(f"  同花顺失败：{e}")
-            time.sleep(1)
-    return {}
-
 def get_lhb(date_str):
     date_fmt = date_str[:4] + "-" + date_str[4:6] + "-" + date_str[6:]
     url = "https://datacenter-web.eastmoney.com/api/data/v1/get"
@@ -213,7 +220,6 @@ def get_lhb(date_str):
     }
     data = fetch_json(url, params, referer="https://data.eastmoney.com/")
     if not data or not data.get("result") or not data["result"].get("data"):
-        print(f"  龙虎榜无数据")
         return []
     rows = data["result"]["data"]
     out = []
@@ -230,29 +236,20 @@ def get_lhb(date_str):
     print(f"  龙虎榜：{len(out)} 条")
     return out
 
-def load_prev():
-    try:
-        with open("data.json", "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return None
-
 def find_latest_trade_date():
     now = datetime.now(BJ_TZ)
     for i in range(10):
         d = now - timedelta(days=i)
         if d.weekday() >= 5:
-            print(f"  {d.strftime('%Y-%m-%d')} 周末跳过")
             continue
         ds = d.strftime("%Y%m%d")
         if get_zt_pool(ds)["count"] > 0:
             return ds, d
-        print(f"  {d.strftime('%Y-%m-%d')} 无数据")
     return now.strftime("%Y%m%d"), now
 
 def main():
     print("开始抓取...")
-    prev = load_prev()
+    prev = load_prev() or load_prev_from_github()
 
     trade_date_str, trade_dt = find_latest_trade_date()
     print(f"最近交易日：{trade_dt.strftime('%Y-%m-%d')}")
@@ -265,12 +262,6 @@ def main():
     limit_down = get_dt_count(trade_date_str)
     print(f"涨停 {limit_up} 家，最高 {max_board} 板，跌停 {limit_down} 家")
 
-    ths_map = get_ths_zt_reason(trade_date_str)
-    for s in ladder:
-        ths = ths_map.get(s["code"], {})
-        s["concepts"] = ths.get("concepts", [])
-        s["reason"] = ths.get("reason", "")
-
     history = get_history(prev)
     breadth = get_breadth()
     amount = get_amount()
@@ -279,8 +270,8 @@ def main():
         amount = history["amount"][-1]
         print(f"  成交额兜底：{amount/1e8:.0f} 亿")
 
-    if breadth["up"] == 0 and breadth["down"] == 0 and breadth["flat"] == 0 and prev:
-        ob = (prev.get("breadth") or {})
+    if breadth["up"] == 0 and prev:
+        ob = prev.get("breadth") or {}
         if (ob.get("up") or 0) > 0:
             breadth = {"up": ob["up"], "down": ob["down"], "flat": ob["flat"]}
             print(f"  涨跌家数兜底")
@@ -290,31 +281,27 @@ def main():
 
     lhb = get_lhb(trade_date_str)
     if not lhb and prev:
-        prev_lhb = prev.get("lhb", [])
-        if prev_lhb:
-            lhb = prev_lhb
-            print(f"  龙虎榜兜底 {len(lhb)} 条")
+        lhb = prev.get("lhb", []) or []
+        if lhb: print(f"  龙虎榜兜底 {len(lhb)} 条")
 
+    # 用行业板块聚合题材
     theme_map = {}
     for s in ladder:
-        for t in s.get("concepts", []) or []:
-            if not t: continue
-            if t not in theme_map:
-                theme_map[t] = {"name":t,"limitUp":0,"maxBoard":0,"leaders":[]}
-            theme_map[t]["limitUp"] += 1
-            theme_map[t]["maxBoard"] = max(theme_map[t]["maxBoard"], s["boards"])
-            if len(theme_map[t]["leaders"]) < 3 and s["name"] not in theme_map[t]["leaders"]:
-                theme_map[t]["leaders"].append(s["name"])
+        ind = s.get("industry","")
+        if not ind: continue
+        if ind not in theme_map:
+            theme_map[ind] = {"name":ind,"limitUp":0,"maxBoard":0,"leaders":[]}
+        theme_map[ind]["limitUp"] += 1
+        theme_map[ind]["maxBoard"] = max(theme_map[ind]["maxBoard"], s["boards"])
+        if len(theme_map[ind]["leaders"]) < 3:
+            theme_map[ind]["leaders"].append(s["name"])
 
-    themes = [t for t in theme_map.values() if t["limitUp"] >= 2]
+    themes = list(theme_map.values())
     themes.sort(key=lambda x: x["limitUp"], reverse=True)
     themes = themes[:12]
 
     if not themes and prev:
-        pthemes = prev.get("themes", [])
-        if pthemes:
-            themes = pthemes
-            print(f"  题材兜底 {len(themes)} 个")
+        themes = prev.get("themes", []) or []
 
     prev_bh = (prev or {}).get("breadth", {}).get("history", [])
     if breadth["up"] > 0:
@@ -324,21 +311,11 @@ def main():
     else:
         breadth_history = [[0,0]] * len(history["dates"])
 
-    if ladder and not any(s.get("concepts") for s in ladder) and prev:
-        prev_ladder = (prev.get("streak") or {}).get("ladder", [])
-        prev_map = {s["code"]: s for s in prev_ladder}
-        for s in ladder:
-            ps = prev_map.get(s["code"])
-            if ps:
-                s["concepts"] = ps.get("concepts", [])
-                s["reason"] = ps.get("reason", "")
-        print(f"  涨停原因兜底")
-
     now = datetime.now(BJ_TZ)
     result = {
         "updated_at": now.strftime("%Y-%m-%d %H:%M"),
         "trade_date": trade_dt.strftime("%Y-%m-%d"),
-        "source": "东方财富 + 同花顺公开接口",
+        "source": "东方财富 + 腾讯公开接口",
         "dates": history["dates"],
         "indices": indices,
         "amount": {"total": amount, "history": history["amount"]},
