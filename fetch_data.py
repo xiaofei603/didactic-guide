@@ -32,7 +32,6 @@ def fetch_json(url, params=None, referer="https://quote.eastmoney.com/", retry=3
             time.sleep(1.5 * (i + 1))
     return None
 
-# ============ 备用兜底：从 GitHub raw 读上一次 data.json ============
 def load_prev_from_github():
     try:
         r = requests.get(GH_RAW + "?_=" + str(int(time.time())), timeout=20)
@@ -50,8 +49,6 @@ def load_prev():
             return json.load(f)
     except Exception:
         return None
-
-# ============ 各接口 ============
 
 def get_indices():
     url = "https://push2.eastmoney.com/api/qt/ulist.np/get"
@@ -115,46 +112,14 @@ def get_amount():
     if not data or not data.get("data"): return 0
     return sum(x.get("f6") or 0 for x in data["data"].get("diff",[]))
 
-def get_amount_kline_tencent(code):
-    """
-    腾讯K线接口（对 GitHub 服务器友好，比东财稳）
-    返回 {日期: 成交额(元)}
-    腾讯 day 数组每项: [日期, 开, 收, 高, 低, 成交量(手)]
-    成交额估算 = 成交量 × 100股 × (开盘+收盘+最高+最低)/4
-    """
-    url = "https://web.ifzq.gtimg.cn/appstock/app/kline/kline"
-    params = {"param": f"{code},day,,,{HISTORY_DAYS + 5},qfq"}
-    try:
-        r = requests.get(url, params=params, timeout=20,
-                         headers={"User-Agent": "Mozilla/5.0", "Referer": "https://gu.qq.com/"})
-        data = r.json()
-        day_list = (data.get("data", {}).get(code) or {}).get("day", []) or []
-        out = {}
-        for row in day_list:
-            if len(row) >= 6:
-                try:
-                    d = row[0]
-                    o, c, h, l = float(row[1]), float(row[2]), float(row[3]), float(row[4])
-                    vol = float(row[5])  # 手
-                    avg = (o + c + h + l) / 4
-                    out[d] = vol * 100 * avg
-                except: pass
-        if out:
-            print(f"  腾讯K线 {code}: {len(out)} 天")
-        return out
-    except Exception as e:
-        print(f"  腾讯K线失败 {code}: {e}")
-        return {}
-
 def get_amount_kline_east(secid, days):
-    """东方财富K线（首选）"""
     url = "https://push2his.eastmoney.com/api/qt/stock/kline/get"
     params = {"secid":secid,"fields1":"f1,f2,f3,f4,f5,f6",
               "fields2":"f51,f57","klt":"101","fqt":"1",
               "beg":"0","end":"20500101","lmt":str(days),
               "ut":"fa5fd1943c7b386f172d6893dbfba10b",
               "_":str(int(datetime.now().timestamp()*1000))}
-    data = fetch_json(url, params, retry=2, timeout=25)
+    data = fetch_json(url, params, referer="https://quote.eastmoney.com/", retry=2, timeout=25)
     if data and data.get("data"):
         klines = data["data"].get("klines", []) or []
         out = {}
@@ -168,28 +133,58 @@ def get_amount_kline_east(secid, days):
             return out
     return {}
 
+def get_amount_kline_tencent(code):
+    """腾讯K线兜底"""
+    url = "https://web.ifzq.gtimg.cn/appstock/app/kline/kline"
+    params = {"param": f"{code},day,,,{HISTORY_DAYS + 5},qfq"}
+    try:
+        r = requests.get(url, params=params, timeout=25,
+                         headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                                  "Referer": "https://gu.qq.com/"})
+        data = r.json()
+        day_list = (data.get("data", {}).get(code) or {}).get("day", []) or []
+        out = {}
+        for row in day_list:
+            if len(row) >= 6:
+                try:
+                    d = row[0]
+                    o, c, h, l = float(row[1]), float(row[2]), float(row[3]), float(row[4])
+                    vol = float(row[5])
+                    avg = (o + c + h + l) / 4
+                    out[d] = vol * 100 * avg
+                except: pass
+        if out:
+            print(f"  腾讯K线 {code}: {len(out)} 天")
+        return out
+    except Exception as e:
+        print(f"  腾讯K线失败 {code}: {e}")
+        return {}
+
 def get_history(prev):
-    """优先东财，失败用腾讯；都失败用上次快照"""
     print(f"  抓取过去 {HISTORY_DAYS} 个交易日...")
     amt_sh = get_amount_kline_east("1.000001", HISTORY_DAYS + 5)
     amt_sz = get_amount_kline_east("0.399001", HISTORY_DAYS + 5)
 
     if not amt_sh or not amt_sz:
-        print("  东财K线失败 → 用腾讯接口")
-        amt_sh = get_amount_kline_tencent("sh000001")
-        amt_sz = get_amount_kline_tencent("sz399001")
+        print("  东财失败 → 腾讯")
+        if not amt_sh: amt_sh = get_amount_kline_tencent("sh000001")
+        if not amt_sz: amt_sz = get_amount_kline_tencent("sz399001")
 
     common = sorted(set(amt_sh.keys()) & set(amt_sz.keys()))[-HISTORY_DAYS:]
 
+    # ★ 关键修复：K线全失败 → 用上次完整历史，不写空值
     if not common:
-        print("  所有K线接口失败 → 用上次快照")
+        print("  所有K线接口失败")
         if prev:
             pa = (prev.get("amount") or {}).get("history") or []
-            pz = (prev.get("limit") or {}).get("history") or []
-            pd = (prev.get("limit") or {}).get("downHistory") or []
-            pdates = prev.get("dates") or []
             if pa:
-                return {"dates": pdates, "amount": pa, "zt": pz, "dt": pd}
+                print(f"  ✓ 用上次历史 {len(pa)} 天")
+                return {
+                    "dates": prev.get("dates", []),
+                    "amount": pa,
+                    "zt": (prev.get("limit") or {}).get("history") or [],
+                    "dt": (prev.get("limit") or {}).get("downHistory") or [],
+                }
         return {"dates": [], "amount": [], "zt": [], "dt": []}
 
     zt_hist, dt_hist = {}, {}
@@ -249,7 +244,8 @@ def find_latest_trade_date():
 
 def main():
     print("开始抓取...")
-    prev = load_prev() or load_prev_from_github()
+    # ★ 优先用 GitHub 上的最新（保证拿到的不是本次运行刚写的空数据）
+    prev = load_prev_from_github() or load_prev()
 
     trade_date_str, trade_dt = find_latest_trade_date()
     print(f"最近交易日：{trade_dt.strftime('%Y-%m-%d')}")
@@ -266,14 +262,21 @@ def main():
     breadth = get_breadth()
     amount = get_amount()
 
-    if amount == 0 and history["amount"]:
-        amount = history["amount"][-1]
-        print(f"  成交额兜底：{amount/1e8:.0f} 亿")
+    # ★ 成交额兜底链
+    if amount == 0:
+        if history["amount"]:
+            amount = history["amount"][-1]
+            print(f"  成交额兜底(历史)：{amount/1e8:.0f} 亿")
+        elif prev:
+            amount = (prev.get("amount") or {}).get("total", 0)
+            if amount > 0:
+                print(f"  成交额兜底(上次)：{amount/1e8:.0f} 亿")
 
-    if breadth["up"] == 0 and prev:
+    # ★ 涨跌家数兜底
+    if breadth["up"] == 0 and breadth["down"] == 0 and prev:
         ob = prev.get("breadth") or {}
         if (ob.get("up") or 0) > 0:
-            breadth = {"up": ob["up"], "down": ob["down"], "flat": ob["flat"]}
+            breadth = {"up": ob["up"], "down": ob["down"], "flat": ob.get("flat", 0)}
             print(f"  涨跌家数兜底")
 
     print(f"  上涨 {breadth['up']}，下跌 {breadth['down']}")
@@ -311,6 +314,16 @@ def main():
     else:
         breadth_history = [[0,0]] * len(history["dates"])
 
+    # ★ 最后保险：如果 history 还是空的但 prev 有数据 → 全用 prev
+    if not history["amount"] and prev and (prev.get("amount") or {}).get("history"):
+        print("  ⚠ 最终兜底：完整保留上次的图表数据")
+        history = {
+            "dates": prev.get("dates", []),
+            "amount": prev["amount"]["history"],
+            "zt": (prev.get("limit") or {}).get("history") or [],
+            "dt": (prev.get("limit") or {}).get("downHistory") or [],
+        }
+
     now = datetime.now(BJ_TZ)
     result = {
         "updated_at": now.strftime("%Y-%m-%d %H:%M"),
@@ -334,7 +347,7 @@ def main():
 
     with open("data.json","w",encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
-    print(f"已写入 data.json")
+    print(f"已写入 data.json（图表数据 {len(history['amount'])} 天）")
 
 if __name__ == "__main__":
     main()
