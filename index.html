@@ -437,6 +437,30 @@ function bindHover(cv,cfg){
 var chartConfigs={};
 function renderCharts(d){
   var L=d.dates||[];
+  if(!L.length){ return; }
+  var yf=function(v){return Number(v).toLocaleString("en-US")};
+  chartConfigs.amount={type:"area",labels:L,
+    series:[{name:"成交额（亿）",color:UP,data:(d.amount.history||[]).map(function(v){return v/1e8})}],
+    yFmt:yf,yTickCount:4};
+  drawChart($("chartAmount"),chartConfigs.amount,-1);
+  bindHover($("chartAmount"),chartConfigs.amount);
+
+  var bh=d.breadth.history||[];
+  chartConfigs.breadth={type:"line",labels:L,
+    series:[{name:"上涨家数",color:UP,data:bh.map(function(x){return x[0]})},
+            {name:"下跌家数",color:DOWN,data:bh.map(function(x){return x[1]})}],
+    yFmt:yf,yTickCount:4};
+  drawChart($("chartBreadth"),chartConfigs.breadth,-1);
+  bindHover($("chartBreadth"),chartConfigs.breadth);
+
+  chartConfigs.limit={type:"bar",labels:L,
+    series:[{name:"涨停",color:UP,data:d.limit.history||[]},
+            {name:"跌停",color:DOWN,data:d.limit.downHistory||(d.limit.history||[]).map(function(){return 0})}],
+    yFmt:yf,yTickCount:4};
+  drawChart($("chartLimit"),chartConfigs.limit,-1);
+  bindHover($("chartLimit"),chartConfigs.limit);
+}
+  var L=d.dates||[];
   var yf=function(v){return Number(v).toLocaleString("en-US")};
   chartConfigs.amount={type:"area",labels:L,
     series:[{name:"成交额（亿）",color:UP,data:(d.amount.history||[]).map(function(v){return v/1e8})}],
