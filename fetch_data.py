@@ -52,8 +52,8 @@ def get_indices():
     result = []
     for item in data["data"].get("diff", []):
         name = item.get("f14", "")
-        value = (item.get("f2") or 0) / 100      # 接口返回的是分，需要除以 100
-        change = (item.get("f3") or 0) / 100
+        value = (item.get("f2") or 0)      # 接口返回的是分，需要除以 100
+        change = (item.get("f3") or 0)
         if name:
             result.append({
                 "name": name,
