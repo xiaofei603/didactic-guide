@@ -1,60 +1,12 @@
 {
-  "updated_at": "2026-09-19 21:46",
+  "updated_at": "2026-09-19 22:01",
   "trade_date": "2026-09-18",
-  "source": "东方财富公开接口",
-  "dates": [
-    "08-31",
-    "09-01",
-    "09-02",
-    "09-03",
-    "09-04",
-    "09-07",
-    "09-08",
-    "09-09",
-    "09-10",
-    "09-11",
-    "09-14",
-    "09-15",
-    "09-16",
-    "09-17",
-    "09-18"
-  ],
-  "indices": [
-    {
-      "name": "上证指数",
-      "value": 3911.87,
-      "change": 0.94
-    },
-    {
-      "name": "深证成指",
-      "value": 13640.87,
-      "change": 1.72
-    },
-    {
-      "name": "创业板指",
-      "value": 3372.68,
-      "change": 2.25
-    }
-  ],
+  "source": "东方财富 + 同花顺公开接口",
+  "dates": [],
+  "indices": [],
   "amount": {
-    "total": 2077100295691.3638,
-    "history": [
-      2131030144497.3333,
-      2033402822269.4827,
-      1791178494595.5251,
-      1758916323802.6875,
-      2030667836097.5483,
-      1946018893712.6255,
-      1960334669031.186,
-      1855606640262.4795,
-      1647147829484.9038,
-      1971898487729.8457,
-      1629175552004.9358,
-      1612716789831.0166,
-      1839121873617.5327,
-      1823134270447.2905,
-      2077100295691.3638
-    ]
+    "total": 0,
+    "history": []
   },
   "breadth": {
     "up": 0,
@@ -126,40 +78,8 @@
   "limit": {
     "up": 78,
     "down": 0,
-    "history": [
-      88,
-      83,
-      52,
-      44,
-      39,
-      93,
-      73,
-      48,
-      35,
-      40,
-      55,
-      32,
-      89,
-      47,
-      78
-    ],
-    "downHistory": [
-      11,
-      0,
-      8,
-      16,
-      9,
-      2,
-      0,
-      7,
-      11,
-      21,
-      16,
-      27,
-      4,
-      1,
-      0
-    ]
+    "history": [],
+    "downHistory": []
   },
   "streak": {
     "max": 4,
@@ -168,633 +88,629 @@
         "name": "华瓷股份",
         "code": "001216",
         "boards": 4,
-        "theme": "华瓷",
-        "change": 10.01
+        "change": 10.01,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "锡华科技",
         "code": "603248",
         "boards": 4,
-        "theme": "锡华",
-        "change": 9.98
+        "change": 9.98,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "内蒙新华",
         "code": "603230",
         "boards": 3,
-        "theme": "内蒙",
-        "change": 10.04
+        "change": 10.04,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "世联行",
         "code": "002285",
         "boards": 3,
-        "theme": "世联",
-        "change": 9.89
+        "change": 9.89,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "华软科技",
         "code": "002453",
         "boards": 2,
-        "theme": "华软",
-        "change": 10.1
+        "change": 10.1,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "经纬股份",
         "code": "301390",
         "boards": 2,
-        "theme": "经纬",
-        "change": 20.0
+        "change": 20.0,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "华纺股份",
         "code": "600448",
         "boards": 2,
-        "theme": "华纺",
-        "change": 9.94
+        "change": 9.94,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "南华生物",
         "code": "000504",
         "boards": 2,
-        "theme": "南华",
-        "change": 10.0
+        "change": 10.0,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "龙头股份",
         "code": "600630",
         "boards": 2,
-        "theme": "龙头",
-        "change": 9.95
+        "change": 9.95,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "科森科技",
         "code": "603626",
         "boards": 2,
-        "theme": "科森",
-        "change": 10.0
+        "change": 10.0,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "新宏泽",
         "code": "002836",
         "boards": 2,
-        "theme": "新宏",
-        "change": 9.96
+        "change": 9.96,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "金健米业",
         "code": "600127",
         "boards": 2,
-        "theme": "金健",
-        "change": 9.98
+        "change": 9.98,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "百通能源",
         "code": "001376",
         "boards": 1,
-        "theme": "百通",
-        "change": 9.99
+        "change": 9.99,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "福龙马",
         "code": "603686",
         "boards": 1,
-        "theme": "福龙",
-        "change": 10.03
+        "change": 10.03,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "海安集团",
         "code": "001233",
         "boards": 1,
-        "theme": "海安",
-        "change": 9.99
+        "change": 9.99,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "中电鑫龙",
         "code": "002298",
         "boards": 1,
-        "theme": "中电",
-        "change": 10.02
+        "change": 10.02,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "国脉文化",
         "code": "600640",
         "boards": 1,
-        "theme": "国脉",
-        "change": 10.04
+        "change": 10.04,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "瑞康医药",
         "code": "002589",
         "boards": 1,
-        "theme": "瑞康",
-        "change": 10.1
+        "change": 10.1,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "三羊马",
         "code": "001317",
         "boards": 1,
-        "theme": "三羊",
-        "change": 10.01
+        "change": 10.01,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "大亚圣象",
         "code": "000910",
         "boards": 1,
-        "theme": "大亚",
-        "change": 10.06
+        "change": 10.06,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "天津普林",
         "code": "002134",
         "boards": 1,
-        "theme": "天津",
-        "change": 9.98
+        "change": 9.98,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "肯特催化",
         "code": "603120",
         "boards": 1,
-        "theme": "肯特",
-        "change": 9.99
+        "change": 9.99,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "诚邦股份",
         "code": "603316",
         "boards": 1,
-        "theme": "诚邦",
-        "change": 10.02
+        "change": 10.02,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "海量数据",
         "code": "603138",
         "boards": 1,
-        "theme": "海量",
-        "change": 10.04
+        "change": 10.04,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "会稽山",
         "code": "601579",
         "boards": 1,
-        "theme": "会稽",
-        "change": 10.02
+        "change": 10.02,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "华塑控股",
         "code": "000509",
         "boards": 1,
-        "theme": "华塑",
-        "change": 9.91
+        "change": 9.91,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "威星智能",
         "code": "002849",
         "boards": 1,
-        "theme": "威星",
-        "change": 10.02
+        "change": 10.02,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "远 望 谷",
         "code": "002161",
         "boards": 1,
-        "theme": "远 ",
-        "change": 10.02
+        "change": 10.02,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "和顺石油",
         "code": "603353",
         "boards": 1,
-        "theme": "和顺",
-        "change": 9.99
+        "change": 9.99,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "太阳电缆",
         "code": "002300",
         "boards": 1,
-        "theme": "太阳",
-        "change": 10.03
+        "change": 10.03,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "东易日盛",
         "code": "002713",
         "boards": 1,
-        "theme": "东易",
-        "change": 9.97
+        "change": 9.97,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "陕西旅游",
         "code": "603402",
         "boards": 1,
-        "theme": "陕西",
-        "change": 10.01
+        "change": 10.01,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "航天动力",
         "code": "600343",
         "boards": 1,
-        "theme": "航天",
-        "change": 10.0
+        "change": 10.0,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "浩瀚深度",
         "code": "688292",
         "boards": 1,
-        "theme": "浩瀚",
-        "change": 20.02
+        "change": 20.02,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "祥鑫科技",
         "code": "002965",
         "boards": 1,
-        "theme": "祥鑫",
-        "change": 10.01
+        "change": 10.01,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "万里股份",
         "code": "600847",
         "boards": 1,
-        "theme": "万里",
-        "change": 10.04
+        "change": 10.04,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "中超控股",
         "code": "002471",
         "boards": 1,
-        "theme": "中超",
-        "change": 9.96
+        "change": 9.96,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "国光连锁",
         "code": "605188",
         "boards": 1,
-        "theme": "国光",
-        "change": 9.97
+        "change": 9.97,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "合富中国",
         "code": "603122",
         "boards": 1,
-        "theme": "合富",
-        "change": 10.0
+        "change": 10.0,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "马矿股份",
         "code": "601123",
         "boards": 1,
-        "theme": "马矿",
-        "change": 10.02
+        "change": 10.02,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "博通集成",
         "code": "603068",
         "boards": 1,
-        "theme": "博通",
-        "change": 10.0
+        "change": 10.0,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "国芳集团",
         "code": "601086",
         "boards": 1,
-        "theme": "国芳",
-        "change": 10.0
+        "change": 10.0,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "奥康国际",
         "code": "603001",
         "boards": 1,
-        "theme": "奥康",
-        "change": 10.02
+        "change": 10.02,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "真爱美家",
         "code": "003041",
         "boards": 1,
-        "theme": "真爱",
-        "change": 10.0
+        "change": 10.0,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "华天科技",
         "code": "002185",
         "boards": 1,
-        "theme": "华天",
-        "change": 10.01
+        "change": 10.01,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "格尔软件",
         "code": "603232",
         "boards": 1,
-        "theme": "格尔",
-        "change": 9.98
+        "change": 9.98,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "天安新材",
         "code": "603725",
         "boards": 1,
-        "theme": "天安",
-        "change": 10.02
+        "change": 10.02,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "盛景微",
         "code": "603375",
         "boards": 1,
-        "theme": "盛景",
-        "change": 10.0
+        "change": 10.0,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "浙江正特",
         "code": "001238",
         "boards": 1,
-        "theme": "浙江",
-        "change": 9.99
+        "change": 9.99,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "亚玛顿",
         "code": "002623",
         "boards": 1,
-        "theme": "亚玛",
-        "change": 9.98
+        "change": 9.98,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "双枪科技",
         "code": "001211",
         "boards": 1,
-        "theme": "双枪",
-        "change": 9.99
+        "change": 9.99,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "七 匹 狼",
         "code": "002029",
         "boards": 1,
-        "theme": "七 ",
-        "change": 10.02
+        "change": 10.02,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "道生天合",
         "code": "601026",
         "boards": 1,
-        "theme": "道生",
-        "change": 10.0
+        "change": 10.0,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "惠科股份",
         "code": "001399",
         "boards": 1,
-        "theme": "惠科",
-        "change": 10.02
+        "change": 10.02,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "柏诚股份",
         "code": "601133",
         "boards": 1,
-        "theme": "柏诚",
-        "change": 9.98
+        "change": 9.98,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "和远气体",
         "code": "002971",
         "boards": 1,
-        "theme": "和远",
-        "change": 10.0
+        "change": 10.0,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "上海九百",
         "code": "600838",
         "boards": 1,
-        "theme": "上海",
-        "change": 9.99
+        "change": 9.99,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "腾信精密",
         "code": "920298",
         "boards": 1,
-        "theme": "腾信",
-        "change": 30.0
+        "change": 30.0,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "高凌信息",
         "code": "688175",
         "boards": 1,
-        "theme": "高凌",
-        "change": 19.98
+        "change": 19.98,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "德豪润达",
         "code": "002005",
         "boards": 1,
-        "theme": "德豪",
-        "change": 9.92
+        "change": 9.92,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "新华文轩",
         "code": "601811",
         "boards": 1,
-        "theme": "新华",
-        "change": 9.97
+        "change": 9.97,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "魅视科技",
         "code": "001229",
         "boards": 1,
-        "theme": "魅视",
-        "change": 10.01
+        "change": 10.01,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "托伦斯",
         "code": "301583",
         "boards": 1,
-        "theme": "托伦",
-        "change": 20.0
+        "change": 20.0,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "中旗新材",
         "code": "001212",
         "boards": 1,
-        "theme": "中旗",
-        "change": 9.99
+        "change": 9.99,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "共进股份",
         "code": "603118",
         "boards": 1,
-        "theme": "共进",
-        "change": 10.03
+        "change": 10.03,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "华鑫股份",
         "code": "600621",
         "boards": 1,
-        "theme": "华鑫",
-        "change": 9.98
+        "change": 9.98,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "华金资本",
         "code": "000532",
         "boards": 1,
-        "theme": "华金",
-        "change": 10.02
+        "change": 10.02,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "精达股份",
         "code": "600577",
         "boards": 1,
-        "theme": "精达",
-        "change": 9.96
+        "change": 9.96,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "绿地控股",
         "code": "600606",
         "boards": 1,
-        "theme": "绿地",
-        "change": 9.85
+        "change": 9.85,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "大连热电",
         "code": "600719",
         "boards": 1,
-        "theme": "大连",
-        "change": 10.07
+        "change": 10.07,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "电科思仪",
         "code": "301689",
         "boards": 1,
-        "theme": "电科",
-        "change": 20.0
+        "change": 20.0,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "新宏泰",
         "code": "603016",
         "boards": 1,
-        "theme": "新宏",
-        "change": 10.0
+        "change": 10.0,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "沈阳机床",
         "code": "000410",
         "boards": 1,
-        "theme": "沈阳",
-        "change": 10.08
+        "change": 10.08,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "华盛昌",
         "code": "002980",
         "boards": 1,
-        "theme": "华盛",
-        "change": 10.0
+        "change": 10.0,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "锡装股份",
         "code": "001332",
         "boards": 1,
-        "theme": "锡装",
-        "change": 10.01
+        "change": 10.01,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "阳光照明",
         "code": "600261",
         "boards": 1,
-        "theme": "阳光",
-        "change": 10.03
+        "change": 10.03,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "万  科Ａ",
         "code": "000002",
         "boards": 1,
-        "theme": "万 ",
-        "change": 9.93
+        "change": 9.93,
+        "concepts": [],
+        "reason": ""
       },
       {
         "name": "亚泰集团",
         "code": "600881",
         "boards": 1,
-        "theme": "亚泰",
-        "change": 10.29
+        "change": 10.29,
+        "concepts": [],
+        "reason": ""
       }
     ]
   },
-  "themes": [
-    {
-      "name": "新宏",
-      "limitUp": 2,
-      "maxBoard": 2,
-      "leaders": [
-        "新宏泽",
-        "新宏泰"
-      ]
-    },
-    {
-      "name": "华瓷",
-      "limitUp": 1,
-      "maxBoard": 4,
-      "leaders": [
-        "华瓷股份"
-      ]
-    },
-    {
-      "name": "锡华",
-      "limitUp": 1,
-      "maxBoard": 4,
-      "leaders": [
-        "锡华科技"
-      ]
-    },
-    {
-      "name": "内蒙",
-      "limitUp": 1,
-      "maxBoard": 3,
-      "leaders": [
-        "内蒙新华"
-      ]
-    },
-    {
-      "name": "世联",
-      "limitUp": 1,
-      "maxBoard": 3,
-      "leaders": [
-        "世联行"
-      ]
-    },
-    {
-      "name": "华软",
-      "limitUp": 1,
-      "maxBoard": 2,
-      "leaders": [
-        "华软科技"
-      ]
-    },
-    {
-      "name": "经纬",
-      "limitUp": 1,
-      "maxBoard": 2,
-      "leaders": [
-        "经纬股份"
-      ]
-    },
-    {
-      "name": "华纺",
-      "limitUp": 1,
-      "maxBoard": 2,
-      "leaders": [
-        "华纺股份"
-      ]
-    },
-    {
-      "name": "南华",
-      "limitUp": 1,
-      "maxBoard": 2,
-      "leaders": [
-        "南华生物"
-      ]
-    },
-    {
-      "name": "龙头",
-      "limitUp": 1,
-      "maxBoard": 2,
-      "leaders": [
-        "龙头股份"
-      ]
-    }
-  ],
+  "themes": [],
   "lhb": [
     {
       "name": "华天科技",
