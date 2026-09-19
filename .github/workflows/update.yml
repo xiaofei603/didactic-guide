@@ -1,0 +1,39 @@
+name: Update market data
+
+on:
+  schedule:
+    # 北京时间每天 15:30 和 19:00 各跑一次
+    # GitHub 用 UTC 时间，北京时间 = UTC + 8
+    # 15:30 北京 = 07:30 UTC；19:00 北京 = 11:00 UTC
+    - cron: '30 7 * * *'
+    - cron: '0 11 * * *'
+  workflow_dispatch:   # 允许手动点击运行（方便测试）
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # 允许把 data.json 提交回仓库
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 安装依赖
+        run: pip install requests
+
+      - name: 运行抓取脚本
+        run: python fetch_data.py
+
+      - name: 提交更新后的 data.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data.json
+          git diff --staged --quiet || git commit -m "data: $(date -u +%F)"
+          git push
