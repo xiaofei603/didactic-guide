@@ -306,7 +306,13 @@ def main():
     if not themes and prev:
         themes = prev.get("themes", []) or []
 
-    prev_bh = (prev or {}).get("breadth", {}).get("history", [])
+       prev_bh = (prev or {}).get("breadth", {}).get("history", [])
+    if breadth["up"] > 0:
+        breadth_history = (prev_bh + [[breadth["up"], breadth["down"]]])[-HISTORY_DAYS:]
+    elif prev_bh:
+        breadth_history = prev_bh
+    else:
+        breadth_history = [[0,0]] * len(history["dates"])
     if breadth["up"] > 0:
         breadth_history = (prev_bh + [[breadth["up"], breadth["down"]]])[-HISTORY_DAYS:]
     elif prev_bh:
