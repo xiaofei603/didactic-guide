@@ -2,18 +2,18 @@ name: Update market data
 
 on:
   schedule:
-    # 北京时间每天 15:30 和 19:00 各跑一次
-    # GitHub 用 UTC 时间，北京时间 = UTC + 8
-    # 15:30 北京 = 07:30 UTC；19:00 北京 = 11:00 UTC
-    - cron: '30 7 * * *'
-    - cron: '0 11 * * *'
-  workflow_dispatch:   # 允许手动点击运行（方便测试）
+    # 北京时间每天 15:05 和 19:00 各跑一次
+    # 15:05 抓当日涨跌家数（收盘后接口还没清零）
+    # 19:00 抓龙虎榜（18:00 后披露）
+    - cron: '5 7 * * *'    # 北京 15:05
+    - cron: '0 11 * * *'   # 北京 19:00
+  workflow_dispatch:
 
 jobs:
   update:
     runs-on: ubuntu-latest
     permissions:
-      contents: write   # 允许把 data.json 提交回仓库
+      contents: write
 
     steps:
       - name: 检出代码
