@@ -322,21 +322,54 @@ function showRest(d){
   b.classList.add("on");
 }
 
+/* ★ 新版：先判断退潮，再看绝对值 */
 function analyse(d){
-  var lu=d.limit.up,ld=d.limit.down;
+  var lu=d.limit.up, ld=d.limit.down;
+  var h=d.limit.history||[];
+  var dh=d.limit.downHistory||[];
+  var ah=d.amount.history||[];
+
   var ratio=lu/Math.max(ld,1);
   var score=Math.round(100*ratio/(ratio+3));
-  var h=d.limit.history||[];
-  var luPrev=h.length>=2?h[h.length-2]:lu;
-  var down=lu<luPrev;
-  var hot=h.length>=3&&Math.max.apply(null,h.slice(-4,-1))>40;
-  var c,co,ds,bp;
-  if(ratio>=3&&lu>=40){c="主升期";co="#ff4d4f";bp=8;ds="涨停远多于跌停，赚钱效应扩散，人气所向。可积极参与强势主线龙头，但要留意龙头股的分歧信号。"}
-  else if(ratio>=1.5){c="发酵期";co="#ff9f43";bp=5;ds="做多情绪占优，热点逐步聚焦。可选择主线板块中的强势个股参与，控制单笔仓位，不追高。"}
-  else if(ratio>=0.5){c="修复期";co="#4c8dff";bp=3;ds="多空相对均衡，情绪从冰点回暖。可轻仓试错低位首板，重点关注能否出现连板个股打开空间。"}
-  else{c="冰点期";co="#5c6779";bp=1;ds="跌停家数压制涨停，亏钱效应主导。空仓或极低仓位等待，等情绪修复信号再出手。"}
-  if(hot&&down&&ratio<2.5){c="退潮期";co="#a855f7";bp=0;ds="前期涨停高位回落，人气退散，亏钱效应扩散。此时接力容易吃面，宜空仓等待下一轮修复。"}
-  return{ratio:ratio,score:score,cycle:c,color:co,desc:ds,basePos:bp,limitNet:lu-ld};
+
+  // 昨日数据
+  var luPrev = h.length>=2 ? h[h.length-2] : lu;
+  var luPrevPrev = h.length>=3 ? h[h.length-3] : luPrev;
+  var ldPrev = dh.length>=2 ? dh[dh.length-2] : ld;
+
+  // 成交额昨日
+  var amtToday = d.amount.total || 0;
+  var amtPrev = ah.length>=2 ? ah[ah.length-2] : amtToday;
+
+  // 变化率
+  var luChange = luPrev > 0 ? (lu - luPrev) / luPrev : 0;
+  var amtChange = amtPrev > 0 ? (amtToday - amtPrev) / amtPrev : 0;
+
+  // ★ 退潮判定（最高优先级）
+  // 前一日曾热（涨停 ≥ 40）+ 今日涨停回落 ≥ 15% + 跌停 ≥ 5 + 成交额萎缩 ≥ 5%
+  var wasHot = luPrev >= 40 || luPrevPrev >= 40;
+  var isFading = wasHot && luChange <= -0.15 && ld >= 5 && amtChange <= -0.05;
+
+  var c, co, ds, bp;
+
+  if (isFading) {
+    c = "退潮期"; co = "#a855f7"; bp = 0;
+    ds = "前期涨停高位回落，人气退散，亏钱效应扩散。此时接力容易吃面，宜空仓等待下一轮情绪冰点后的修复。";
+  } else if (lu >= 70 && ld <= 3) {
+    c = "主升期"; co = "#ff4d4f"; bp = 8;
+    ds = "涨停远多于跌停，赚钱效应扩散，人气所向。可积极参与强势主线龙头，但要留意龙头股的分歧信号。";
+  } else if (lu >= 40 && ratio >= 2) {
+    c = "发酵期"; co = "#ff9f43"; bp = 5;
+    ds = "做多情绪占优，热点逐步聚焦。可选择主线板块中的强势个股参与，控制单笔仓位，不追高。";
+  } else if (lu >= 20 && ratio >= 0.8) {
+    c = "修复期"; co = "#4c8dff"; bp = 3;
+    ds = "多空相对均衡，情绪从冰点回暖。可轻仓试错低位首板，重点关注能否出现连板个股打开空间。";
+  } else {
+    c = "冰点期"; co = "#5c6779"; bp = 1;
+    ds = "跌停家数压制涨停，亏钱效应主导。空仓或极低仓位等待，等情绪修复信号再出手。";
+  }
+
+  return {ratio:ratio, score:score, cycle:c, color:co, desc:ds, basePos:bp, limitNet:lu-ld};
 }
 
 function verdictKeyword(c){
