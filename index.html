@@ -73,12 +73,17 @@ h1 em{font-style:normal;color:var(--gold)}
 .chart-legend i.sq{border-radius:2px}
 .blegend{display:flex;justify-content:space-between;font-size:12px;color:var(--dim2)}
 .blegend b{font-size:15px;font-weight:600;display:block;margin-top:2px}
-.limits{display:flex;align-items:center;gap:14px}
+.limits{display:flex;align-items:center;gap:12px}
 .limits>div{flex:1;text-align:center;background:var(--card2);border-radius:10px;padding:10px 6px}
-.limits b{display:block;font-size:24px;font-weight:700;line-height:1.2}
-.limits small{font-size:11.5px;color:var(--dim2)}
+.limits b{display:block;font-size:22px;font-weight:700;line-height:1.2}
+.limits small{font-size:11px;color:var(--dim2)}
 .limits .mid{flex:0 0 auto;background:none;padding:0;font-size:12px;color:var(--dim2);text-align:center}
 .limits .mid b{font-size:17px}
+.seal-row{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--card2);border-radius:8px}
+.seal-label{font-size:11.5px;color:var(--dim2);flex:0 0 auto}
+.seal-bar{flex:1;height:8px;background:#1a212c;border-radius:4px;overflow:hidden}
+.seal-bar span{display:block;height:100%;border-radius:4px;transition:width .6s,background .6s}
+.seal-num{font-size:15px;font-weight:700;flex:0 0 auto;min-width:56px;text-align:right}
 .streak-list{display:flex;flex-direction:column;gap:11px}
 .streak-row{display:flex;align-items:flex-start;gap:10px}
 .streak-badge{flex:0 0 auto;width:46px;text-align:center;font-size:10.5px;color:var(--dim2);background:#1b2230;border:1px solid var(--line);border-radius:8px;padding:3px 0 4px;line-height:1.15}
@@ -142,6 +147,16 @@ table.tbl .num{text-align:right}
 .pos-desc b{color:var(--txt);font-weight:600}
 .pos-formula{font-size:11px;color:var(--dim2);background:#1b2230;padding:7px 12px;border-radius:8px;line-height:1.7}
 .pos-formula em{font-style:normal;color:var(--gold)}
+.ladder-list{display:flex;flex-direction:column;gap:8px}
+.ladder-row{display:grid;grid-template-columns:40px 1fr 52px;gap:10px;align-items:center}
+.ladder-label{font-size:12px;color:var(--dim2);text-align:right}
+.ladder-label b{color:var(--txt);font-weight:600}
+.ladder-bar{height:20px;background:#1a212c;border-radius:4px;overflow:hidden}
+.ladder-bar span{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,#8b98a9,#5c6779);transition:width .5s}
+.ladder-row.hot .ladder-bar span{background:linear-gradient(90deg,#ff4d4f,#ff9f43)}
+.ladder-row.warm .ladder-bar span{background:linear-gradient(90deg,#ff9f43,#e8b339)}
+.ladder-num{font-size:13px;font-weight:600;color:var(--txt);text-align:right}
+.ladder-num small{font-size:10px;color:var(--dim2);margin-left:2px;font-weight:400}
 footer{margin-top:26px;text-align:center;font-size:11.5px;color:#3d4757;line-height:1.8}
 footer b{color:var(--gold);font-weight:600}
 </style>
@@ -181,13 +196,14 @@ footer b{color:var(--gold);font-weight:600}
     <div class="cyc-row">
       <span class="cyc-badge" id="cycleBadge"><i></i><span id="cycleName">--</span></span>
       <span class="ratio-tag">涨停/跌停 <b id="ratioVal">--</b></span>
+      <span class="ratio-tag">封板率 <b id="ratioSeal">--</b></span>
       <span class="ratio-tag">最高连板 <b id="heroStreak">--</b></span>
     </div>
     <h3 id="verdictTitle">加载中…</h3>
     <p id="verdictDesc"></p>
     <div class="hero-facts">
-      <div class="fact">上涨占比<b id="factBreadth">--</b></div>
       <div class="fact">涨停 / 跌停<b id="factLimit">--</b></div>
+      <div class="fact">封板率<b id="factSeal">--</b></div>
       <div class="fact">成交额<b id="factAmount">--</b></div>
     </div>
   </div>
@@ -201,27 +217,28 @@ footer b{color:var(--gold);font-weight:600}
     <div class="chart-wrap"><canvas id="chartAmount"></canvas></div>
     <div class="chart-legend"><span><i style="background:#ff4d4f"></i>成交额</span></div>
   </div>
+
   <div class="card">
-    <h2><i></i>② 上涨 / 下跌家数对比 <u>赚钱效应</u></h2>
-    <div class="blegend">
-      <div>上涨<b class="up mono" id="numUp">--</b></div>
-      <div style="text-align:center">平盘<b class="flat mono" id="numFlat">--</b></div>
-      <div style="text-align:right">下跌<b class="down mono" id="numDown">--</b></div>
-    </div>
-    <div class="chart-wrap"><canvas id="chartBreadth"></canvas></div>
-    <div class="chart-legend">
-      <span><i style="background:#ff4d4f"></i>上涨家数</span>
-      <span><i style="background:#00c48c"></i>下跌家数</span>
+    <h2><i style="background:var(--gold)"></i>② 涨停梯队分布 <u>看断层</u></h2>
+    <div id="ladderBox" class="ladder-list"></div>
+    <div style="font-size:11px;color:var(--dim2);padding-top:8px;border-top:1px solid #1a212c;line-height:1.6" id="ladderHint">
+      梯队连续 = 情绪健康；高板断档 = 退潮信号。
     </div>
   </div>
+
   <div class="card">
-    <h2><i></i>③ 涨停 / 跌停变化 <u>情绪强弱标尺</u></h2>
+    <h2><i></i>③ 涨停 / 跌停 / 封板率 <u>情绪强弱标尺</u></h2>
     <div class="limits">
       <div><b class="up mono" id="numLimitUp">--</b><small>涨停</small></div>
-      <div class="mid">净差<b class="mono" id="limitNet">--</b></div>
       <div><b class="down mono" id="numLimitDown">--</b><small>跌停</small></div>
+      <div><b class="mono" id="numZb">--</b><small>炸板</small></div>
     </div>
-    <div class="chart-wrap"><canvas id="chartLimit"></canvas></div>
+    <div class="seal-row">
+      <span class="seal-label">封板率</span>
+      <div class="seal-bar"><span id="sealBar" style="width:0%;background:#5c6779"></span></div>
+      <span class="seal-num mono" id="sealNum">--</span>
+    </div>
+    <div class="chart-wrap" style="height:130px"><canvas id="chartLimit"></canvas></div>
     <div class="chart-legend">
       <span><i class="sq" style="background:#ff4d4f"></i>涨停</span>
       <span><i class="sq" style="background:#00c48c"></i>跌停</span>
@@ -290,6 +307,13 @@ function fmtAmount(y){var yi=y/1e8;return yi>=10000?(yi/10000).toFixed(2)+"<smal
 function fmtYi(y){var v=Math.abs(y)/1e8;if(v>=1)return v.toFixed(2)+"亿";return (Math.abs(y)/1e4).toFixed(0)+"万"}
 function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 
+function sealColor(rate){
+  if(rate >= 80) return "#ff4d4f";
+  if(rate >= 60) return "#ff9f43";
+  if(rate >= 40) return "#e8b339";
+  return "#5c6779";
+}
+
 function checkTradeDay(d){
   var tradeDate=d.trade_date||"";
   if(!tradeDate)return null;
@@ -322,31 +346,23 @@ function showRest(d){
   b.classList.add("on");
 }
 
-/* ★ 新版：先判断退潮，再看绝对值 */
 function analyse(d){
   var lu=d.limit.up, ld=d.limit.down;
   var h=d.limit.history||[];
-  var dh=d.limit.downHistory||[];
   var ah=d.amount.history||[];
 
   var ratio=lu/Math.max(ld,1);
   var score=Math.round(100*ratio/(ratio+3));
 
-  // 昨日数据
   var luPrev = h.length>=2 ? h[h.length-2] : lu;
   var luPrevPrev = h.length>=3 ? h[h.length-3] : luPrev;
-  var ldPrev = dh.length>=2 ? dh[dh.length-2] : ld;
 
-  // 成交额昨日
   var amtToday = d.amount.total || 0;
   var amtPrev = ah.length>=2 ? ah[ah.length-2] : amtToday;
 
-  // 变化率
   var luChange = luPrev > 0 ? (lu - luPrev) / luPrev : 0;
   var amtChange = amtPrev > 0 ? (amtToday - amtPrev) / amtPrev : 0;
 
-  // ★ 退潮判定（最高优先级）
-  // 前一日曾热（涨停 ≥ 40）+ 今日涨停回落 ≥ 15% + 跌停 ≥ 5 + 成交额萎缩 ≥ 5%
   var wasHot = luPrev >= 40 || luPrevPrev >= 40;
   var isFading = wasHot && luChange <= -0.15 && ld >= 5 && amtChange <= -0.05;
 
@@ -477,23 +493,6 @@ function drawChart(cv,cfg,hoverIdx){
     c.lineJoin="round";
     c.lineCap="round";
     c.stroke();
-  }else if(cfg.type==="line"){
-    S.forEach(function(s){
-      var co=s.color||UP;
-      c.beginPath();
-      s.data.forEach(function(v,i){i?c.lineTo(X(i),Y(v)):c.moveTo(X(i),Y(v))});
-      c.strokeStyle=co;
-      c.lineWidth=1.8;
-      c.lineJoin="round";
-      c.lineCap="round";
-      c.stroke();
-      s.data.forEach(function(v,i){
-        c.beginPath();
-        c.arc(X(i),Y(v),2.3,0,Math.PI*2);
-        c.fillStyle=co;
-        c.fill();
-      });
-    });
   }else if(cfg.type==="bar"){
     var gw=cw/n,gp2=2.5;
     var bw=Math.max(2.5,Math.min(12,(gw*.62-gp2*(S.length-1))/S.length));
@@ -595,27 +594,61 @@ function renderCharts(d){
   };
   drawChart($("chartAmount"),chartConfigs.amount,-1);
   bindHover($("chartAmount"),chartConfigs.amount);
-  var bh=d.breadth.history||[];
-  chartConfigs.breadth={
-    type:"line",labels:L,
-    series:[
-      {name:"上涨家数",color:UP,data:bh.map(function(x){return x[0]})},
-      {name:"下跌家数",color:DOWN,data:bh.map(function(x){return x[1]})}
-    ],
-    yFmt:yf,yTickCount:4
-  };
-  drawChart($("chartBreadth"),chartConfigs.breadth,-1);
-  bindHover($("chartBreadth"),chartConfigs.breadth);
+
   chartConfigs.limit={
     type:"bar",labels:L,
     series:[
       {name:"涨停",color:UP,data:d.limit.history||[]},
       {name:"跌停",color:DOWN,data:d.limit.downHistory||(d.limit.history||[]).map(function(){return 0})}
     ],
-    yFmt:yf,yTickCount:4
+    yFmt:yf,yTickCount:3
   };
   drawChart($("chartLimit"),chartConfigs.limit,-1);
   bindHover($("chartLimit"),chartConfigs.limit);
+}
+
+function renderLadder(sk){
+  var box=$("ladderBox");
+  var hint=$("ladderHint");
+  var L=(sk&&sk.ladder)?sk.ladder:[];
+  if(!L.length){
+    box.innerHTML='<p class="empty">暂无数据</p>';
+    hint.textContent="梯队连续 = 情绪健康；高板断档 = 退潮信号。";
+    return;
+  }
+  var g={};
+  L.forEach(function(x){
+    var lv=Math.max(1,x.boards||1);
+    g[lv]=(g[lv]||0)+1;
+  });
+  var levels=Object.keys(g).map(Number).sort(function(a,b){return b-a});
+  var maxB=levels[0]||1;
+  var maxCount=Math.max.apply(null,levels.map(function(l){return g[l]}));
+  box.innerHTML=levels.map(function(lv){
+    var cnt=g[lv];
+    var pct=Math.max(3,cnt/maxCount*100);
+    var rowCls=lv===maxB?"hot":(lv>=maxB-1?"warm":"");
+    return '<div class="ladder-row '+rowCls+'">'+
+      '<div class="ladder-label">'+lv+' 板</div>'+
+      '<div class="ladder-bar"><span style="width:'+pct.toFixed(1)+'%"></span></div>'+
+      '<div class="ladder-num">'+cnt+'<small>只</small></div>'+
+      '</div>';
+  }).join("");
+
+  var top3=levels.slice(0,3).reduce(function(a,l){return a+g[l]},0);
+  var total=L.length;
+  var top3Ratio=top3/total;
+  var hintText;
+  if(top3Ratio>0.6){
+    hintText="⚠ 高板集中，龙头效应明显，接力资金偏谨慎。";
+  }else if(levels.length>=4&&g[maxB]<=2){
+    hintText="✓ 梯队连续，情绪健康，可关注低位板接力。";
+  }else if(levels.length<=2){
+    hintText="⚠ 梯队断层严重，情绪极弱，宜空仓。";
+  }else{
+    hintText="梯队结构一般，注意高板是否继续断档。";
+  }
+  hint.textContent=hintText;
 }
 
 function renderStreak(sk){
@@ -743,33 +776,55 @@ function render(d){
   bd.style.color=s.color;
   $("cycleName").textContent=s.cycle;
   $("ratioVal").textContent=s.ratio.toFixed(2);
+
+  // 封板率
+  var sr = (d.limit.sealRate != null) ? d.limit.sealRate : null;
+  var zb = (d.limit.zb != null) ? d.limit.zb : null;
+  if(sr != null){
+    var sColor = sealColor(sr);
+    $("ratioSeal").textContent = sr.toFixed(1) + "%";
+    $("ratioSeal").style.color = sColor;
+    $("factSeal").textContent = sr.toFixed(1) + "%";
+    $("factSeal").style.color = sColor;
+    $("sealNum").textContent = sr.toFixed(1) + "%";
+    $("sealNum").style.color = sColor;
+    var bar = $("sealBar");
+    bar.style.width = sr.toFixed(1) + "%";
+    bar.style.background = sColor;
+  }else{
+    $("ratioSeal").textContent = "—";
+    $("factSeal").textContent = "—";
+    $("sealNum").textContent = "—";
+  }
+  if(zb != null){
+    $("numZb").textContent = zb;
+    $("numZb").className = "mono";
+  }else{
+    $("numZb").textContent = "—";
+  }
+
   $("heroStreak").textContent=(d.streak&&d.streak.max?d.streak.max:"—")+" 板";
   $("verdictTitle").textContent=s.cycle+" · "+verdictKeyword(s.cycle);
   $("verdictTitle").style.color=s.color;
   $("verdictDesc").textContent=s.desc;
-  var tot=(d.breadth.up+d.breadth.down)||1;
-  $("factBreadth").textContent=(d.breadth.up/tot*100).toFixed(1)+"%";
-  $("factBreadth").className=cls(d.breadth.up-d.breadth.down);
   $("factLimit").textContent=d.limit.up+" / "+d.limit.down;
   $("factLimit").className=cls(s.limitNet);
-  $("amountTotal").innerHTML=fmtAmount(d.amount.total);
   $("factAmount").innerHTML=(d.amount.total/1e12).toFixed(2)+" 万亿";
+  $("amountTotal").innerHTML=fmtAmount(d.amount.total);
   var ah=d.amount.history||[];
   if(ah.length>=2){
     var pv=ah[ah.length-2];
     var cg=(d.amount.total/pv-1)*100;
     $("amountDelta").innerHTML='较上一日 <b class="'+cls(cg)+'">'+(cg>=0?"+":"")+cg.toFixed(1)+'%</b>';
   }
-  $("numUp").textContent=d.breadth.up;
-  $("numFlat").textContent=d.breadth.flat;
-  $("numDown").textContent=d.breadth.down;
   $("numLimitUp").textContent=d.limit.up;
   $("numLimitDown").textContent=d.limit.down;
-  $("limitNet").textContent=(s.limitNet>0?"+":"")+s.limitNet;
-  $("limitNet").className="mono "+cls(s.limitNet);
+
+  renderLadder(d.streak);
   renderStreak(d.streak);
   renderThemes(d.themes);
   renderLHB(d.lhb||[],d);
+
   $("basePosBtn").textContent=s.basePos+" 成";
   $("fBase").textContent=s.basePos;
   updatePosition();
