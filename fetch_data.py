@@ -1,18 +1,11 @@
 """
-每天自动抓取 A 股盘面数据 + 龙虎榜 + 涨停概念
-数据源：东方财富 + 腾讯 + AkShare
+每天自动抓取 A 股盘面数据 + 龙虎榜 + 涨停概念 + 封板率
+数据源：东方财富 + 腾讯
 """
 import json
 import time
 import requests
 from datetime import datetime, timedelta, timezone
-
-try:
-    import akshare as ak
-    HAS_AKSHARE = True
-except ImportError:
-    HAS_AKSHARE = False
-    print("[WARN] akshare 未安装，将使用备用接口")
 
 BJ_TZ = timezone(timedelta(hours=8))
 HISTORY_DAYS = 15
@@ -75,55 +68,6 @@ def get_indices():
             for x in data["data"].get("diff", []) if x.get("f14")]
 
 
-def get_breadth_akshare():
-    """用 AkShare 获取全市场行情，统计涨跌家数（盘后也有效）"""
-    if not HAS_AKSHARE:
-        return {"up": 0, "down": 0, "flat": 0}
-    try:
-        print("  正在通过 AkShare 获取全市场行情...")
-        df = ak.stock_zh_a_spot_em()
-        if df is None or len(df) == 0:
-            print("  [WARN] AkShare 返回空数据")
-            return {"up": 0, "down": 0, "flat": 0}
-        pct = df["涨跌幅"]
-        up = int((pct > 0).sum())
-        down = int((pct < 0).sum())
-        flat = int((pct == 0).sum())
-        print(f"  AkShare 涨跌家数: 涨 {up} / 跌 {down} / 平 {flat}（共 {len(df)} 只）")
-        return {"up": up, "down": down, "flat": flat}
-    except Exception as e:
-        print(f"  [ERROR] AkShare 失败: {e}")
-        return {"up": 0, "down": 0, "flat": 0}
-
-
-def get_breadth_from_index():
-    """备用1：指数接口，盘中有效"""
-    url = "https://push2.eastmoney.com/api/qt/ulist.np/get"
-    params = {"fltt": "2", "secids": "1.000001,0.399001",
-              "fields": "f104,f105,f106", "ut": "fa5fd1943c7b386f172d6893dbfba10b"}
-    data = fetch_json(url, params)
-    if not data or not data.get("data"):
-        return {"up": 0, "down": 0, "flat": 0}
-    up = down = flat = 0
-    for x in data["data"].get("diff", []):
-        up += x.get("f104") or 0
-        down += x.get("f105") or 0
-        flat += x.get("f106") or 0
-    return {"up": up, "down": down, "flat": flat}
-
-
-def get_breadth():
-    """主用 AkShare；失败退回指数接口"""
-    b = get_breadth_akshare()
-    if b["up"] > 0 or b["down"] > 0:
-        return b
-    print("  AkShare 无数据 → 尝试指数接口")
-    b = get_breadth_from_index()
-    if b["up"] > 0 or b["down"] > 0:
-        print(f"  指数接口: 涨 {b['up']} / 跌 {b['down']}")
-    return b
-
-
 def get_zt_pool(date_str):
     url = "https://push2ex.eastmoney.com/getTopicZTPool"
     params = {"ut": "7eea3edcaed734bea9cbfc24409ed989", "dpt": "wz.ztzt",
@@ -149,6 +93,19 @@ def get_zt_pool(date_str):
         })
     ladder.sort(key=lambda x: x["boards"], reverse=True)
     return {"count": len(pool), "ladder": ladder}
+
+
+def get_zb_count(date_str):
+    """获取炸板家数（炸板池）"""
+    url = "https://push2ex.eastmoney.com/getTopicZBPool"
+    params = {"ut": "7eea3edcaed734bea9cbfc24409ed989", "dpt": "wz.ztzt",
+              "Pageindex": "0", "pagesize": "1000", "sort": "fbt:asc",
+              "date": date_str,
+              "_": str(int(datetime.now().timestamp() * 1000))}
+    data = fetch_json(url, params)
+    if not data or not data.get("data"):
+        return 0
+    return data["data"].get("total") or len(data["data"].get("pool", []) or [])
 
 
 def get_dt_count(date_str):
@@ -250,21 +207,31 @@ def get_history(prev):
                     "amount": pa,
                     "zt": (prev.get("limit") or {}).get("history") or [],
                     "dt": (prev.get("limit") or {}).get("downHistory") or [],
+                    "zb": (prev.get("limit") or {}).get("zbHistory") or [],
+                    "sr": (prev.get("limit") or {}).get("sealHistory") or [],
                 }
-        return {"dates": [], "amount": [], "zt": [], "dt": []}
+        return {"dates": [], "amount": [], "zt": [], "dt": [], "zb": [], "sr": []}
 
-    zt_hist, dt_hist = {}, {}
+    zt_hist, dt_hist, zb_hist, sr_hist = {}, {}, {}, {}
     for d in common:
         ds = d.replace("-", "")
-        zt_hist[d] = get_zt_pool(ds)["count"]
-        dt_hist[d] = get_dt_count(ds)
-        print(f"    {d}: 涨停 {zt_hist[d]}, 跌停 {dt_hist[d]}")
+        zt_n = get_zt_pool(ds)["count"]
+        zb_n = get_zb_count(ds)
+        dt_n = get_dt_count(ds)
+        zt_hist[d] = zt_n
+        zb_hist[d] = zb_n
+        dt_hist[d] = dt_n
+        total = zt_n + zb_n
+        sr_hist[d] = round(zt_n / total * 100, 1) if total > 0 else 0
+        print(f"    {d}: 涨停 {zt_n}, 炸板 {zb_n}, 跌停 {dt_n}, 封板率 {sr_hist[d]}%")
 
     return {
         "dates": [d[5:] for d in common],
         "amount": [amt_sh[d] + amt_sz[d] for d in common],
         "zt": [zt_hist[d] for d in common],
         "dt": [dt_hist[d] for d in common],
+        "zb": [zb_hist[d] for d in common],
+        "sr": [sr_hist[d] for d in common],
     }
 
 
@@ -323,11 +290,14 @@ def main():
     limit_up = zt["count"]
     ladder = zt["ladder"]
     max_board = max([s["boards"] for s in ladder], default=0)
+
+    zb_count = get_zb_count(trade_date_str)
     limit_down = get_dt_count(trade_date_str)
-    print(f"涨停 {limit_up} 家，最高 {max_board} 板，跌停 {limit_down} 家")
+    total_seal = limit_up + zb_count
+    seal_rate = round(limit_up / total_seal * 100, 1) if total_seal > 0 else 0
+    print(f"涨停 {limit_up} 家，炸板 {zb_count} 家，封板率 {seal_rate}%，跌停 {limit_down} 家")
 
     history = get_history(prev)
-    breadth = get_breadth()
     amount = get_amount()
 
     if amount == 0:
@@ -339,13 +309,6 @@ def main():
             if amount > 0:
                 print(f"  成交额兜底(上次)：{amount / 1e8:.0f} 亿")
 
-    if breadth["up"] == 0 and breadth["down"] == 0 and prev:
-        ob = prev.get("breadth") or {}
-        if (ob.get("up") or 0) > 0:
-            breadth = {"up": ob["up"], "down": ob["down"], "flat": ob.get("flat", 0)}
-            print("  涨跌家数兜底(上次)")
-
-    print(f"  上涨 {breadth['up']}，下跌 {breadth['down']}")
     print(f"  成交额 {amount / 1e8:.0f} 亿")
 
     lhb = get_lhb(trade_date_str)
@@ -373,24 +336,6 @@ def main():
     if not themes and prev:
         themes = prev.get("themes", []) or []
 
-    # 涨跌家数历史按日期存，同一天只保留一份
-    bh_map = {}
-    if prev:
-        prev_dates = prev.get("dates") or []
-        prev_bh_list = (prev.get("breadth") or {}).get("history") or []
-        for i, d in enumerate(prev_dates):
-            if i < len(prev_bh_list):
-                bh_map[d] = prev_bh_list[i]
-
-    today_short = trade_dt.strftime("%m-%d")
-    if breadth["up"] > 0:
-        bh_map[today_short] = [breadth["up"], breadth["down"]]
-        print(f"  记录涨跌家数 {today_short}: 涨 {breadth['up']} / 跌 {breadth['down']}")
-
-    breadth_history = []
-    for d in history["dates"]:
-        breadth_history.append(bh_map.get(d, [0, 0]))
-
     if not history["amount"] and prev and (prev.get("amount") or {}).get("history"):
         print("  最终兜底：完整保留上次的图表数据")
         history = {
@@ -398,27 +343,27 @@ def main():
             "amount": prev["amount"]["history"],
             "zt": (prev.get("limit") or {}).get("history") or [],
             "dt": (prev.get("limit") or {}).get("downHistory") or [],
+            "zb": (prev.get("limit") or {}).get("zbHistory") or [],
+            "sr": (prev.get("limit") or {}).get("sealHistory") or [],
         }
 
     now = datetime.now(BJ_TZ)
     result = {
         "updated_at": now.strftime("%Y-%m-%d %H:%M"),
         "trade_date": trade_dt.strftime("%Y-%m-%d"),
-        "source": "东方财富 + 腾讯 + AkShare",
+        "source": "东方财富 + 腾讯",
         "dates": history["dates"],
         "indices": indices,
         "amount": {"total": amount, "history": history["amount"]},
-        "breadth": {
-            "up": breadth["up"],
-            "down": breadth["down"],
-            "flat": breadth["flat"],
-            "history": breadth_history,
-        },
         "limit": {
             "up": limit_up,
             "down": limit_down,
+            "zb": zb_count,
+            "sealRate": seal_rate,
             "history": history["zt"],
             "downHistory": history["dt"],
+            "zbHistory": history.get("zb", []),
+            "sealHistory": history.get("sr", []),
         },
         "streak": {"max": max_board, "ladder": ladder},
         "themes": themes,
@@ -427,7 +372,7 @@ def main():
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
-    print(f"已写入 data.json（图表数据 {len(history['amount'])} 天）")
+    print(f"已写入 data.json")
 
 
 if __name__ == "__main__":
