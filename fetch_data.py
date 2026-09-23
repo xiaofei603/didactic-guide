@@ -1,11 +1,18 @@
 """
 每天自动抓取 A 股盘面数据 + 龙虎榜 + 涨停概念
-数据源：东方财富 + 腾讯（K线兜底）
+数据源：东方财富 + 腾讯 + AkShare
 """
 import json
 import time
 import requests
 from datetime import datetime, timedelta, timezone
+
+try:
+    import akshare as ak
+    HAS_AKSHARE = True
+except ImportError:
+    HAS_AKSHARE = False
+    print("[WARN] akshare 未安装，将使用备用接口")
 
 BJ_TZ = timezone(timedelta(hours=8))
 HISTORY_DAYS = 15
@@ -68,7 +75,29 @@ def get_indices():
             for x in data["data"].get("diff", []) if x.get("f14")]
 
 
-def get_breadth():
+def get_breadth_akshare():
+    """用 AkShare 获取全市场行情，统计涨跌家数（盘后也有效）"""
+    if not HAS_AKSHARE:
+        return {"up": 0, "down": 0, "flat": 0}
+    try:
+        print("  正在通过 AkShare 获取全市场行情...")
+        df = ak.stock_zh_a_spot_em()
+        if df is None or len(df) == 0:
+            print("  [WARN] AkShare 返回空数据")
+            return {"up": 0, "down": 0, "flat": 0}
+        pct = df["涨跌幅"]
+        up = int((pct > 0).sum())
+        down = int((pct < 0).sum())
+        flat = int((pct == 0).sum())
+        print(f"  AkShare 涨跌家数: 涨 {up} / 跌 {down} / 平 {flat}（共 {len(df)} 只）")
+        return {"up": up, "down": down, "flat": flat}
+    except Exception as e:
+        print(f"  [ERROR] AkShare 失败: {e}")
+        return {"up": 0, "down": 0, "flat": 0}
+
+
+def get_breadth_from_index():
+    """备用1：指数接口，盘中有效"""
     url = "https://push2.eastmoney.com/api/qt/ulist.np/get"
     params = {"fltt": "2", "secids": "1.000001,0.399001",
               "fields": "f104,f105,f106", "ut": "fa5fd1943c7b386f172d6893dbfba10b"}
@@ -81,6 +110,18 @@ def get_breadth():
         down += x.get("f105") or 0
         flat += x.get("f106") or 0
     return {"up": up, "down": down, "flat": flat}
+
+
+def get_breadth():
+    """主用 AkShare；失败退回指数接口"""
+    b = get_breadth_akshare()
+    if b["up"] > 0 or b["down"] > 0:
+        return b
+    print("  AkShare 无数据 → 尝试指数接口")
+    b = get_breadth_from_index()
+    if b["up"] > 0 or b["down"] > 0:
+        print(f"  指数接口: 涨 {b['up']} / 跌 {b['down']}")
+    return b
 
 
 def get_zt_pool(date_str):
@@ -302,7 +343,7 @@ def main():
         ob = prev.get("breadth") or {}
         if (ob.get("up") or 0) > 0:
             breadth = {"up": ob["up"], "down": ob["down"], "flat": ob.get("flat", 0)}
-            print("  涨跌家数兜底")
+            print("  涨跌家数兜底(上次)")
 
     print(f"  上涨 {breadth['up']}，下跌 {breadth['down']}")
     print(f"  成交额 {amount / 1e8:.0f} 亿")
@@ -363,7 +404,7 @@ def main():
     result = {
         "updated_at": now.strftime("%Y-%m-%d %H:%M"),
         "trade_date": trade_dt.strftime("%Y-%m-%d"),
-        "source": "东方财富 + 腾讯公开接口",
+        "source": "东方财富 + 腾讯 + AkShare",
         "dates": history["dates"],
         "indices": indices,
         "amount": {"total": amount, "history": history["amount"]},
