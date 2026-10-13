@@ -1,9 +1,8 @@
 {
-  "updated_at": "2026-10-12 19:06",
-  "trade_date": "2026-10-12",
+  "updated_at": "2026-10-13 15:29",
+  "trade_date": "2026-10-13",
   "source": "东方财富 + 腾讯",
   "dates": [
-    "09-14",
     "09-15",
     "09-16",
     "09-17",
@@ -17,29 +16,29 @@
     "09-30",
     "10-08",
     "10-09",
-    "10-12"
+    "10-12",
+    "10-13"
   ],
   "indices": [
     {
       "name": "上证指数",
-      "value": 3797.24,
-      "change": -0.43
+      "value": 3800.86,
+      "change": 0.1
     },
     {
       "name": "深证成指",
-      "value": 12384.87,
-      "change": -2.03
+      "value": 12353.7,
+      "change": -0.25
     },
     {
       "name": "创业板指",
-      "value": 2963.82,
-      "change": -2.61
+      "value": 2958.34,
+      "change": -0.18
     }
   ],
   "amount": {
-    "total": 1537831369740.6392,
+    "total": 1675917804027.3208,
     "history": [
-      1629175552004.9358,
       1612716789831.0166,
       1839121873617.5327,
       1823134270447.2905,
@@ -53,16 +52,16 @@
       1438018089943.427,
       1682126910833.135,
       1900555414566.267,
-      1537831369740.6392
+      1537831369740.6392,
+      1675917804027.3208
     ]
   },
   "limit": {
-    "up": 46,
-    "down": 19,
-    "zb": 25,
-    "sealRate": 64.8,
+    "up": 67,
+    "down": 8,
+    "zb": 19,
+    "sealRate": 77.9,
     "history": [
-      55,
       32,
       89,
       47,
@@ -76,10 +75,10 @@
       52,
       43,
       69,
-      46
+      46,
+      67
     ],
     "downHistory": [
-      16,
       27,
       4,
       1,
@@ -93,10 +92,10 @@
       9,
       13,
       8,
-      17
+      19,
+      8
     ],
     "zbHistory": [
-      30,
       24,
       11,
       20,
@@ -110,10 +109,10 @@
       12,
       32,
       14,
-      25
+      25,
+      19
     ],
     "sealHistory": [
-      64.7,
       57.1,
       89.0,
       70.1,
@@ -127,17 +126,29 @@
       81.2,
       57.3,
       83.1,
-      64.8
+      64.8,
+      77.9
     ]
   },
   "streak": {
-    "max": 10,
+    "max": 3,
     "ladder": [
       {
-        "name": "新华传媒",
-        "code": "600825",
-        "boards": 10,
-        "change": 9.98,
+        "name": "慈文传媒",
+        "code": "002343",
+        "boards": 3,
+        "change": 10.01,
+        "industry": "影视院线",
+        "concepts": [
+          "影视院线"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "新经典",
+        "code": "603096",
+        "boards": 3,
+        "change": 10.02,
         "industry": "出版",
         "concepts": [
           "出版"
@@ -145,43 +156,10 @@
         "reason": ""
       },
       {
-        "name": "九阳股份",
-        "code": "002242",
-        "boards": 6,
-        "change": 9.98,
-        "industry": "小家电",
-        "concepts": [
-          "小家电"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "时代万恒",
-        "code": "600241",
-        "boards": 6,
-        "change": 10.03,
-        "industry": "电池",
-        "concepts": [
-          "电池"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "华北制药",
-        "code": "600812",
+        "name": "龙版传媒",
+        "code": "605577",
         "boards": 3,
-        "change": 9.95,
-        "industry": "化学制药",
-        "concepts": [
-          "化学制药"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "新经典",
-        "code": "603096",
-        "boards": 2,
-        "change": 9.98,
+        "change": 9.99,
         "industry": "出版",
         "concepts": [
           "出版"
@@ -191,8 +169,8 @@
       {
         "name": "丽人丽妆",
         "code": "605136",
-        "boards": 2,
-        "change": 9.96,
+        "boards": 3,
+        "change": 10.02,
         "industry": "互联网电",
         "concepts": [
           "互联网电"
@@ -200,54 +178,10 @@
         "reason": ""
       },
       {
-        "name": "德才股份",
-        "code": "605287",
-        "boards": 2,
-        "change": 10.0,
-        "industry": "装修装饰",
-        "concepts": [
-          "装修装饰"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "慈文传媒",
-        "code": "002343",
-        "boards": 2,
-        "change": 10.03,
-        "industry": "影视院线",
-        "concepts": [
-          "影视院线"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "龙版传媒",
-        "code": "605577",
-        "boards": 2,
-        "change": 10.0,
-        "industry": "出版",
-        "concepts": [
-          "出版"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "博纳影业",
-        "code": "001330",
-        "boards": 2,
-        "change": 10.04,
-        "industry": "影视院线",
-        "concepts": [
-          "影视院线"
-        ],
-        "reason": ""
-      },
-      {
         "name": "百洋股份",
         "code": "002696",
-        "boards": 2,
-        "change": 9.97,
+        "boards": 3,
+        "change": 10.06,
         "industry": "饲料",
         "concepts": [
           "饲料"
@@ -255,21 +189,43 @@
         "reason": ""
       },
       {
-        "name": "欢瑞世纪",
-        "code": "000892",
+        "name": "东百集团",
+        "code": "600693",
         "boards": 2,
-        "change": 10.1,
-        "industry": "影视院线",
+        "change": 10.02,
+        "industry": "一般零售",
         "concepts": [
-          "影视院线"
+          "一般零售"
         ],
         "reason": ""
       },
       {
-        "name": "吉视传媒",
-        "code": "601929",
+        "name": "农心科技",
+        "code": "001231",
         "boards": 2,
         "change": 10.0,
+        "industry": "农化制品",
+        "concepts": [
+          "农化制品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "醋化股份",
+        "code": "603968",
+        "boards": 2,
+        "change": 10.04,
+        "industry": "化学制品",
+        "concepts": [
+          "化学制品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "广电网络",
+        "code": "600831",
+        "boards": 2,
+        "change": 9.97,
         "industry": "电视广播",
         "concepts": [
           "电视广播"
@@ -277,53 +233,42 @@
         "reason": ""
       },
       {
-        "name": "远程股份",
-        "code": "002692",
-        "boards": 2,
-        "change": 10.08,
-        "industry": "电网设备",
-        "concepts": [
-          "电网设备"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "新华文轩",
-        "code": "601811",
+        "name": "海欣股份",
+        "code": "600851",
         "boards": 2,
         "change": 10.0,
-        "industry": "出版",
+        "industry": "化学制药",
         "concepts": [
-          "出版"
+          "化学制药"
         ],
         "reason": ""
       },
       {
-        "name": "掌阅科技",
-        "code": "603533",
-        "boards": 2,
-        "change": 9.98,
-        "industry": "数字媒体",
+        "name": "荣丰控股",
+        "code": "000668",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "房地产开",
         "concepts": [
-          "数字媒体"
+          "房地产开"
         ],
         "reason": ""
       },
       {
-        "name": "上海电影",
-        "code": "601595",
-        "boards": 2,
-        "change": 9.98,
-        "industry": "影视院线",
+        "name": "金奥博",
+        "code": "002917",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "化学制品",
         "concepts": [
-          "影视院线"
+          "化学制品"
         ],
         "reason": ""
       },
       {
-        "name": "格尔软件",
-        "code": "603232",
-        "boards": 2,
+        "name": "理工能科",
+        "code": "002322",
+        "boards": 1,
         "change": 10.01,
         "industry": "软件开发",
         "concepts": [
@@ -332,131 +277,43 @@
         "reason": ""
       },
       {
-        "name": "广电网络",
-        "code": "600831",
+        "name": "皇台酒业",
+        "code": "000995",
         "boards": 1,
-        "change": 10.14,
-        "industry": "电视广播",
+        "change": 9.96,
+        "industry": "白酒Ⅱ",
         "concepts": [
-          "电视广播"
+          "白酒Ⅱ"
         ],
         "reason": ""
       },
       {
-        "name": "东百集团",
-        "code": "600693",
+        "name": "超声电子",
+        "code": "000823",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "海得控制",
+        "code": "002184",
         "boards": 1,
         "change": 10.04,
-        "industry": "一般零售",
+        "industry": "自动化设",
         "concepts": [
-          "一般零售"
+          "自动化设"
         ],
         "reason": ""
       },
       {
-        "name": "莱美药业",
-        "code": "300006",
+        "name": "亚邦股份",
+        "code": "603188",
         "boards": 1,
-        "change": 19.93,
-        "industry": "化学制药",
-        "concepts": [
-          "化学制药"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "海欣股份",
-        "code": "600851",
-        "boards": 1,
-        "change": 9.97,
-        "industry": "化学制药",
-        "concepts": [
-          "化学制药"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "多伦科技",
-        "code": "603528",
-        "boards": 1,
-        "change": 9.98,
-        "industry": "软件开发",
-        "concepts": [
-          "软件开发"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "金冠电气",
-        "code": "688517",
-        "boards": 1,
-        "change": 20.0,
-        "industry": "电网设备",
-        "concepts": [
-          "电网设备"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "长城电工",
-        "code": "600192",
-        "boards": 1,
-        "change": 9.99,
-        "industry": "电网设备",
-        "concepts": [
-          "电网设备"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "德新科技",
-        "code": "603032",
-        "boards": 1,
-        "change": 10.02,
-        "industry": "电池",
-        "concepts": [
-          "电池"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "众业达",
-        "code": "002441",
-        "boards": 1,
-        "change": 10.04,
-        "industry": "电网设备",
-        "concepts": [
-          "电网设备"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "通达动力",
-        "code": "002576",
-        "boards": 1,
-        "change": 9.99,
-        "industry": "电机Ⅱ",
-        "concepts": [
-          "电机Ⅱ"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "天顺风能",
-        "code": "002531",
-        "boards": 1,
-        "change": 9.97,
-        "industry": "风电设备",
-        "concepts": [
-          "风电设备"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "金丹科技",
-        "code": "300829",
-        "boards": 1,
-        "change": 20.0,
+        "change": 10.08,
         "industry": "化学制品",
         "concepts": [
           "化学制品"
@@ -464,8 +321,261 @@
         "reason": ""
       },
       {
-        "name": "盛视科技",
-        "code": "002990",
+        "name": "福建水泥",
+        "code": "600802",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "水泥",
+        "concepts": [
+          "水泥"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "粤桂股份",
+        "code": "000833",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "综合Ⅱ",
+        "concepts": [
+          "综合Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "万里股份",
+        "code": "600847",
+        "boards": 1,
+        "change": 10.04,
+        "industry": "电池",
+        "concepts": [
+          "电池"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中马传动",
+        "code": "603767",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "三和管桩",
+        "code": "003037",
+        "boards": 1,
+        "change": 10.07,
+        "industry": "水泥",
+        "concepts": [
+          "水泥"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "金种子酒",
+        "code": "600199",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "白酒Ⅱ",
+        "concepts": [
+          "白酒Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "凯美特气",
+        "code": "002549",
+        "boards": 1,
+        "change": 10.04,
+        "industry": "化学制品",
+        "concepts": [
+          "化学制品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "双成药业",
+        "code": "002693",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "化学制药",
+        "concepts": [
+          "化学制药"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "建新股份",
+        "code": "300107",
+        "boards": 1,
+        "change": 20.03,
+        "industry": "化学制品",
+        "concepts": [
+          "化学制品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "冰山冷热",
+        "code": "000530",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "跨境通",
+        "code": "002640",
+        "boards": 1,
+        "change": 9.89,
+        "industry": "互联网电",
+        "concepts": [
+          "互联网电"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "世龙实业",
+        "code": "002748",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "化学原料",
+        "concepts": [
+          "化学原料"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "澳弘电子",
+        "code": "605058",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "哈空调",
+        "code": "600202",
+        "boards": 1,
+        "change": 10.04,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "协和电子",
+        "code": "605258",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "龙江交通",
+        "code": "601188",
+        "boards": 1,
+        "change": 9.93,
+        "industry": "铁路公路",
+        "concepts": [
+          "铁路公路"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中兴商业",
+        "code": "000715",
+        "boards": 1,
+        "change": 10.1,
+        "industry": "一般零售",
+        "concepts": [
+          "一般零售"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "晶雪节能",
+        "code": "301010",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "装修建材",
+        "concepts": [
+          "装修建材"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "大连圣亚",
+        "code": "600593",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "旅游及景",
+        "concepts": [
+          "旅游及景"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "依顿电子",
+        "code": "603328",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "龙建股份",
+        "code": "600853",
+        "boards": 1,
+        "change": 9.94,
+        "industry": "基础建设",
+        "concepts": [
+          "基础建设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "骏亚科技",
+        "code": "603386",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "雪人集团",
+        "code": "002639",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "魅视科技",
+        "code": "001229",
         "boards": 1,
         "change": 10.01,
         "industry": "计算机设",
@@ -475,10 +585,10 @@
         "reason": ""
       },
       {
-        "name": "金自天正",
-        "code": "600560",
+        "name": "威派格",
+        "code": "603956",
         "boards": 1,
-        "change": 10.01,
+        "change": 9.99,
         "industry": "专用设备",
         "concepts": [
           "专用设备"
@@ -486,43 +596,153 @@
         "reason": ""
       },
       {
-        "name": "阿莱德",
-        "code": "301419",
+        "name": "金百泽",
+        "code": "301041",
         "boards": 1,
         "change": 20.0,
-        "industry": "通信设备",
+        "industry": "元件",
         "concepts": [
-          "通信设备"
+          "元件"
         ],
         "reason": ""
       },
       {
-        "name": "果麦文化",
-        "code": "301052",
+        "name": "中京电子",
+        "code": "002579",
         "boards": 1,
-        "change": 20.01,
-        "industry": "出版",
+        "change": 9.97,
+        "industry": "元件",
         "concepts": [
-          "出版"
+          "元件"
         ],
         "reason": ""
       },
       {
-        "name": "祥和实业",
-        "code": "603500",
+        "name": "华阳国际",
+        "code": "002949",
         "boards": 1,
-        "change": 9.96,
-        "industry": "轨交设备",
+        "change": 9.98,
+        "industry": "工程咨询",
         "concepts": [
-          "轨交设备"
+          "工程咨询"
         ],
         "reason": ""
       },
       {
-        "name": "新 华 都",
-        "code": "002264",
+        "name": "迅捷兴",
+        "code": "688655",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "和顺石油",
+        "code": "603353",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "炼化及贸",
+        "concepts": [
+          "炼化及贸"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "铜峰电子",
+        "code": "600237",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "返利科技",
+        "code": "600228",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "数字媒体",
+        "concepts": [
+          "数字媒体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "风语筑",
+        "code": "603466",
+        "boards": 1,
+        "change": 9.97,
+        "industry": "数字媒体",
+        "concepts": [
+          "数字媒体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "实丰文化",
+        "code": "002862",
         "boards": 1,
         "change": 10.0,
+        "industry": "文娱用品",
+        "concepts": [
+          "文娱用品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "奥康国际",
+        "code": "603001",
+        "boards": 1,
+        "change": 9.97,
+        "industry": "服装家纺",
+        "concepts": [
+          "服装家纺"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "长白山",
+        "code": "603099",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "旅游及景",
+        "concepts": [
+          "旅游及景"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "吉华集团",
+        "code": "603980",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "化学制品",
+        "concepts": [
+          "化学制品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华盛昌",
+        "code": "002980",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "电网设备",
+        "concepts": [
+          "电网设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "元隆雅图",
+        "code": "002878",
+        "boards": 1,
+        "change": 9.98,
         "industry": "广告营销",
         "concepts": [
           "广告营销"
@@ -530,112 +750,123 @@
         "reason": ""
       },
       {
-        "name": "松霖科技",
-        "code": "603992",
+        "name": "阳光乳业",
+        "code": "001318",
         "boards": 1,
-        "change": 9.98,
-        "industry": "家居用品",
+        "change": 10.04,
+        "industry": "饮料乳品",
         "concepts": [
-          "家居用品"
+          "饮料乳品"
         ],
         "reason": ""
       },
       {
-        "name": "博汇科技",
-        "code": "688004",
-        "boards": 1,
-        "change": 20.01,
-        "industry": "IT服务Ⅱ",
-        "concepts": [
-          "IT服务Ⅱ"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "德生科技",
-        "code": "002908",
+        "name": "航发科技",
+        "code": "600391",
         "boards": 1,
         "change": 10.01,
-        "industry": "IT服务Ⅱ",
+        "industry": "航空装备",
         "concepts": [
-          "IT服务Ⅱ"
+          "航空装备"
         ],
         "reason": ""
       },
       {
-        "name": "首航新能",
-        "code": "301658",
+        "name": "奥拓电子",
+        "code": "002587",
         "boards": 1,
-        "change": 20.0,
+        "change": 9.92,
+        "industry": "光学光电",
+        "concepts": [
+          "光学光电"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华脉科技",
+        "code": "603042",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "天府文旅",
+        "code": "000558",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "旅游及景",
+        "concepts": [
+          "旅游及景"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "南宁百货",
+        "code": "600712",
+        "boards": 1,
+        "change": 10.06,
+        "industry": "一般零售",
+        "concepts": [
+          "一般零售"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华阳新材",
+        "code": "600281",
+        "boards": 1,
+        "change": 9.93,
+        "industry": "小金属",
+        "concepts": [
+          "小金属"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "杭氧股份",
+        "code": "002430",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "化学制品",
+        "concepts": [
+          "化学制品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "澳洋健康",
+        "code": "002172",
+        "boards": 1,
+        "change": 10.04,
+        "industry": "医疗服务",
+        "concepts": [
+          "医疗服务"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "郑中设计",
+        "code": "002811",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "装修装饰",
+        "concepts": [
+          "装修装饰"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "亚玛顿",
+        "code": "002623",
+        "boards": 1,
+        "change": 10.01,
         "industry": "光伏设备",
         "concepts": [
           "光伏设备"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "农心科技",
-        "code": "001231",
-        "boards": 1,
-        "change": 10.01,
-        "industry": "农化制品",
-        "concepts": [
-          "农化制品"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "宏辉果蔬",
-        "code": "603336",
-        "boards": 1,
-        "change": 10.0,
-        "industry": "种植业",
-        "concepts": [
-          "种植业"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "内蒙新华",
-        "code": "603230",
-        "boards": 1,
-        "change": 10.0,
-        "industry": "出版",
-        "concepts": [
-          "出版"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "醋化股份",
-        "code": "603968",
-        "boards": 1,
-        "change": 10.03,
-        "industry": "化学制品",
-        "concepts": [
-          "化学制品"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "恒大高新",
-        "code": "002591",
-        "boards": 1,
-        "change": 9.98,
-        "industry": "化学制品",
-        "concepts": [
-          "化学制品"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "赛力斯",
-        "code": "601127",
-        "boards": 1,
-        "change": 10.0,
-        "industry": "乘用车",
-        "concepts": [
-          "乘用车"
         ],
         "reason": ""
       }
@@ -643,113 +874,115 @@
   },
   "themes": [
     {
-      "name": "出版",
-      "limitUp": 6,
-      "maxBoard": 10,
+      "name": "元件",
+      "limitUp": 9,
+      "maxBoard": 1,
       "leaders": [
-        "新华传媒",
+        "超声电子",
+        "澳弘电子",
+        "协和电子"
+      ]
+    },
+    {
+      "name": "化学制品",
+      "limitUp": 7,
+      "maxBoard": 2,
+      "leaders": [
+        "醋化股份",
+        "金奥博",
+        "亚邦股份"
+      ]
+    },
+    {
+      "name": "一般零售",
+      "limitUp": 3,
+      "maxBoard": 2,
+      "leaders": [
+        "东百集团",
+        "中兴商业",
+        "南宁百货"
+      ]
+    },
+    {
+      "name": "通用设备",
+      "limitUp": 3,
+      "maxBoard": 1,
+      "leaders": [
+        "冰山冷热",
+        "哈空调",
+        "雪人集团"
+      ]
+    },
+    {
+      "name": "旅游及景",
+      "limitUp": 3,
+      "maxBoard": 1,
+      "leaders": [
+        "大连圣亚",
+        "长白山",
+        "天府文旅"
+      ]
+    },
+    {
+      "name": "出版",
+      "limitUp": 2,
+      "maxBoard": 3,
+      "leaders": [
         "新经典",
         "龙版传媒"
       ]
     },
     {
-      "name": "影视院线",
-      "limitUp": 4,
-      "maxBoard": 2,
+      "name": "互联网电",
+      "limitUp": 2,
+      "maxBoard": 3,
       "leaders": [
-        "慈文传媒",
-        "博纳影业",
-        "欢瑞世纪"
-      ]
-    },
-    {
-      "name": "电网设备",
-      "limitUp": 4,
-      "maxBoard": 2,
-      "leaders": [
-        "远程股份",
-        "金冠电气",
-        "长城电工"
+        "丽人丽妆",
+        "跨境通"
       ]
     },
     {
       "name": "化学制药",
-      "limitUp": 3,
+      "limitUp": 2,
+      "maxBoard": 2,
+      "leaders": [
+        "海欣股份",
+        "双成药业"
+      ]
+    },
+    {
+      "name": "白酒Ⅱ",
+      "limitUp": 2,
+      "maxBoard": 1,
+      "leaders": [
+        "皇台酒业",
+        "金种子酒"
+      ]
+    },
+    {
+      "name": "水泥",
+      "limitUp": 2,
+      "maxBoard": 1,
+      "leaders": [
+        "福建水泥",
+        "三和管桩"
+      ]
+    },
+    {
+      "name": "数字媒体",
+      "limitUp": 2,
+      "maxBoard": 1,
+      "leaders": [
+        "返利科技",
+        "风语筑"
+      ]
+    },
+    {
+      "name": "影视院线",
+      "limitUp": 1,
       "maxBoard": 3,
       "leaders": [
-        "华北制药",
-        "莱美药业",
-        "海欣股份"
-      ]
-    },
-    {
-      "name": "化学制品",
-      "limitUp": 3,
-      "maxBoard": 1,
-      "leaders": [
-        "金丹科技",
-        "醋化股份",
-        "恒大高新"
-      ]
-    },
-    {
-      "name": "电池",
-      "limitUp": 2,
-      "maxBoard": 6,
-      "leaders": [
-        "时代万恒",
-        "德新科技"
-      ]
-    },
-    {
-      "name": "电视广播",
-      "limitUp": 2,
-      "maxBoard": 2,
-      "leaders": [
-        "吉视传媒",
-        "广电网络"
-      ]
-    },
-    {
-      "name": "软件开发",
-      "limitUp": 2,
-      "maxBoard": 2,
-      "leaders": [
-        "格尔软件",
-        "多伦科技"
-      ]
-    },
-    {
-      "name": "IT服务Ⅱ",
-      "limitUp": 2,
-      "maxBoard": 1,
-      "leaders": [
-        "博汇科技",
-        "德生科技"
-      ]
-    },
-    {
-      "name": "小家电",
-      "limitUp": 1,
-      "maxBoard": 6,
-      "leaders": [
-        "九阳股份"
-      ]
-    },
-    {
-      "name": "互联网电",
-      "limitUp": 1,
-      "maxBoard": 2,
-      "leaders": [
-        "丽人丽妆"
-      ]
-    },
-    {
-      "name": "装修装饰",
-      "limitUp": 1,
-      "maxBoard": 2,
-      "leaders": [
-        "德才股份"
+        "慈文传媒"
       ]
     }
   ],
