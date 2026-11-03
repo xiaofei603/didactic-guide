@@ -147,16 +147,6 @@ table.tbl .num{text-align:right}
 .pos-desc b{color:var(--txt);font-weight:600}
 .pos-formula{font-size:11px;color:var(--dim2);background:#1b2230;padding:7px 12px;border-radius:8px;line-height:1.7}
 .pos-formula em{font-style:normal;color:var(--gold)}
-.ladder-list{display:flex;flex-direction:column;gap:8px}
-.ladder-row{display:grid;grid-template-columns:40px 1fr 52px;gap:10px;align-items:center}
-.ladder-label{font-size:12px;color:var(--dim2);text-align:right}
-.ladder-label b{color:var(--txt);font-weight:600}
-.ladder-bar{height:20px;background:#1a212c;border-radius:4px;overflow:hidden}
-.ladder-bar span{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,#8b98a9,#5c6779);transition:width .5s}
-.ladder-row.hot .ladder-bar span{background:linear-gradient(90deg,#ff4d4f,#ff9f43)}
-.ladder-row.warm .ladder-bar span{background:linear-gradient(90deg,#ff9f43,#e8b339)}
-.ladder-num{font-size:13px;font-weight:600;color:var(--txt);text-align:right}
-.ladder-num small{font-size:10px;color:var(--dim2);margin-left:2px;font-weight:400}
 footer{margin-top:26px;text-align:center;font-size:11.5px;color:#3d4757;line-height:1.8}
 footer b{color:var(--gold);font-weight:600}
 </style>
@@ -218,11 +208,18 @@ footer b{color:var(--gold);font-weight:600}
     <div class="chart-legend"><span><i style="background:#ff4d4f"></i>成交额</span></div>
   </div>
 
+  <!-- ② 上涨 / 下跌家数 -->
   <div class="card">
-    <h2><i style="background:var(--gold)"></i>② 涨停梯队分布 <u>看断层</u></h2>
-    <div id="ladderBox" class="ladder-list"></div>
-    <div style="font-size:11px;color:var(--dim2);padding-top:8px;border-top:1px solid #1a212c;line-height:1.6" id="ladderHint">
-      梯队连续 = 情绪健康；高板断档 = 退潮信号。
+    <h2><i style="background:var(--gold)"></i>② 上涨 / 下跌家数 <u>近 15 日</u></h2>
+    <div class="blegend">
+      <div>上涨<b class="up mono" id="numUp">--</b></div>
+      <div style="text-align:center">平盘<b class="flat mono" id="numFlat">--</b></div>
+      <div style="text-align:right">下跌<b class="down mono" id="numDown">--</b></div>
+    </div>
+    <div class="chart-wrap"><canvas id="chartBreadth"></canvas></div>
+    <div class="chart-legend">
+      <span><i style="background:#ff4d4f"></i>上涨家数</span>
+      <span><i style="background:#00c48c"></i>下跌家数</span>
     </div>
   </div>
 
@@ -493,6 +490,23 @@ function drawChart(cv,cfg,hoverIdx){
     c.lineJoin="round";
     c.lineCap="round";
     c.stroke();
+  }else if(cfg.type==="line"){
+    S.forEach(function(s){
+      var co=s.color||UP;
+      c.beginPath();
+      s.data.forEach(function(v,i){i?c.lineTo(X(i),Y(v)):c.moveTo(X(i),Y(v))});
+      c.strokeStyle=co;
+      c.lineWidth=1.8;
+      c.lineJoin="round";
+      c.lineCap="round";
+      c.stroke();
+      s.data.forEach(function(v,i){
+        c.beginPath();
+        c.arc(X(i),Y(v),2.3,0,Math.PI*2);
+        c.fillStyle=co;
+        c.fill();
+      });
+    });
   }else if(cfg.type==="bar"){
     var gw=cw/n,gp2=2.5;
     var bw=Math.max(2.5,Math.min(12,(gw*.62-gp2*(S.length-1))/S.length));
@@ -587,6 +601,8 @@ function renderCharts(d){
   var L=d.dates||[];
   if(!L.length)return;
   var yf=function(v){return Number(v).toLocaleString("en-US")};
+  
+  // 成交额
   chartConfigs.amount={
     type:"area",labels:L,
     series:[{name:"成交额（亿）",color:UP,data:(d.amount.history||[]).map(function(v){return v/1e8})}],
@@ -595,6 +611,20 @@ function renderCharts(d){
   drawChart($("chartAmount"),chartConfigs.amount,-1);
   bindHover($("chartAmount"),chartConfigs.amount);
 
+  // 涨跌家数
+  var bh=d.breadth.history||[];
+  chartConfigs.breadth={
+    type:"line",labels:L,
+    series:[
+      {name:"上涨家数",color:UP,data:bh.map(function(x){return x[0]})},
+      {name:"下跌家数",color:DOWN,data:bh.map(function(x){return x[1]})}
+    ],
+    yFmt:yf,yTickCount:4
+  };
+  drawChart($("chartBreadth"),chartConfigs.breadth,-1);
+  bindHover($("chartBreadth"),chartConfigs.breadth);
+
+  // 涨停跌停
   chartConfigs.limit={
     type:"bar",labels:L,
     series:[
@@ -605,50 +635,6 @@ function renderCharts(d){
   };
   drawChart($("chartLimit"),chartConfigs.limit,-1);
   bindHover($("chartLimit"),chartConfigs.limit);
-}
-
-function renderLadder(sk){
-  var box=$("ladderBox");
-  var hint=$("ladderHint");
-  var L=(sk&&sk.ladder)?sk.ladder:[];
-  if(!L.length){
-    box.innerHTML='<p class="empty">暂无数据</p>';
-    hint.textContent="梯队连续 = 情绪健康；高板断档 = 退潮信号。";
-    return;
-  }
-  var g={};
-  L.forEach(function(x){
-    var lv=Math.max(1,x.boards||1);
-    g[lv]=(g[lv]||0)+1;
-  });
-  var levels=Object.keys(g).map(Number).sort(function(a,b){return b-a});
-  var maxB=levels[0]||1;
-  var maxCount=Math.max.apply(null,levels.map(function(l){return g[l]}));
-  box.innerHTML=levels.map(function(lv){
-    var cnt=g[lv];
-    var pct=Math.max(3,cnt/maxCount*100);
-    var rowCls=lv===maxB?"hot":(lv>=maxB-1?"warm":"");
-    return '<div class="ladder-row '+rowCls+'">'+
-      '<div class="ladder-label">'+lv+' 板</div>'+
-      '<div class="ladder-bar"><span style="width:'+pct.toFixed(1)+'%"></span></div>'+
-      '<div class="ladder-num">'+cnt+'<small>只</small></div>'+
-      '</div>';
-  }).join("");
-
-  var top3=levels.slice(0,3).reduce(function(a,l){return a+g[l]},0);
-  var total=L.length;
-  var top3Ratio=top3/total;
-  var hintText;
-  if(top3Ratio>0.6){
-    hintText="⚠ 高板集中，龙头效应明显，接力资金偏谨慎。";
-  }else if(levels.length>=4&&g[maxB]<=2){
-    hintText="✓ 梯队连续，情绪健康，可关注低位板接力。";
-  }else if(levels.length<=2){
-    hintText="⚠ 梯队断层严重，情绪极弱，宜空仓。";
-  }else{
-    hintText="梯队结构一般，注意高板是否继续断档。";
-  }
-  hint.textContent=hintText;
 }
 
 function renderStreak(sk){
@@ -803,6 +789,11 @@ function render(d){
     $("numZb").textContent = "—";
   }
 
+  // 涨跌家数
+  $("numUp").textContent = d.breadth.up || 0;
+  $("numDown").textContent = d.breadth.down || 0;
+  $("numFlat").textContent = d.breadth.flat || 0;
+
   $("heroStreak").textContent=(d.streak&&d.streak.max?d.streak.max:"—")+" 板";
   $("verdictTitle").textContent=s.cycle+" · "+verdictKeyword(s.cycle);
   $("verdictTitle").style.color=s.color;
@@ -820,7 +811,6 @@ function render(d){
   $("numLimitUp").textContent=d.limit.up;
   $("numLimitDown").textContent=d.limit.down;
 
-  renderLadder(d.streak);
   renderStreak(d.streak);
   renderThemes(d.themes);
   renderLHB(d.lhb||[],d);
