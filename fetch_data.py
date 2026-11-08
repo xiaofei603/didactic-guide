@@ -3,7 +3,6 @@
 数据源：东方财富 + 腾讯
 """
 import json
-import os
 import time
 import requests
 from datetime import datetime, timedelta, timezone
@@ -50,27 +49,19 @@ def load_prev():
     except Exception:
         return None
 
-# ==================== 腾讯：涨跌家数 ====================
-
 def get_breadth_tencent():
-    """腾讯批量行情：拿当天全市场涨跌家数（加超时保护）"""
     print("  尝试从腾讯获取当天全市场涨跌家数...")
-    ranges = [
-        ("sh", 600000, 604000), ("sh", 688000, 689100),
-        ("sz", 1, 1000), ("sz", 300000, 301000)
-    ]
+    ranges = [("sh", 600000, 604000), ("sh", 688000, 689100), ("sz", 1, 1000), ("sz", 300000, 301000)]
     codes = []
     for prefix, start, end in ranges:
-        for n in range(start, end, 3):
-            codes.append(prefix + str(n).zfill(6))
+        for n in range(start, end, 3): codes.append(prefix + str(n).zfill(6))
 
     up = down = flat = 0
     batch = 300
     for i in range(0, len(codes), batch):
         chunk = codes[i:i + batch]
-        url = "http://qt.gtimg.cn/q=" + ",".join(chunk)
         try:
-            r = requests.get(url, timeout=5, headers={"User-Agent": "Mozilla/5.0"})
+            r = requests.get("http://qt.gtimg.cn/q=" + ",".join(chunk), timeout=5, headers={"User-Agent": "Mozilla/5.0"})
             r.encoding = "gbk"
             for line in r.text.split(";"):
                 if "=" not in line: continue
@@ -82,65 +73,49 @@ def get_breadth_tencent():
                         if chg > 0: up += 1
                         elif chg < 0: down += 1
                         else: flat += 1
-                except:
-                    pass
-        except Exception as e:
-            print(f"    行情请求超时: {e}")
+                except: pass
+        except Exception:
             break
 
-    if up + down + flat == 0:
-        return None
-    
+    if up + down + flat == 0: return None
     scale = 5000 / (up + down + flat + 0.001)
     return {"up": int(up*scale), "down": int(down*scale), "flat": int(flat*scale)}
 
-# ==================== 东方财富接口 ====================
-
 def get_indices():
-    url = "https://push2.eastmoney.com/api/qt/ulist.np/get"
-    params = {"fltt": "2", "secids": "1.000001,0.399001,0.399006",
-              "fields": "f2,f3,f12,f14", "ut": "fa5fd1943c7b386f172d6893dbfba10b"}
-    data = fetch_json(url, params)
+    data = fetch_json("https://push2.eastmoney.com/api/qt/ulist.np/get", {"fltt": "2", "secids": "1.000001,0.399001,0.399006", "fields": "f2,f3,f12,f14", "ut": "fa5fd1943c7b386f172d6893dbfba10b"})
     if not data or not data.get("data"): return []
-    return [{"name": x.get("f14", ""), "value": round(x.get("f2") or 0, 2), "change": round(x.get("f3") or 0, 2)}
-            for x in data["data"].get("diff", []) if x.get("f14")]
+    return [{"name": x.get("f14", ""), "value": round(x.get("f2") or 0, 2), "change": round(x.get("f3") or 0, 2)} for x in data["data"].get("diff", []) if x.get("f14")]
 
 def get_zt_pool(date_str):
-    url = "https://push2ex.eastmoney.com/getTopicZTPool"
-    params = {"ut": "7eea3edcaed734bea9cbfc24409ed989", "dpt": "wz.ztzt", "Pageindex": "0", "pagesize": "1000", "sort": "fbt:asc", "date": date_str, "_": str(int(datetime.now().timestamp() * 1000))}
-    data = fetch_json(url, params)
+    data = fetch_json("https://push2ex.eastmoney.com/getTopicZTPool", {"ut": "7eea3edcaed734bea9cbfc24409ed989", "dpt": "wz.ztzt", "Pageindex": "0", "pagesize": "1000", "sort": "fbt:asc", "date": date_str, "_": str(int(datetime.now().timestamp() * 1000))})
     if not data or not data.get("data"): return {"count": 0, "ladder": []}
     pool = data["data"].get("pool", []) or []
-    ladder = []
-    for x in pool:
-        ladder.append({
-            "name": x.get("n", ""), "code": str(x.get("c", "")).zfill(6),
-            "boards": x.get("lbc", 1) or 1, "change": round(x.get("zdp") or 0, 2),
-            "industry": x.get("hybk", "") or "", "concepts": [x.get("hybk", "")] if x.get("hybk") else [], "reason": ""
-        })
+    ladder = [{"name": x.get("n", ""), "code": str(x.get("c", "")).zfill(6), "boards": x.get("lbc", 1) or 1, "change": round(x.get("zdp") or 0, 2), "industry": x.get("hybk", "") or "", "concepts": [x.get("hybk", "")] if x.get("hybk") else [], "reason": ""} for x in pool]
     ladder.sort(key=lambda x: x["boards"], reverse=True)
     return {"count": len(pool), "ladder": ladder}
 
 def get_zb_count(date_str):
-    url = "https://push2ex.eastmoney.com/getTopicZBPool"
-    params = {"ut": "7eea3edcaed734bea9cbfc24409ed989", "dpt": "wz.ztzt", "Pageindex": "0", "pagesize": "1000", "sort": "fbt:asc", "date": date_str, "_": str(int(datetime.now().timestamp() * 1000))}
-    data = fetch_json(url, params)
-    return data["data"].get("total") or 0 if data and data.get("data") else 0
+    data = fetch_json("https://push2ex.eastmoney.com/getTopicZBPool", {"ut": "7eea3edcaed734bea9cbfc24409ed989", "dpt": "wz.ztzt", "Pageindex": "0", "pagesize": "1000", "sort": "fbt:asc", "date": date_str, "_": str(int(datetime.now().timestamp() * 1000))})
+    if data and data.get("data"):
+        # ★ 兼容处理：接口有时不返回 total，需要数 pool 的长度
+        total = data["data"].get("total")
+        if total is not None: return int(total)
+        return len(data["data"].get("pool", []) or [])
+    return 0
 
 def get_dt_count(date_str):
-    url = "https://push2ex.eastmoney.com/getTopicDTPool"
-    params = {"ut": "7eea3edcaed734bea9cbfc24409ed989", "dpt": "wz.ztzt", "Pageindex": "0", "pagesize": "1000", "sort": "fund:asc", "date": date_str, "_": str(int(datetime.now().timestamp() * 1000))}
-    data = fetch_json(url, params)
-    return data["data"].get("total") or 0 if data and data.get("data") else 0
+    data = fetch_json("https://push2ex.eastmoney.com/getTopicDTPool", {"ut": "7eea3edcaed734bea9cbfc24409ed989", "dpt": "wz.ztzt", "Pageindex": "0", "pagesize": "1000", "sort": "fund:asc", "date": date_str, "_": str(int(datetime.now().timestamp() * 1000))})
+    if data and data.get("data"):
+        total = data["data"].get("total")
+        if total is not None: return int(total)
+        return len(data["data"].get("pool", []) or [])
+    return 0
 
 def get_amount():
-    url = "https://push2.eastmoney.com/api/qt/ulist.np/get"
-    params = {"fltt": "2", "secids": "1.000001,0.399001", "fields": "f6", "ut": "fa5fd1943c7b386f172d6893dbfba10b"}
-    data = fetch_json(url, params)
+    data = fetch_json("https://push2.eastmoney.com/api/qt/ulist.np/get", {"fltt": "2", "secids": "1.000001,0.399001", "fields": "f6", "ut": "fa5fd1943c7b386f172d6893dbfba10b"})
     return sum(x.get("f6") or 0 for x in data["data"].get("diff", [])) if data and data.get("data") else 0
 
 def get_history(prev):
-    print(f"  抓取过去 {HISTORY_DAYS} 个交易日...")
     if prev:
         pa = (prev.get("amount") or {}).get("history") or []
         if pa:
@@ -153,9 +128,7 @@ def get_history(prev):
 
 def get_lhb(date_str):
     date_fmt = date_str[:4] + "-" + date_str[4:6] + "-" + date_str[6:]
-    url = "https://datacenter-web.eastmoney.com/api/data/v1/get"
-    params = {"reportName": "RPT_DAILYBILLBOARD_DETAILSNEW", "columns": "SECURITY_CODE,SECURITY_NAME_ABBR,TRADE_DATE,EXPLANATION,CHANGE_RATE,BILLBOARD_NET_AMT,BILLBOARD_BUY_AMT,BILLBOARD_SELL_AMT", "filter": f"(TRADE_DATE<='{date_fmt}')(TRADE_DATE>='{date_fmt}')", "pageNumber": "1", "pageSize": "50", "sortColumns": "BILLBOARD_NET_AMT", "sortTypes": "-1", "source": "WEB", "client": "WEB"}
-    data = fetch_json(url, params, referer="https://data.eastmoney.com/")
+    data = fetch_json("https://datacenter-web.eastmoney.com/api/data/v1/get", {"reportName": "RPT_DAILYBILLBOARD_DETAILSNEW", "columns": "SECURITY_CODE,SECURITY_NAME_ABBR,TRADE_DATE,EXPLANATION,CHANGE_RATE,BILLBOARD_NET_AMT,BILLBOARD_BUY_AMT,BILLBOARD_SELL_AMT", "filter": f"(TRADE_DATE<='{date_fmt}')(TRADE_DATE>='{date_fmt}')", "pageNumber": "1", "pageSize": "50", "sortColumns": "BILLBOARD_NET_AMT", "sortTypes": "-1", "source": "WEB", "client": "WEB"}, referer="https://data.eastmoney.com/")
     if not data or not data.get("result") or not data["result"].get("data"): return []
     return [{"name": r.get("SECURITY_NAME_ABBR"), "code": r.get("SECURITY_CODE"), "reason": r.get("EXPLANATION") or "—", "change": round(r.get("CHANGE_RATE") or 0, 2), "buy": r.get("BILLBOARD_BUY_AMT") or 0, "sell": r.get("BILLBOARD_SELL_AMT") or 0, "net": r.get("BILLBOARD_NET_AMT") or 0} for r in data["result"]["data"]]
 
@@ -172,7 +145,6 @@ def main():
     print("开始抓取...")
     prev = load_prev_from_github() or load_prev()
     trade_date_str, trade_dt = find_latest_trade_date()
-    print(f"最近交易日：{trade_dt.strftime('%Y-%m-%d')}")
 
     indices = get_indices()
     zt = get_zt_pool(trade_date_str)
@@ -182,15 +154,22 @@ def main():
     
     zb_count = get_zb_count(trade_date_str)
     limit_down = get_dt_count(trade_date_str)
+
+    # 如果抓到的跌停/炸板是 0，但前一天有数据，大概率是接口挂了，强行拿上一次的兜底
+    if prev:
+        prev_zb = (prev.get("limit") or {}).get("zb")
+        if zb_count == 0 and prev_zb: zb_count = prev_zb
+        
+        prev_dt = (prev.get("limit") or {}).get("down")
+        if limit_down == 0 and prev_dt: limit_down = prev_dt
+
     seal_rate = round(limit_up / (limit_up + zb_count) * 100, 1) if (limit_up + zb_count) > 0 else 0
-    print(f"涨停 {limit_up} 家，跌停 {limit_down} 家，封板率 {seal_rate}%")
+    print(f"涨停 {limit_up}，跌停 {limit_down}，炸板 {zb_count}，封板率 {seal_rate}%")
 
     history = get_history(prev)
     amount = get_amount() or (history["amount"][-1] if history["amount"] else 0)
-
     lhb = get_lhb(trade_date_str) or (prev.get("lhb", []) if prev else [])
 
-    # ★ 涨跌家数处理（防覆盖机制）
     bh_map = {}
     if prev:
         prev_dates = prev.get("dates") or []
@@ -202,17 +181,29 @@ def main():
     today_short = trade_dt.strftime("%m-%d")
     
     if breadth and (breadth["up"] > 0 or breadth["down"] > 0):
-        print(f"  ✓ 成功获取当日涨跌家数: 涨 {breadth['up']} / 跌 {breadth['down']}")
         bh_map[today_short] = [breadth["up"], breadth["down"]]
     else:
-        # 如果今天抓不到，但历史里今天有数据，就保留历史数据
         if today_short in bh_map and (bh_map[today_short][0] > 0 or bh_map[today_short][1] > 0):
-            print(f"  ✓ 保持今日历史数据: 涨 {bh_map[today_short][0]} / 跌 {bh_map[today_short][1]}")
             breadth = {"up": bh_map[today_short][0], "down": bh_map[today_short][1], "flat": 0}
         else:
-            print("  ⚠ 盘后无数据，写为 0")
             breadth = {"up": 0, "down": 0, "flat": 0}
             bh_map[today_short] = [0, 0]
+
+    # 对齐历史
+    if today_short not in history["dates"]:
+        history["dates"].append(today_short)
+        history["amount"].append(amount)
+        history["zt"].append(limit_up)
+        history["dt"].append(limit_down)
+        history["zb"].append(zb_count)
+        history["sr"].append(seal_rate)
+    else:
+        idx = history["dates"].index(today_short)
+        history["amount"][idx] = amount
+        history["zt"][idx] = limit_up
+        history["dt"][idx] = limit_down
+        history["zb"][idx] = zb_count
+        history["sr"][idx] = seal_rate
 
     breadth_history = [bh_map.get(d, [0, 0]) for d in history["dates"]]
 
