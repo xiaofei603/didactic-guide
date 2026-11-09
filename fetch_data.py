@@ -1,7 +1,3 @@
-"""
-每天自动抓取 A 股盘面数据 + 龙虎榜 + 涨停概念 + 封板率 + 涨跌家数
-数据源：东方财富 + 腾讯
-"""
 import json
 import time
 import requests
@@ -36,9 +32,7 @@ def load_prev():
         with open("data.json", "r", encoding="utf-8") as f: return json.load(f)
     except: return None
 
-# ==================== 腾讯：找真实的最近交易日 ====================
 def get_real_trade_date():
-    """用腾讯K线判断今天是不是真实的交易日，避免东财返回上周五的数据"""
     now = datetime.now(BJ_TZ)
     today_str = now.strftime("%Y-%m-%d")
     url = "https://web.ifzq.gtimg.cn/appstock/app/kline/kline"
@@ -46,23 +40,15 @@ def get_real_trade_date():
     try:
         r = requests.get(url, params=params, timeout=10)
         data = r.json()
-        days = data["data"]["sh000001"]["day"]
-        last_day = days[-1][0] # 最近真实开市的一天
-        print(f"  腾讯真实交易日: {last_day}")
-        
-        # 如果今天在K线里，说明今天有数据；否则用最后一天
+        last_day = data["data"]["sh000001"]["day"][-1][0]
         if last_day == today_str:
             return today_str.replace("-", ""), now
         else:
-            # 用最后一天的日期
             dt = datetime.strptime(last_day, "%Y-%m-%d").replace(tzinfo=BJ_TZ)
             return last_day.replace("-", ""), dt
-    except Exception as e:
-        print(f"  腾讯判断失败: {e}")
-        # 如果失败，就退回用今天
+    except:
         return today_str.replace("-", ""), now
 
-# ==================== 腾讯：涨跌家数 ====================
 def get_breadth_tencent():
     print("  抓取腾讯涨跌家数...")
     ranges = [("sh", 600000, 604000), ("sh", 688000, 689100), ("sz", 1, 1000), ("sz", 300000, 301000)]
@@ -89,11 +75,15 @@ def get_breadth_tencent():
                 except: pass
         except: break
 
-    if up + down + flat == 0: return None
-    scale = 5000 / (up + down + flat)
+    total = up + down + flat
+    # 如果抓取的样本不到 3000 只，说明接口在夜间休眠，直接返回 None
+    if total < 3000: 
+        print(f"  ⚠ 腾讯接口夜间休眠（样本仅 {total} 只），拒绝写入假数据")
+        return None
+    
+    scale = 5000 / total
     return {"up": int(up*scale), "down": int(down*scale), "flat": int(flat*scale)}
 
-# ==================== 东方财富接口 ====================
 def get_indices():
     data = fetch_json("https://push2.eastmoney.com/api/qt/ulist.np/get", {"fltt": "2", "secids": "1.000001,0.399001,0.399006", "fields": "f2,f3,f12,f14", "ut": "fa5fd1943c7b386f172d6893dbfba10b"})
     if not data or not data.get("data"): return []
@@ -129,12 +119,10 @@ def main():
     print("开始抓取...")
     prev = load_prev() or {}
     
-    # 核心修复：通过腾讯找真正交易日，杜绝旧数据贴新标签
     trade_date_str, trade_dt = get_real_trade_date()
     today_short = trade_dt.strftime("%m-%d")
     print(f"锁定交易日: {today_short}")
 
-    # 抓当天数据
     indices = get_indices()
     zt = get_zt_pool(trade_date_str)
     limit_up = zt["count"]
@@ -143,17 +131,23 @@ def main():
     
     zb_count = get_zb_count(trade_date_str)
     limit_down = get_dt_count(trade_date_str)
-    if prev:
-        if zb_count == 0: zb_count = prev.get("limit", {}).get("zb") or 1
-        if limit_down == 0: limit_down = prev.get("limit", {}).get("down") or 1
-    
-    seal_rate = round(limit_up / (limit_up + zb_count) * 100, 1)
-    amount = get_amount() or prev.get("amount", {}).get("total") or 0
-    lhb = get_lhb(trade_date_str) or prev.get("lhb", [])
+    amount = get_amount()
+    breadth = get_breadth_tencent()
 
-    breadth = get_breadth_tencent() or {"up": 0, "down": 0, "flat": 0}
-    if breadth["up"] == 0 and prev.get("breadth"):
-        breadth = {"up": prev["breadth"]["up"], "down": prev["breadth"]["down"], "flat": prev["breadth"]["flat"]}
+    # ★ 核心校验：如果在盘中/盘后，这些数据不可能是 0。如果是 0，说明接口挂了！
+    # 上证+深证成交额不可能少于 5000 亿 (5e11)
+    if amount < 5e11:
+        print("  ❌ 致命错误：东方财富成交额接口返回为空或异常！")
+        print("  ❌ 脚本中止，防止用昨天的假数据覆盖今天的正确数据！")
+        return
+
+    if breadth is None:
+        print("  ❌ 致命错误：腾讯涨跌家数抓取失败！")
+        print("  ❌ 脚本中止，不写入假数据！")
+        return
+
+    seal_rate = round(limit_up / (limit_up + zb_count) * 100, 1) if (limit_up + zb_count) > 0 else 100.0
+    lhb = get_lhb(trade_date_str)
 
     # 拼接历史
     history_dates = prev.get("dates", [])
@@ -164,7 +158,6 @@ def main():
     history_sr = prev.get("limit", {}).get("sealHistory", [])
     history_bh = prev.get("breadth", {}).get("history", [])
 
-    # 强制对齐
     if today_short in history_dates:
         idx = history_dates.index(today_short)
         history_amount[idx] = amount
@@ -182,7 +175,6 @@ def main():
         history_sr.append(seal_rate)
         history_bh.append([breadth["up"], breadth["down"]])
 
-    # 截取最近15天
     history_dates = history_dates[-15:]
     history_amount = history_amount[-15:]
     history_zt = history_zt[-15:]
@@ -207,7 +199,7 @@ def main():
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
-    print(f"成功写入！真实交易日: {today_short}")
+    print(f"✅ 写入成功！真实数据校验通过。")
 
 if __name__ == "__main__":
     main()
