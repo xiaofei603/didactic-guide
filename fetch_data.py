@@ -36,6 +36,32 @@ def load_prev():
         with open("data.json", "r", encoding="utf-8") as f: return json.load(f)
     except: return None
 
+# ==================== 腾讯：找真实的最近交易日 ====================
+def get_real_trade_date():
+    """用腾讯K线判断今天是不是真实的交易日，避免东财返回上周五的数据"""
+    now = datetime.now(BJ_TZ)
+    today_str = now.strftime("%Y-%m-%d")
+    url = "https://web.ifzq.gtimg.cn/appstock/app/kline/kline"
+    params = {"param": "sh000001,day,,,5,qfq"}
+    try:
+        r = requests.get(url, params=params, timeout=10)
+        data = r.json()
+        days = data["data"]["sh000001"]["day"]
+        last_day = days[-1][0] # 最近真实开市的一天
+        print(f"  腾讯真实交易日: {last_day}")
+        
+        # 如果今天在K线里，说明今天有数据；否则用最后一天
+        if last_day == today_str:
+            return today_str.replace("-", ""), now
+        else:
+            # 用最后一天的日期
+            dt = datetime.strptime(last_day, "%Y-%m-%d").replace(tzinfo=BJ_TZ)
+            return last_day.replace("-", ""), dt
+    except Exception as e:
+        print(f"  腾讯判断失败: {e}")
+        # 如果失败，就退回用今天
+        return today_str.replace("-", ""), now
+
 # ==================== 腾讯：涨跌家数 ====================
 def get_breadth_tencent():
     print("  抓取腾讯涨跌家数...")
@@ -45,9 +71,8 @@ def get_breadth_tencent():
         for n in range(start, end, 5): codes.append(prefix + str(n).zfill(6))
 
     up = down = flat = 0
-    batch = 300
-    for i in range(0, len(codes), batch):
-        chunk = codes[i:i + batch]
+    for i in range(0, len(codes), 300):
+        chunk = codes[i:i + 300]
         try:
             r = requests.get("http://qt.gtimg.cn/q=" + ",".join(chunk), timeout=5)
             r.encoding = "gbk"
@@ -100,32 +125,22 @@ def get_lhb(date_str):
     if not data or not data.get("result") or not data["result"].get("data"): return []
     return [{"name": r.get("SECURITY_NAME_ABBR"), "code": r.get("SECURITY_CODE"), "reason": r.get("EXPLANATION") or "—", "change": round(r.get("CHANGE_RATE") or 0, 2), "buy": r.get("BILLBOARD_BUY_AMT") or 0, "sell": r.get("BILLBOARD_SELL_AMT") or 0, "net": r.get("BILLBOARD_NET_AMT") or 0} for r in data["result"]["data"]]
 
-def find_latest_trade_date():
-    now = datetime.now(BJ_TZ)
-    for i in range(10):
-        d = now - timedelta(days=i)
-        if d.weekday() >= 5: continue
-        ds = d.strftime("%Y%m%d")
-        if get_zt_pool(ds)["count"] > 0: return ds, d
-    return now.strftime("%Y%m%d"), now
-
 def main():
     print("开始抓取...")
     prev = load_prev() or {}
     
-    # 1. 找最近交易日
-    trade_date_str, trade_dt = find_latest_trade_date()
+    # 核心修复：通过腾讯找真正交易日，杜绝旧数据贴新标签
+    trade_date_str, trade_dt = get_real_trade_date()
     today_short = trade_dt.strftime("%m-%d")
-    print(f"日期: {today_short}")
+    print(f"锁定交易日: {today_short}")
 
-    # 2. 抓当天数据
+    # 抓当天数据
     indices = get_indices()
     zt = get_zt_pool(trade_date_str)
     limit_up = zt["count"]
     ladder = zt["ladder"]
     max_board = max([s["boards"] for s in ladder], default=0)
     
-    # 跌停和炸板兜底
     zb_count = get_zb_count(trade_date_str)
     limit_down = get_dt_count(trade_date_str)
     if prev:
@@ -140,7 +155,7 @@ def main():
     if breadth["up"] == 0 and prev.get("breadth"):
         breadth = {"up": prev["breadth"]["up"], "down": prev["breadth"]["down"], "flat": prev["breadth"]["flat"]}
 
-    # 3. 强制拼接历史（修复错位核心）
+    # 拼接历史
     history_dates = prev.get("dates", [])
     history_amount = prev.get("amount", {}).get("history", [])
     history_zt = prev.get("limit", {}).get("history", [])
@@ -149,7 +164,7 @@ def main():
     history_sr = prev.get("limit", {}).get("sealHistory", [])
     history_bh = prev.get("breadth", {}).get("history", [])
 
-    # 如果今天不在历史里，强行插入。如果在，强行覆盖。
+    # 强制对齐
     if today_short in history_dates:
         idx = history_dates.index(today_short)
         history_amount[idx] = amount
@@ -167,7 +182,7 @@ def main():
         history_sr.append(seal_rate)
         history_bh.append([breadth["up"], breadth["down"]])
 
-    # 只保留最近 15 天
+    # 截取最近15天
     history_dates = history_dates[-15:]
     history_amount = history_amount[-15:]
     history_zt = history_zt[-15:]
@@ -192,7 +207,7 @@ def main():
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
-    print(f"已写入！共 {len(history_dates)} 天数据")
+    print(f"成功写入！真实交易日: {today_short}")
 
 if __name__ == "__main__":
     main()
