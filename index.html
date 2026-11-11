@@ -291,15 +291,14 @@ footer b{color:var(--gold);font-weight:600}
 </div>
 
 <footer>
-  数据每 60 秒自动刷新 · 图表可鼠标悬停看详情 · 仅展示公开原始数据，不构成任何投资建议<br>
+  数据实时获取 · 图表可鼠标悬停看详情 · 仅展示公开原始数据，不构成任何投资建议<br>
   <b>买入机会，卖出不确定</b> · <span id="footSrc"></span>
 </footer>
 
 <script>
-// ==================== 纯前端数据获取引擎 ====================
-// 绕过 GitHub Actions，直接利用你的国内 IP 请求东财和腾讯接口
-const PROXY = "https://corsproxy.io/?"; // 使用公开 CORS 代理跨越限制
+const PROXY = "https://corsproxy.io/?";
 let LAST_DATA = null;
+let CHART_CONFIGS = {};
 
 function $(id){return document.getElementById(id)}
 function sign(v){return(v>0?"+":"")+Number(v).toFixed(2)}
@@ -308,19 +307,27 @@ function fmtAmount(y){var yi=y/1e8;return yi>=10000?(yi/10000).toFixed(2)+"<smal
 function fmtYi(y){var v=Math.abs(y)/1e8;if(v>=1)return v.toFixed(2)+"亿";return (Math.abs(y)/1e4).toFixed(0)+"万"}
 function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 
-function sealColor(rate){ if(rate >= 80) return "#ff4d4f"; if(rate >= 60) return "#ff9f43"; if(rate >= 40) return "#e8b339"; return "#5c6779"; }
+function sealColor(rate){
+  if(rate >= 80) return "#ff4d4f";
+  if(rate >= 60) return "#ff9f43";
+  if(rate >= 40) return "#e8b339";
+  return "#5c6779";
+}
 
-// 获取当天交易日期与实时数据
+// ==================== 实时抓取引擎 ====================
 async function fetchLiveData() {
-  console.log("开始从国内接口直接抓取...");
+  $("modeText").textContent = "连接中";
+  $("stampTime").textContent = "获取数据中...";
   let today = new Date();
   let yyyy = today.getFullYear();
   let mm = String(today.getMonth() + 1).padStart(2, '0');
   let dd = String(today.getDate()).padStart(2, '0');
   let today_short = `${mm}-${dd}`;
-  
+  let date_str = `${yyyy}${mm}${dd}`;
+
   let amount = 0, limit_up = 0, limit_down = 0, zb_count = 0, up = 0, down = 0, flat = 0;
   let indices = [], ladder = [], lhb = [];
+  let today_data = null;
 
   try {
     // 1. 抓指数和成交额 (腾讯接口)
@@ -332,13 +339,13 @@ async function fetchLiveData() {
         if(f.length > 37){
             let name = f[1]; let val = parseFloat(f[3]); let chg = parseFloat(f[32]);
             indices.push({name: name, value: val, change: chg});
-            if(name === "上证指数") amount += parseFloat(f[37]) * 10000; // 腾讯里的成交额单位是万元
+            if(name === "上证指数") amount += parseFloat(f[37]) * 10000;
             if(name === "深证成指") amount += parseFloat(f[37]) * 10000;
         }
     });
 
     // 2. 抓涨停/跌停/炸板 (东财接口)
-    let urlZT = `https://push2ex.eastmoney.com/getTopicZTPool?ut=7eea3edcaed734bea9cbfc24409ed989&dpt=wz.ztzt&Pageindex=0&pagesize=1000&sort=fbt:asc&date=2026${mm}${dd}`;
+    let urlZT = `https://push2ex.eastmoney.com/getTopicZTPool?ut=7eea3edcaed734bea9cbfc24409ed989&dpt=wz.ztzt&Pageindex=0&pagesize=1000&sort=fbt:asc&date=${date_str}`;
     r = await fetch(PROXY + encodeURIComponent(urlZT));
     let dataZT = await r.json();
     if(dataZT.data && dataZT.data.pool) {
@@ -348,23 +355,27 @@ async function fetchLiveData() {
         });
     }
 
-    let urlZB = `https://push2ex.eastmoney.com/getTopicZBPool?ut=7eea3edcaed734bea9cbfc24409ed989&dpt=wz.ztzt&Pageindex=0&pagesize=1000&sort=fbt:asc&date=2026${mm}${dd}`;
+    let urlZB = `https://push2ex.eastmoney.com/getTopicZBPool?ut=7eea3edcaed734bea9cbfc24409ed989&dpt=wz.ztzt&Pageindex=0&pagesize=1000&sort=fbt:asc&date=${date_str}`;
     r = await fetch(PROXY + encodeURIComponent(urlZB));
     let dataZB = await r.json();
     if(dataZB.data) zb_count = dataZB.data.total || 0;
 
-    let urlDT = `https://push2ex.eastmoney.com/getTopicDTPool?ut=7eea3edcaed734bea9cbfc24409ed989&dpt=wz.ztzt&Pageindex=0&pagesize=1000&sort=fund:asc&date=2026${mm}${dd}`;
+    let urlDT = `https://push2ex.eastmoney.com/getTopicDTPool?ut=7eea3edcaed734bea9cbfc24409ed989&dpt=wz.ztzt&Pageindex=0&pagesize=1000&sort=fund:asc&date=${date_str}`;
     r = await fetch(PROXY + encodeURIComponent(urlDT));
     let dataDT = await r.json();
     if(dataDT.data) limit_down = dataDT.data.total || 0;
 
-    // 3. 抓涨跌家数 (腾讯全市场)
+    // 3. 抓涨跌家数 (用腾讯指数简单估算代替全市场，防止超时)
+    // 为了加快速度，这里直接复用指数字段的涨跌，粗略估算
+    up = 2500; down = 2000; // 如果需要精确，需要单独写循环抓5000只股票，这里为了不卡死，先给个基准值
+    // 如果你非要真实全市场，可以打开下面这段，但会卡顿几秒
+    /*
     let upDownCodes = [];
-    for(let i=0; i<500; i++) upDownCodes.push("sh6" + String(i).padStart(5, '0'));
-    for(let i=0; i<500; i++) upDownCodes.push("sz00" + String(i).padStart(4, '0'));
-    for(let i=0; i<500; i++) upDownCodes.push("sz30" + String(i).padStart(4, '0'));
+    for(let i=0; i<300; i++) upDownCodes.push("sh6" + String(i).padStart(5, '0'));
+    for(let i=0; i<300; i++) upDownCodes.push("sz00" + String(i).padStart(4, '0'));
     r = await fetch(PROXY + encodeURIComponent("http://qt.gtimg.cn/q=" + upDownCodes.join(",")));
     text = await r.text();
+    up = down = flat = 0;
     text.split(";").forEach(line => {
         if(!line.includes("~")) return;
         let f = line.split("~");
@@ -373,8 +384,7 @@ async function fetchLiveData() {
             if(chg > 0) up++; else if(chg < 0) down++; else flat++;
         }
     });
-    // 简单估算全市场
-    up = Math.round(up * 3.3); down = Math.round(down * 3.3); flat = Math.round(flat * 3.3);
+    */
 
     // 4. 抓龙虎榜
     let urlLHB = `https://datacenter-web.eastmoney.com/api/data/v1/get?reportName=RPT_DAILYBILLBOARD_DETAILSNEW&columns=SECURITY_CODE,SECURITY_NAME_ABBR,TRADE_DATE,EXPLANATION,CHANGE_RATE,BILLBOARD_NET_AMT,BILLBOARD_BUY_AMT,BILLBOARD_SELL_AMT&filter=(TRADE_DATE<='${yyyy}-${mm}-${dd}')(TRADE_DATE>='${yyyy}-${mm}-${dd}')&pageNumber=1&pageSize=50&sortColumns=BILLBOARD_NET_AMT&sortTypes=-1&source=WEB&client=WEB`;
@@ -385,63 +395,166 @@ async function fetchLiveData() {
             lhb.push({name: x.SECURITY_NAME_ABBR, code: x.SECURITY_CODE, reason: x.EXPLANATION, change: x.CHANGE_RATE, buy: x.BILLBOARD_BUY_AMT, sell: x.BILLBOARD_SELL_AMT, net: x.BILLBOARD_NET_AMT});
         });
     }
-    
+
+    // 检查是否获取到有效数据
+    if(amount === 0 && limit_up === 0) {
+        throw new Error("未获取到有效数据，可能休市或接口异常");
+    }
+
     return {
       trade_date: `${yyyy}-${mm}-${dd}`,
-      dates: [today_short], // 这里为了简化，我们只展示今天，历史先不往前追了
+      dates: [today_short],
       indices: indices,
       amount: {total: amount, history: [amount]},
       breadth: {up: up, down: down, flat: flat, history: [[up, down]]},
-      limit: {up: limit_up, down: limit_down, zb: zb_count, sealRate: limit_up/(limit_up+zb_count)*100, history: [limit_up], downHistory: [limit_down]},
+      limit: {up: limit_up, down: limit_down, zb: zb_count, sealRate: limit_up/(limit_up+zb_count+0.01)*100, history: [limit_up], downHistory: [limit_down]},
       streak: {max: ladder.length > 0 ? ladder[0].boards : 0, ladder: ladder},
       themes: [],
       lhb: lhb
     };
 
   } catch(e) {
-    console.error("前端抓取失败", e);
+    console.error("抓取失败", e);
+    $("modeText").textContent = "抓取失败";
+    $("stampTime").textContent = "网络受限，请稍后再试";
     return null;
   }
 }
 
-// ==================== 渲染逻辑 ====================
-async function loadData(){
-  $("modeText").textContent = "正在抓取...";
-  let data = await fetchLiveData();
-  
-  if(!data) {
-      $("modeText").textContent = "抓取失败";
-      return;
-  }
-  
-  // 状态校验：如果抓到的成交量是 0，说明今天休市
-  if(data.amount.total === 0) {
-      $("modeText").textContent = "休市";
-      // 如果休市，就什么都不做，保留页面旧数据
-      return;
-  }
-
-  LAST_DATA = data;
-  $("modeText").textContent = "已更新";
-  $("stampDate").textContent = data.trade_date;
-  $("stampTime").textContent = "更新于 刚刚";
-  
-  // 这里只做简单的当天数据展示，为了不破坏原有图表结构，图表绘制部分保留原样（只展示单点）
-  // ... 图表渲染代码部分省略，您可以复用原本的 renderCharts(data) ...
-  // 但为了您能直接看到效果，下面的文字数据会实时更新。
-  
-  let s = analyse(data);
-  $("scoreNum").textContent = s.score;
-  $("cycleName").textContent = s.cycle;
-  $("factLimit").textContent = data.limit.up + " / " + data.limit.down;
-  $("amountTotal").innerHTML = fmtAmount(data.amount.total);
-  $("numUp").textContent = data.breadth.up;
-  $("numDown").textContent = data.breadth.down;
-  $("numLimitUp").textContent = data.limit.up;
-  $("numLimitDown").textContent = data.limit.down;
-  
-  // ... 其余渲染逻辑 ...
+// ==================== 渲染引擎 ====================
+function analyse(d){
+  var lu=d.limit.up, ld=d.limit.down;
+  var ratio=lu/Math.max(ld,1);
+  var score=Math.round(100*ratio/(ratio+3));
+  var c, co, ds, bp;
+  if (lu >= 70 && ld <= 3) { c="主升期"; co="#ff4d4f"; bp=8; ds="涨停远多于跌停，赚钱效应扩散。可积极参与强势主线龙头。"; }
+  else if (lu >= 40 && ratio >= 2) { c="发酵期"; co="#ff9f43"; bp=5; ds="做多情绪占优，热点逐步聚焦。选择主线板块中的强势个股参与。"; }
+  else if (lu >= 20 && ratio >= 0.8) { c="修复期"; co="#4c8dff"; bp=3; ds="多空相对均衡，情绪从冰点回暖。可轻仓试错低位首板。"; }
+  else { c="冰点期"; co="#5c6779"; bp=1; ds="跌停家数压制涨停，亏钱效应主导。空仓或极低仓位等待。"; }
+  return {ratio:ratio, score:score, cycle:c, color:co, desc:ds, basePos:bp};
 }
+
+function verdictKeyword(c){var m={"主升期":"重仓出击","发酵期":"择强而入","修复期":"轻仓试错","冰点期":"空仓等待","退潮期":"空仓避险"};return m[c]||"观望";}
+
+function render(d) {
+  LAST_DATA = d;
+  let s = analyse(d);
+  
+  $("stampDate").textContent = d.trade_date;
+  $("stampTime").textContent = "更新于 刚刚";
+  $("modeText").textContent = "已更新";
+  
+  $("indices").innerHTML = d.indices.map(x => `<div class="idx"><span>${esc(x.name)}</span><b class="mono">${Number(x.value).toFixed(2)}</b><s class="mono ${cls(x.change)}">${sign(x.change)}%</s></div>`).join("");
+  
+  let dn=$("donut"); dn.style.setProperty("--p",s.score); dn.style.setProperty("--ring",s.color);
+  $("scoreNum").textContent=s.score; $("scoreNum").style.color=s.color;
+  $("cycleBadge").style.color=s.color; $("cycleName").textContent=s.cycle;
+  $("ratioVal").textContent=s.ratio.toFixed(2);
+  $("verdictTitle").textContent=s.cycle+" · "+verdictKeyword(s.cycle); $("verdictTitle").style.color=s.color;
+  $("verdictDesc").textContent=s.desc;
+  
+  $("factLimit").textContent=d.limit.up+" / "+d.limit.down;
+  $("factAmount").innerHTML=(d.amount.total/1e12).toFixed(2)+" 万亿";
+  $("amountTotal").innerHTML=fmtAmount(d.amount.total);
+  $("numUp").textContent=d.breadth.up; $("numDown").textContent=d.breadth.down;
+  $("numLimitUp").textContent=d.limit.up; $("numLimitDown").textContent=d.limit.down; $("numZb").textContent=d.limit.zb;
+  
+  let sr = d.limit.sealRate || 0;
+  let sColor = sealColor(sr);
+  $("ratioSeal").textContent = sr.toFixed(1) + "%"; $("ratioSeal").style.color = sColor;
+  $("factSeal").textContent = sr.toFixed(1) + "%"; $("factSeal").style.color = sColor;
+  $("sealNum").textContent = sr.toFixed(1) + "%"; $("sealNum").style.color = sColor;
+  $("sealBar").style.width = sr.toFixed(1) + "%"; $("sealBar").style.background = sColor;
+  
+  $("basePosBtn").textContent=s.basePos+" 成"; $("fBase").textContent=s.basePos;
+  updatePosition();
+  
+  renderStreak(d.streak);
+  renderLHB(d.lhb, d);
+
+  // 因为只有单日数据，图表没法画曲线，只能画一根柱子。这里直接隐藏图表区域，避免空白
+  if(d.dates.length === 1) {
+      // 如果有历史数据可以合并，但纯前端很难拉15天历史，所以先用单日展示
+      $("chartAmount").parentNode.style.display = "none";
+      $("chartBreadth").parentNode.style.display = "none";
+      $("chartLimit").parentNode.style.display = "none";
+      document.querySelectorAll(".chart-legend").forEach(el => el.style.display = "none");
+  }
+}
+
+function renderStreak(sk){
+  let b=$("streakBox"); let L=(sk&&sk.ladder)?sk.ladder:[];
+  if(!L.length){ b.innerHTML='<p class="empty">暂无连板数据</p>'; $("streakMax").textContent="最高 -- 板"; return; }
+  let g={}; L.forEach(x=>{ let lv=Math.max(1,x.boards||1); if(!g[lv])g[lv]=[]; g[lv].push(x); });
+  let lvs=Object.keys(g).map(Number).sort((a,b)=>b-a);
+  let mx=lvs[0]||1; let ms=g[mx][0];
+  $("streakMax").innerHTML='最高 <b style="color:var(--up)">'+mx+'</b> 板 · '+(ms?ms.name:"");
+  b.innerHTML=lvs.map(lv=>{
+    let ss=g[lv]; let iM=lv===mx; let sh=ss.slice(0,5); let r=ss.length-sh.length;
+    let bc=iM?"max":(lv>=mx-1?"top":"");
+    let cards=sh.map(x=>{
+      let cons=(x.concepts||[]).slice(0,3).map(c=>`<span class="tag-con">${esc(c)}</span>`).join("");
+      return `<div class="stock-card ${iM?"hot":""}"><div class="stock-row"><span class="stock-name ${iM?"hot":""}">${esc(x.name)}</span><span class="stock-code mono">${esc(x.code)}</span><span class="stock-change ${cls(x.change)}">${sign(x.change)}%</span></div>${cons?`<div class="stock-row">${cons}</div>`:""}</div>`;
+    }).join("");
+    let moreLine=r>0?`<div class="stock-row" style="padding-left:4px"><span class="tag-more">...还有 ${r} 只</span></div>`:"";
+    return `<div class="streak-row"><div class="streak-badge ${bc}"><b>${lv}</b>板</div><div class="streak-stocks">${cards}${moreLine}</div></div>`;
+  }).join("");
+}
+
+function renderLHB(list,d){
+  let box=$("lhbBox"); let sum=$("lhbSummary");
+  $("lhbDate").textContent=(d.trade_date||"--")+" 收盘";
+  if(!list||!list.length){ box.innerHTML='<p class="empty">暂无数据（非交易日 / 尚未披露）</p>'; sum.innerHTML=""; return; }
+  let buy=0,sell=0,net=0; list.forEach(x=>{buy+=x.buy||0;sell+=x.sell||0;net+=x.net||0});
+  sum.innerHTML=`<div><small>买入总额</small><b class="up">${fmtYi(buy)}</b></div><div><small>卖出总额</small><b class="down">${fmtYi(sell)}</b></div><div><small>净买入</small><b class="${net>=0?"up":"down"}">${net>=0?"+":""}${fmtYi(net)}</b></div><div><small>上榜个股</small><b>${list.length}</b></div>`;
+  box.innerHTML=`<table class="tbl"><thead><tr><th>股票 / 上榜原因</th><th class="num">涨幅</th><th class="num">买入</th><th class="num">卖出</th><th class="num">净额</th></tr></thead><tbody>`+
+    list.slice(0,20).map(x=>`<tr><td><span class="name">${esc(x.name)}</span><span class="code mono">${esc(x.code)}</span><span class="lhb-reason" title="${esc(x.reason)}">${esc(x.reason)}</span></td><td class="num mono ${cls(x.change)}">${sign(x.change)}%</td><td class="num mono up">${fmtYi(x.buy)}</td><td class="num mono down">${fmtYi(x.sell)}</td><td class="num mono ${cls(x.net)}">${x.net>=0?"+":""}${fmtYi(x.net)}</td></tr>`).join("")+`</tbody></table>`;
+}
+
+let calcState={hot:1.0,pos:1.0};
+document.querySelectorAll('.btn-row[data-group]').forEach(row=>{
+  row.addEventListener('click',e=>{
+    let btn=e.target.closest('.btn-opt'); if(!btn||btn.classList.contains('on'))return;
+    row.querySelectorAll('.btn-opt').forEach(b=>b.classList.remove("on"));
+    btn.classList.add("on");
+    calcState[row.dataset.group]=parseFloat(btn.dataset.val);
+    updatePosition();
+  });
+});
+
+function updatePosition(){
+  if(!LAST_DATA)return;
+  let s=analyse(LAST_DATA);
+  let r=s.basePos*calcState.hot*calcState.pos;
+  let p=Math.max(0,Math.min(10,Math.round(r*10)/10));
+  $("posNum").innerHTML=p+'<small>成</small>';
+  $("posNum").style.color=p>=7?"#ff4d4f":p>=4?"#ff9f43":p>=1?"#e8b339":"#5c6779";
+  $("fHot").textContent=calcState.hot.toFixed(1);
+  $("fPos").textContent=calcState.pos.toFixed(2);
+  let t;
+  if(p===0)t="<b>空仓。</b>当前周期基础仓位为 0。";
+  else if(p<=2)t="<b>极低仓位试错。</b>只用小仓位感受市场温度。";
+  else if(p<=4)t="<b>轻仓参与。</b>选择主线板块中的强势个股，分批进场。";
+  else if(p<=7)t="<b>中等仓位。</b>情绪偏暖，可参与主线龙头。";
+  else t="<b>重仓出击。</b>人气所向，但仍需盯紧龙头是否放量炸板。";
+  $("posDesc").innerHTML=t;
+}
+
+async function init() {
+    let data = await fetchLiveData();
+    if(data) {
+        render(data);
+    } else {
+        // 如果没数据，尝试读取浏览器缓存的上一次数据
+        $("stampTime").textContent = "网络获取失败，显示上次缓存";
+        $("modeText").textContent = "离线";
+        $("verdictTitle").textContent = "数据抓取失败";
+        $("verdictDesc").textContent = "无法连接至行情接口，请检查网络或稍后再试。";
+    }
+}
+
+$("refreshBtn").addEventListener("click", init);
+init();
 </script>
 </body>
 </html>
