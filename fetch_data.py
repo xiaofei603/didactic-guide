@@ -1,3 +1,6 @@
+"""
+严格模式 + 防覆盖锁
+"""
 import json
 import time
 import requests
@@ -50,7 +53,6 @@ def get_real_trade_date():
         return today_str.replace("-", ""), now
 
 def get_breadth_tencent():
-    print("  抓取腾讯涨跌家数...")
     ranges = [("sh", 600000, 604000), ("sh", 688000, 689100), ("sz", 1, 1000), ("sz", 300000, 301000)]
     codes = []
     for prefix, start, end in ranges:
@@ -76,11 +78,7 @@ def get_breadth_tencent():
         except: break
 
     total = up + down + flat
-    # 如果抓取的样本不到 3000 只，说明接口在夜间休眠，直接返回 None
-    if total < 3000: 
-        print(f"  ⚠ 腾讯接口夜间休眠（样本仅 {total} 只），拒绝写入假数据")
-        return None
-    
+    if total < 3000: return None
     scale = 5000 / total
     return {"up": int(up*scale), "down": int(down*scale), "flat": int(flat*scale)}
 
@@ -116,40 +114,37 @@ def get_lhb(date_str):
     return [{"name": r.get("SECURITY_NAME_ABBR"), "code": r.get("SECURITY_CODE"), "reason": r.get("EXPLANATION") or "—", "change": round(r.get("CHANGE_RATE") or 0, 2), "buy": r.get("BILLBOARD_BUY_AMT") or 0, "sell": r.get("BILLBOARD_SELL_AMT") or 0, "net": r.get("BILLBOARD_NET_AMT") or 0} for r in data["result"]["data"]]
 
 def main():
-    print("开始抓取...")
     prev = load_prev() or {}
-    
     trade_date_str, trade_dt = get_real_trade_date()
     today_short = trade_dt.strftime("%m-%d")
-    print(f"锁定交易日: {today_short}")
+
+    # ★★★ 核心：如果今天的数据已经存在且是真实的，直接跳过！★★★
+    if prev.get("trade_date") == trade_dt.strftime("%Y-%m-%d"):
+        if prev.get("amount", {}).get("total", 0) > 5000_0000_0000: # 成交额大于 5000 亿，说明是真数据
+            print(f"✅ 今天的真实数据已经存在，无需重复抓取。")
+            return
+        print(f"⚠ 发现今日数据残缺，正在重新抓取...")
 
     indices = get_indices()
     zt = get_zt_pool(trade_date_str)
     limit_up = zt["count"]
     ladder = zt["ladder"]
     max_board = max([s["boards"] for s in ladder], default=0)
-    
     zb_count = get_zb_count(trade_date_str)
     limit_down = get_dt_count(trade_date_str)
     amount = get_amount()
     breadth = get_breadth_tencent()
 
-    # ★ 核心校验：如果在盘中/盘后，这些数据不可能是 0。如果是 0，说明接口挂了！
-    # 上证+深证成交额不可能少于 5000 亿 (5e11)
     if amount < 5e11:
-        print("  ❌ 致命错误：东方财富成交额接口返回为空或异常！")
-        print("  ❌ 脚本中止，防止用昨天的假数据覆盖今天的正确数据！")
+        print("  ❌ 致命错误：成交额接口异常，脚本中止！")
         return
-
     if breadth is None:
-        print("  ❌ 致命错误：腾讯涨跌家数抓取失败！")
-        print("  ❌ 脚本中止，不写入假数据！")
+        print("  ❌ 致命错误：涨跌家数接口异常，脚本中止！")
         return
 
     seal_rate = round(limit_up / (limit_up + zb_count) * 100, 1) if (limit_up + zb_count) > 0 else 100.0
     lhb = get_lhb(trade_date_str)
 
-    # 拼接历史
     history_dates = prev.get("dates", [])
     history_amount = prev.get("amount", {}).get("history", [])
     history_zt = prev.get("limit", {}).get("history", [])
