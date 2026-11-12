@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-12 22:12",
+  "updated_at": "2026-11-12 22:18",
   "trade_date": "2026-11-12",
   "source": "本地极速直连",
   "dates": [
@@ -29,32 +29,32 @@
     ]
   },
   "breadth": {
-    "up": 2000,
-    "down": 2500,
-    "flat": 500,
+    "up": 742,
+    "down": 3776,
+    "flat": 480,
     "history": [
       [
-        2000,
-        2500
+        742,
+        3776
       ]
     ]
   },
   "limit": {
     "up": 37,
-    "down": 0,
-    "zb": 0,
-    "sealRate": 100.0,
+    "down": 5,
+    "zb": 35,
+    "sealRate": 51.4,
     "history": [
       37
     ],
     "downHistory": [
-      0
+      5
     ],
     "zbHistory": [
-      0
+      35
     ],
     "sealHistory": [
-      100.0
+      51.4
     ]
   },
   "streak": {
