@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-26 21:00",
-  "trade_date": "2026-11-26",
+  "updated_at": "2026-11-27 22:46",
+  "trade_date": "2026-11-27",
   "source": "本地全自动",
   "dates": [
     "11-16",
@@ -11,27 +11,28 @@
     "11-23",
     "11-24",
     "11-25",
-    "11-26"
+    "11-26",
+    "11-27"
   ],
   "indices": [
     {
       "name": "上证指数",
-      "value": 3476.88,
-      "change": 0.01
+      "value": 3606.49,
+      "change": 3.73
     },
     {
       "name": "深证成指",
-      "value": 10084.04,
-      "change": -0.02
+      "value": 10814.02,
+      "change": 7.24
     },
     {
       "name": "创业板指",
-      "value": 2189.82,
-      "change": 0.29
+      "value": 2443.96,
+      "change": 11.61
     }
   ],
   "amount": {
-    "total": 1317377170000.0,
+    "total": 1999794450000.0,
     "history": [
       1484490460000.0,
       1457694600000.0,
@@ -41,13 +42,14 @@
       1552880170000.0,
       1655085930000.0,
       1383097530000.0,
-      1317377170000.0
+      1317377170000.0,
+      1999794450000.0
     ]
   },
   "breadth": {
-    "up": 1707,
-    "down": 2867,
-    "flat": 624,
+    "up": 4531,
+    "down": 215,
+    "flat": 453,
     "history": [
       [
         1159,
@@ -84,14 +86,18 @@
       [
         1707,
         2867
+      ],
+      [
+        4531,
+        215
       ]
     ]
   },
   "limit": {
-    "up": 65,
-    "down": 5,
-    "zb": 29,
-    "sealRate": 69.1,
+    "up": 417,
+    "down": 0,
+    "zb": 42,
+    "sealRate": 90.8,
     "history": [
       32,
       37,
@@ -101,7 +107,8 @@
       146,
       55,
       51,
-      65
+      65,
+      417
     ],
     "downHistory": [
       60,
@@ -112,7 +119,8 @@
       3,
       2,
       43,
-      5
+      5,
+      0
     ],
     "zbHistory": [
       16,
@@ -123,7 +131,8 @@
       24,
       68,
       30,
-      29
+      29,
+      42
     ],
     "sealHistory": [
       66.7,
@@ -134,17 +143,18 @@
       85.9,
       44.7,
       63.0,
-      69.1
+      69.1,
+      90.8
     ]
   },
   "streak": {
-    "max": 5,
+    "max": 6,
     "ladder": [
       {
         "name": "克来机电",
         "code": "603960",
-        "boards": 5,
-        "change": 10.0,
+        "boards": 6,
+        "change": 10.02,
         "industry": "汽车零部",
         "concepts": [
           "汽车零部"
@@ -152,21 +162,10 @@
         "reason": ""
       },
       {
-        "name": "杭州解百",
-        "code": "600814",
-        "boards": 4,
-        "change": 10.06,
-        "industry": "一般零售",
-        "concepts": [
-          "一般零售"
-        ],
-        "reason": ""
-      },
-      {
         "name": "利君股份",
         "code": "002651",
-        "boards": 3,
-        "change": 10.0,
+        "boards": 4,
+        "change": 10.01,
         "industry": "航空装备",
         "concepts": [
           "航空装备"
@@ -176,8 +175,8 @@
       {
         "name": "天圣制药",
         "code": "002872",
-        "boards": 3,
-        "change": 10.0,
+        "boards": 4,
+        "change": 9.99,
         "industry": "化学制药",
         "concepts": [
           "化学制药"
@@ -187,8 +186,8 @@
       {
         "name": "全筑股份",
         "code": "603030",
-        "boards": 3,
-        "change": 9.96,
+        "boards": 4,
+        "change": 10.1,
         "industry": "装修装饰",
         "concepts": [
           "装修装饰"
@@ -196,21 +195,10 @@
         "reason": ""
       },
       {
-        "name": "金牛化工",
-        "code": "600722",
-        "boards": 3,
-        "change": 10.04,
-        "industry": "化学原料",
-        "concepts": [
-          "化学原料"
-        ],
-        "reason": ""
-      },
-      {
         "name": "证通电子",
         "code": "002197",
-        "boards": 2,
-        "change": 9.98,
+        "boards": 3,
+        "change": 10.07,
         "industry": "计算机设",
         "concepts": [
           "计算机设"
@@ -220,8 +208,8 @@
       {
         "name": "中央商场",
         "code": "600280",
-        "boards": 2,
-        "change": 9.93,
+        "boards": 3,
+        "change": 10.0,
         "industry": "一般零售",
         "concepts": [
           "一般零售"
@@ -231,8 +219,8 @@
       {
         "name": "宏达高科",
         "code": "002144",
-        "boards": 2,
-        "change": 10.02,
+        "boards": 3,
+        "change": 10.01,
         "industry": "纺织制造",
         "concepts": [
           "纺织制造"
@@ -240,197 +228,10 @@
         "reason": ""
       },
       {
-        "name": "城市传媒",
-        "code": "600229",
-        "boards": 2,
-        "change": 9.98,
-        "industry": "出版",
-        "concepts": [
-          "出版"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "青山纸业",
-        "code": "600103",
-        "boards": 2,
-        "change": 10.05,
-        "industry": "造纸",
-        "concepts": [
-          "造纸"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "好当家",
-        "code": "600467",
-        "boards": 2,
-        "change": 10.0,
-        "industry": "渔业",
-        "concepts": [
-          "渔业"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "赤天化",
-        "code": "600227",
-        "boards": 2,
-        "change": 9.91,
-        "industry": "农化制品",
-        "concepts": [
-          "农化制品"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "盛剑科技",
-        "code": "603324",
-        "boards": 2,
-        "change": 10.01,
-        "industry": "环保设备",
-        "concepts": [
-          "环保设备"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "顺灏股份",
-        "code": "002565",
-        "boards": 1,
-        "change": 10.05,
-        "industry": "包装印刷",
-        "concepts": [
-          "包装印刷"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "东易日盛",
-        "code": "002713",
-        "boards": 1,
-        "change": 9.99,
-        "industry": "装修装饰",
-        "concepts": [
-          "装修装饰"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "珠免集团",
-        "code": "600185",
-        "boards": 1,
-        "change": 10.05,
-        "industry": "旅游零售",
-        "concepts": [
-          "旅游零售"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "盛洋科技",
-        "code": "603703",
-        "boards": 1,
-        "change": 9.95,
-        "industry": "光学光电",
-        "concepts": [
-          "光学光电"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "山鹰国际",
-        "code": "600567",
-        "boards": 1,
-        "change": 9.78,
-        "industry": "造纸",
-        "concepts": [
-          "造纸"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "金辰股份",
-        "code": "603396",
-        "boards": 1,
-        "change": 10.02,
-        "industry": "光伏设备",
-        "concepts": [
-          "光伏设备"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "骏亚科技",
-        "code": "603386",
-        "boards": 1,
-        "change": 10.0,
-        "industry": "元件",
-        "concepts": [
-          "元件"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "新世界",
-        "code": "600628",
-        "boards": 1,
-        "change": 10.0,
-        "industry": "一般零售",
-        "concepts": [
-          "一般零售"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "东方海洋",
-        "code": "002086",
-        "boards": 1,
-        "change": 9.91,
-        "industry": "农产品加",
-        "concepts": [
-          "农产品加"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "中水渔业",
-        "code": "000798",
-        "boards": 1,
-        "change": 10.05,
-        "industry": "渔业",
-        "concepts": [
-          "渔业"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "泸天化",
-        "code": "000912",
-        "boards": 1,
-        "change": 10.1,
-        "industry": "农化制品",
-        "concepts": [
-          "农化制品"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "东晶电子",
-        "code": "002199",
-        "boards": 1,
-        "change": 10.04,
-        "industry": "元件",
-        "concepts": [
-          "元件"
-        ],
-        "reason": ""
-      },
-      {
         "name": "常山北明",
         "code": "000158",
-        "boards": 1,
-        "change": 9.98,
+        "boards": 2,
+        "change": 10.01,
         "industry": "IT服务Ⅱ",
         "concepts": [
           "IT服务Ⅱ"
@@ -438,31 +239,174 @@
         "reason": ""
       },
       {
-        "name": "善水科技",
-        "code": "301190",
-        "boards": 1,
-        "change": 20.0,
-        "industry": "化学原料",
+        "name": "鹿山新材",
+        "code": "603051",
+        "boards": 2,
+        "change": 10.01,
+        "industry": "化学制品",
         "concepts": [
-          "化学原料"
+          "化学制品"
         ],
         "reason": ""
       },
       {
-        "name": "闽东电力",
-        "code": "000993",
-        "boards": 1,
-        "change": 10.01,
-        "industry": "电力",
+        "name": "山鹰国际",
+        "code": "600567",
+        "boards": 2,
+        "change": 9.9,
+        "industry": "造纸",
         "concepts": [
-          "电力"
+          "造纸"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "骏亚科技",
+        "code": "603386",
+        "boards": 2,
+        "change": 9.99,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "东晶电子",
+        "code": "002199",
+        "boards": 2,
+        "change": 10.01,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中嘉博创",
+        "code": "000889",
+        "boards": 2,
+        "change": 9.97,
+        "industry": "通信服务",
+        "concepts": [
+          "通信服务"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中电鑫龙",
+        "code": "002298",
+        "boards": 2,
+        "change": 10.07,
+        "industry": "电网设备",
+        "concepts": [
+          "电网设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "安邦护卫",
+        "code": "603373",
+        "boards": 2,
+        "change": 10.0,
+        "industry": "专业服务",
+        "concepts": [
+          "专业服务"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "拓维信息",
+        "code": "002261",
+        "boards": 2,
+        "change": 10.02,
+        "industry": "软件开发",
+        "concepts": [
+          "软件开发"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "三佳科技",
+        "code": "600520",
+        "boards": 2,
+        "change": 10.02,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "楚天龙",
+        "code": "003040",
+        "boards": 2,
+        "change": 10.03,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "大胜达",
+        "code": "603687",
+        "boards": 2,
+        "change": 9.98,
+        "industry": "包装印刷",
+        "concepts": [
+          "包装印刷"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "大港股份",
+        "code": "002077",
+        "boards": 2,
+        "change": 10.01,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "泰嘉股份",
+        "code": "002843",
+        "boards": 2,
+        "change": 10.04,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "东易日盛",
+        "code": "002713",
+        "boards": 2,
+        "change": 10.0,
+        "industry": "装修装饰",
+        "concepts": [
+          "装修装饰"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "旋极信息",
+        "code": "300324",
+        "boards": 2,
+        "change": 20.04,
+        "industry": "计算机设",
+        "concepts": [
+          "计算机设"
         ],
         "reason": ""
       },
       {
         "name": "金 螳 螂",
         "code": "002081",
-        "boards": 1,
+        "boards": 2,
         "change": 10.05,
         "industry": "装修装饰",
         "concepts": [
@@ -471,10 +415,604 @@
         "reason": ""
       },
       {
-        "name": "三佳科技",
-        "code": "600520",
+        "name": "快克智能",
+        "code": "603203",
+        "boards": 2,
+        "change": 10.02,
+        "industry": "自动化设",
+        "concepts": [
+          "自动化设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "崇达技术",
+        "code": "002815",
+        "boards": 2,
+        "change": 10.03,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "盛达资源",
+        "code": "000603",
+        "boards": 2,
+        "change": 10.02,
+        "industry": "贵金属",
+        "concepts": [
+          "贵金属"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "顺灏股份",
+        "code": "002565",
+        "boards": 2,
+        "change": 9.96,
+        "industry": "包装印刷",
+        "concepts": [
+          "包装印刷"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华软科技",
+        "code": "002453",
+        "boards": 2,
+        "change": 10.09,
+        "industry": "化学制品",
+        "concepts": [
+          "化学制品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "海宁皮城",
+        "code": "002344",
+        "boards": 1,
+        "change": 10.12,
+        "industry": "一般零售",
+        "concepts": [
+          "一般零售"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "宏川智慧",
+        "code": "002930",
+        "boards": 1,
+        "change": 10.05,
+        "industry": "物流",
+        "concepts": [
+          "物流"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "新华传媒",
+        "code": "600825",
+        "boards": 1,
+        "change": 9.96,
+        "industry": "出版",
+        "concepts": [
+          "出版"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "镇洋发展",
+        "code": "603213",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "化学原料",
+        "concepts": [
+          "化学原料"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "天创股份",
+        "code": "603608",
+        "boards": 1,
+        "change": 10.04,
+        "industry": "服装家纺",
+        "concepts": [
+          "服装家纺"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "浙大网新",
+        "code": "600797",
+        "boards": 1,
+        "change": 10.07,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "大位科技",
+        "code": "600589",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "德林海",
+        "code": "688069",
+        "boards": 1,
+        "change": 20.02,
+        "industry": "环境治理",
+        "concepts": [
+          "环境治理"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "奥瑞德",
+        "code": "600666",
+        "boards": 1,
+        "change": 9.92,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "艾布鲁",
+        "code": "301259",
+        "boards": 1,
+        "change": 19.97,
+        "industry": "环境治理",
+        "concepts": [
+          "环境治理"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "航锦科技",
+        "code": "000818",
         "boards": 1,
         "change": 9.98,
+        "industry": "化学原料",
+        "concepts": [
+          "化学原料"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "超讯科技",
+        "code": "603322",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "通信服务",
+        "concepts": [
+          "通信服务"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "天源迪科",
+        "code": "300047",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "软件开发",
+        "concepts": [
+          "软件开发"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "天亿马",
+        "code": "301178",
+        "boards": 1,
+        "change": 19.99,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "深圳华强",
+        "code": "000062",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "其他电子",
+        "concepts": [
+          "其他电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "宁波建工",
+        "code": "601789",
+        "boards": 1,
+        "change": 10.09,
+        "industry": "房屋建设",
+        "concepts": [
+          "房屋建设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "三人行",
+        "code": "605168",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "广告营销",
+        "concepts": [
+          "广告营销"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中贝通信",
+        "code": "603220",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "通信服务",
+        "concepts": [
+          "通信服务"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "云鼎科技",
+        "code": "000409",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "国风新材",
+        "code": "000859",
+        "boards": 1,
+        "change": 9.94,
+        "industry": "塑料",
+        "concepts": [
+          "塑料"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "新筑股份",
+        "code": "002480",
+        "boards": 1,
+        "change": 10.06,
+        "industry": "电力",
+        "concepts": [
+          "电力"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "荣联科技",
+        "code": "002642",
+        "boards": 1,
+        "change": 9.96,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "爱仕达",
+        "code": "002403",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "小家电",
+        "concepts": [
+          "小家电"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "光洋股份",
+        "code": "002708",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "成飞集成",
+        "code": "002190",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "捷荣技术",
+        "code": "002855",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "消费电子",
+        "concepts": [
+          "消费电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "模塑科技",
+        "code": "000700",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "鼎信通讯",
+        "code": "603421",
+        "boards": 1,
+        "change": 10.09,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "汇洲智能",
+        "code": "002122",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "润和软件",
+        "code": "300339",
+        "boards": 1,
+        "change": 19.99,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "汉鑫科技",
+        "code": "920092",
+        "boards": 1,
+        "change": 29.97,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "神州数码",
+        "code": "000034",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "恒为科技",
+        "code": "603496",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "计算机设",
+        "concepts": [
+          "计算机设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "宁波东力",
+        "code": "002164",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "远东传动",
+        "code": "002406",
+        "boards": 1,
+        "change": 10.09,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "秋田微",
+        "code": "300939",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "光学光电",
+        "concepts": [
+          "光学光电"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "太极股份",
+        "code": "002368",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "时空科技",
+        "code": "605178",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "专业工程",
+        "concepts": [
+          "专业工程"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "法本信息",
+        "code": "300925",
+        "boards": 1,
+        "change": 20.02,
+        "industry": "软件开发",
+        "concepts": [
+          "软件开发"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中科金财",
+        "code": "002657",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华胜天成",
+        "code": "600410",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "海立股份",
+        "code": "600619",
+        "boards": 1,
+        "change": 10.04,
+        "industry": "家电零部",
+        "concepts": [
+          "家电零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "阿科力",
+        "code": "603722",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "化学制品",
+        "concepts": [
+          "化学制品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "北特科技",
+        "code": "603009",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华懋科技",
+        "code": "603306",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "川润股份",
+        "code": "002272",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "意华股份",
+        "code": "002897",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "万里石",
+        "code": "002785",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "装修建材",
+        "concepts": [
+          "装修建材"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "腾景科技",
+        "code": "688195",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "光学光电",
+        "concepts": [
+          "光学光电"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "金海通",
+        "code": "603061",
+        "boards": 1,
+        "change": 10.0,
         "industry": "半导体",
         "concepts": [
           "半导体"
@@ -482,8 +1020,481 @@
         "reason": ""
       },
       {
-        "name": "快克智能",
-        "code": "603203",
+        "name": "慧博云通",
+        "code": "301316",
+        "boards": 1,
+        "change": 19.99,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "香江控股",
+        "code": "600162",
+        "boards": 1,
+        "change": 10.16,
+        "industry": "房地产开",
+        "concepts": [
+          "房地产开"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华海诚科",
+        "code": "688535",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "直真科技",
+        "code": "003007",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "软件开发",
+        "concepts": [
+          "软件开发"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "佳力图",
+        "code": "603912",
+        "boards": 1,
+        "change": 9.96,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "瑜欣电子",
+        "code": "301107",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "九州一轨",
+        "code": "688485",
+        "boards": 1,
+        "change": 19.99,
+        "industry": "轨交设备",
+        "concepts": [
+          "轨交设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "国盛证券",
+        "code": "002670",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "证券Ⅱ",
+        "concepts": [
+          "证券Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "海量数据",
+        "code": "603138",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "康强电子",
+        "code": "002119",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "兴森科技",
+        "code": "002436",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "京仪装备",
+        "code": "688652",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "今创集团",
+        "code": "603680",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "轨交设备",
+        "concepts": [
+          "轨交设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "宏盛股份",
+        "code": "603090",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "新疆火炬",
+        "code": "603080",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "燃气Ⅱ",
+        "concepts": [
+          "燃气Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中国软件",
+        "code": "600536",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "南兴股份",
+        "code": "002757",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "精测电子",
+        "code": "300567",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "灿芯股份",
+        "code": "688691",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "飞龙股份",
+        "code": "002536",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "蓝盾光电",
+        "code": "300862",
+        "boards": 1,
+        "change": 19.98,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "信通电子",
+        "code": "001388",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "电网设备",
+        "concepts": [
+          "电网设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "粤宏远Ａ",
+        "code": "000573",
+        "boards": 1,
+        "change": 9.91,
+        "industry": "房地产开",
+        "concepts": [
+          "房地产开"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "南威软件",
+        "code": "603636",
+        "boards": 1,
+        "change": 9.94,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "高新发展",
+        "code": "000628",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "房屋建设",
+        "concepts": [
+          "房屋建设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "深南电路",
+        "code": "002916",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "卡莱特",
+        "code": "301391",
+        "boards": 1,
+        "change": 20.01,
+        "industry": "计算机设",
+        "concepts": [
+          "计算机设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "芯碁微装",
+        "code": "688630",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "旭升集团",
+        "code": "603305",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "莲花控股",
+        "code": "600186",
+        "boards": 1,
+        "change": 9.95,
+        "industry": "调味发酵",
+        "concepts": [
+          "调味发酵"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "润建股份",
+        "code": "002929",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "通信服务",
+        "concepts": [
+          "通信服务"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "航天电器",
+        "code": "002025",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "军工电子",
+        "concepts": [
+          "军工电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "盛视科技",
+        "code": "002990",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "计算机设",
+        "concepts": [
+          "计算机设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华正新材",
+        "code": "603186",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "移远通信",
+        "code": "603236",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "博敏电子",
+        "code": "603936",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "胜蓝股份",
+        "code": "300843",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "消费电子",
+        "concepts": [
+          "消费电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "浙江荣泰",
+        "code": "603119",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "梦网科技",
+        "code": "002123",
+        "boards": 1,
+        "change": 10.05,
+        "industry": "通信服务",
+        "concepts": [
+          "通信服务"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "福晶科技",
+        "code": "002222",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "光学光电",
+        "concepts": [
+          "光学光电"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "飞亚达",
+        "code": "000026",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "饰品",
+        "concepts": [
+          "饰品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "软通动力",
+        "code": "301236",
+        "boards": 1,
+        "change": 20.01,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "竞业达",
+        "code": "003005",
+        "boards": 1,
+        "change": 9.96,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "赛腾股份",
+        "code": "603283",
         "boards": 1,
         "change": 9.99,
         "industry": "自动化设",
@@ -493,10 +1504,43 @@
         "reason": ""
       },
       {
-        "name": "大港股份",
-        "code": "002077",
+        "name": "科蓝软件",
+        "code": "300663",
         "boards": 1,
-        "change": 9.97,
+        "change": 20.07,
+        "industry": "软件开发",
+        "concepts": [
+          "软件开发"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "法狮龙",
+        "code": "605318",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "装修建材",
+        "concepts": [
+          "装修建材"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "万通发展",
+        "code": "600246",
+        "boards": 1,
+        "change": 10.04,
+        "industry": "房地产开",
+        "concepts": [
+          "房地产开"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "北方华创",
+        "code": "002371",
+        "boards": 1,
+        "change": 10.0,
         "industry": "半导体",
         "concepts": [
           "半导体"
@@ -504,65 +1548,43 @@
         "reason": ""
       },
       {
-        "name": "中嘉博创",
-        "code": "000889",
+        "name": "麦迪科技",
+        "code": "603990",
         "boards": 1,
-        "change": 10.14,
-        "industry": "通信服务",
+        "change": 10.0,
+        "industry": "软件开发",
         "concepts": [
-          "通信服务"
+          "软件开发"
         ],
         "reason": ""
       },
       {
-        "name": "金三江",
-        "code": "301059",
+        "name": "皖通科技",
+        "code": "002331",
         "boards": 1,
-        "change": 20.04,
-        "industry": "化学制品",
+        "change": 10.09,
+        "industry": "IT服务Ⅱ",
         "concepts": [
-          "化学制品"
+          "IT服务Ⅱ"
         ],
         "reason": ""
       },
       {
-        "name": "金正大",
-        "code": "002470",
+        "name": "新坐标",
+        "code": "603040",
         "boards": 1,
-        "change": 10.06,
-        "industry": "农化制品",
+        "change": 10.0,
+        "industry": "汽车零部",
         "concepts": [
-          "农化制品"
+          "汽车零部"
         ],
         "reason": ""
       },
       {
-        "name": "科达制造",
-        "code": "600499",
+        "name": "德科立",
+        "code": "688205",
         "boards": 1,
-        "change": 10.03,
-        "industry": "专用设备",
-        "concepts": [
-          "专用设备"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "金健米业",
-        "code": "600127",
-        "boards": 1,
-        "change": 10.06,
-        "industry": "农产品加",
-        "concepts": [
-          "农产品加"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "楚天龙",
-        "code": "003040",
-        "boards": 1,
-        "change": 10.04,
+        "change": 20.0,
         "industry": "通信设备",
         "concepts": [
           "通信设备"
@@ -570,87 +1592,76 @@
         "reason": ""
       },
       {
-        "name": "贤丰控股",
-        "code": "002141",
+        "name": "华立股份",
+        "code": "603038",
         "boards": 1,
-        "change": 9.95,
-        "industry": "元件",
+        "change": 9.98,
+        "industry": "装修建材",
         "concepts": [
-          "元件"
+          "装修建材"
         ],
         "reason": ""
       },
       {
-        "name": "崇达技术",
-        "code": "002815",
+        "name": "华丰科技",
+        "code": "688629",
         "boards": 1,
-        "change": 10.02,
-        "industry": "元件",
+        "change": 20.0,
+        "industry": "军工电子",
         "concepts": [
-          "元件"
+          "军工电子"
         ],
         "reason": ""
       },
       {
-        "name": "澳弘电子",
-        "code": "605058",
-        "boards": 1,
-        "change": 9.99,
-        "industry": "元件",
-        "concepts": [
-          "元件"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "北化股份",
-        "code": "002246",
-        "boards": 1,
-        "change": 9.99,
-        "industry": "化学制品",
-        "concepts": [
-          "化学制品"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "江南化工",
-        "code": "002226",
-        "boards": 1,
-        "change": 10.04,
-        "industry": "化学制品",
-        "concepts": [
-          "化学制品"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "盛达资源",
-        "code": "000603",
+        "name": "东山精密",
+        "code": "002384",
         "boards": 1,
         "change": 10.0,
-        "industry": "贵金属",
+        "industry": "元件",
         "concepts": [
-          "贵金属"
+          "元件"
         ],
         "reason": ""
       },
       {
-        "name": "华阳国际",
-        "code": "002949",
+        "name": "恒铭达",
+        "code": "002947",
         "boards": 1,
-        "change": 10.02,
-        "industry": "工程咨询",
+        "change": 9.99,
+        "industry": "消费电子",
         "concepts": [
-          "工程咨询"
+          "消费电子"
         ],
         "reason": ""
       },
       {
-        "name": "雪人集团",
-        "code": "002639",
+        "name": "银之杰",
+        "code": "300085",
         "boards": 1,
-        "change": 10.03,
+        "change": 20.0,
+        "industry": "软件开发",
+        "concepts": [
+          "软件开发"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "菲沃泰",
+        "code": "688371",
+        "boards": 1,
+        "change": 20.03,
+        "industry": "电子化学",
+        "concepts": [
+          "电子化学"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "精智达",
+        "code": "688627",
+        "boards": 1,
+        "change": 20.0,
         "industry": "通用设备",
         "concepts": [
           "通用设备"
@@ -658,32 +1669,296 @@
         "reason": ""
       },
       {
-        "name": "华建集团",
-        "code": "600629",
+        "name": "先导基电",
+        "code": "600641",
         "boards": 1,
-        "change": 10.01,
-        "industry": "工程咨询",
+        "change": 9.98,
+        "industry": "半导体",
         "concepts": [
-          "工程咨询"
+          "半导体"
         ],
         "reason": ""
       },
       {
-        "name": "华软科技",
-        "code": "002453",
+        "name": "华亚智能",
+        "code": "003043",
         "boards": 1,
-        "change": 10.12,
-        "industry": "化学制品",
+        "change": 10.01,
+        "industry": "半导体",
         "concepts": [
-          "化学制品"
+          "半导体"
         ],
         "reason": ""
       },
       {
-        "name": "大胜达",
-        "code": "603687",
+        "name": "洪田股份",
+        "code": "603800",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "强一股份",
+        "code": "688809",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "金证股份",
+        "code": "600446",
+        "boards": 1,
+        "change": 10.04,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "神州信息",
+        "code": "000555",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中科飞测",
+        "code": "688361",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "豪尔赛",
+        "code": "002963",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "装修装饰",
+        "concepts": [
+          "装修装饰"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "京投发展",
+        "code": "600683",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "房地产开",
+        "concepts": [
+          "房地产开"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "艾融软件",
+        "code": "920799",
+        "boards": 1,
+        "change": 30.0,
+        "industry": "软件开发",
+        "concepts": [
+          "软件开发"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "长电科技",
+        "code": "600584",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "雅克科技",
+        "code": "002409",
         "boards": 1,
         "change": 10.01,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "电科数字",
+        "code": "600850",
+        "boards": 1,
+        "change": 10.05,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "通化金马",
+        "code": "000766",
+        "boards": 1,
+        "change": 10.05,
+        "industry": "化学制药",
+        "concepts": [
+          "化学制药"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "云天励飞-U",
+        "code": "688343",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "光迅科技",
+        "code": "002281",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "长川科技",
+        "code": "300604",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "微导纳米",
+        "code": "688147",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "大智慧",
+        "code": "601519",
+        "boards": 1,
+        "change": 10.04,
+        "industry": "软件开发",
+        "concepts": [
+          "软件开发"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "东华软件",
+        "code": "002065",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "彤程新材",
+        "code": "603650",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "橡胶",
+        "concepts": [
+          "橡胶"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中晶科技",
+        "code": "003026",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "永新光学",
+        "code": "603297",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "光学光电",
+        "concepts": [
+          "光学光电"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "立昂微",
+        "code": "605358",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "杰华特",
+        "code": "688141",
+        "boards": 1,
+        "change": 20.01,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "星网锐捷",
+        "code": "002396",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华源控股",
+        "code": "002787",
+        "boards": 1,
+        "change": 10.0,
         "industry": "包装印刷",
         "concepts": [
           "包装印刷"
@@ -691,109 +1966,109 @@
         "reason": ""
       },
       {
-        "name": "大业股份",
-        "code": "603278",
+        "name": "三祥新材",
+        "code": "603663",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "化学原料",
+        "concepts": [
+          "化学原料"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "圣晖集成",
+        "code": "603163",
         "boards": 1,
         "change": 10.01,
-        "industry": "通用设备",
+        "industry": "专业工程",
         "concepts": [
-          "通用设备"
+          "专业工程"
         ],
         "reason": ""
       },
       {
-        "name": "鹿山新材",
-        "code": "603051",
+        "name": "英维克",
+        "code": "002837",
         "boards": 1,
-        "change": 10.0,
-        "industry": "化学制品",
+        "change": 10.01,
+        "industry": "专用设备",
         "concepts": [
-          "化学制品"
+          "专用设备"
         ],
         "reason": ""
       },
       {
-        "name": "神驰机电",
-        "code": "603109",
-        "boards": 1,
-        "change": 10.03,
-        "industry": "通用设备",
-        "concepts": [
-          "通用设备"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "襄阳轴承",
-        "code": "000678",
-        "boards": 1,
-        "change": 10.02,
-        "industry": "汽车零部",
-        "concepts": [
-          "汽车零部"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "冰山冷热",
-        "code": "000530",
-        "boards": 1,
-        "change": 10.0,
-        "industry": "通用设备",
-        "concepts": [
-          "通用设备"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "福达股份",
-        "code": "603166",
-        "boards": 1,
-        "change": 10.05,
-        "industry": "汽车零部",
-        "concepts": [
-          "汽车零部"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "金麒麟",
-        "code": "603586",
-        "boards": 1,
-        "change": 10.0,
-        "industry": "汽车零部",
-        "concepts": [
-          "汽车零部"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "安邦护卫",
-        "code": "603373",
-        "boards": 1,
-        "change": 10.0,
-        "industry": "专业服务",
-        "concepts": [
-          "专业服务"
-        ],
-        "reason": ""
-      },
-      {
-        "name": "泰嘉股份",
-        "code": "002843",
+        "name": "信雅达",
+        "code": "600571",
         "boards": 1,
         "change": 10.03,
-        "industry": "通用设备",
+        "industry": "IT服务Ⅱ",
         "concepts": [
-          "通用设备"
+          "IT服务Ⅱ"
         ],
         "reason": ""
       },
       {
-        "name": "旋极信息",
-        "code": "300324",
+        "name": "湘财股份",
+        "code": "600095",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "证券Ⅱ",
+        "concepts": [
+          "证券Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "博迁新材",
+        "code": "605376",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "金属新材",
+        "concepts": [
+          "金属新材"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "富创精密",
+        "code": "688409",
         "boards": 1,
         "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "共达电声",
+        "code": "002655",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "消费电子",
+        "concepts": [
+          "消费电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "奥普光电",
+        "code": "002338",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "军工电子",
+        "concepts": [
+          "军工电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "智微智能",
+        "code": "001339",
+        "boards": 1,
+        "change": 10.01,
         "industry": "计算机设",
         "concepts": [
           "计算机设"
@@ -801,30 +2076,30 @@
         "reason": ""
       },
       {
-        "name": "中电鑫龙",
-        "code": "002298",
+        "name": "长源东谷",
+        "code": "603950",
         "boards": 1,
-        "change": 9.98,
-        "industry": "电网设备",
+        "change": 10.0,
+        "industry": "汽车零部",
         "concepts": [
-          "电网设备"
+          "汽车零部"
         ],
         "reason": ""
       },
       {
-        "name": "岳阳林纸",
-        "code": "600963",
+        "name": "江海股份",
+        "code": "002484",
         "boards": 1,
-        "change": 10.09,
-        "industry": "造纸",
+        "change": 10.01,
+        "industry": "元件",
         "concepts": [
-          "造纸"
+          "元件"
         ],
         "reason": ""
       },
       {
-        "name": "拓维信息",
-        "code": "002261",
+        "name": "南天信息",
+        "code": "000948",
         "boards": 1,
         "change": 10.03,
         "industry": "软件开发",
@@ -834,10 +2109,65 @@
         "reason": ""
       },
       {
-        "name": "共进股份",
-        "code": "603118",
+        "name": "得邦照明",
+        "code": "603303",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "照明设备",
+        "concepts": [
+          "照明设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "赢时胜",
+        "code": "300377",
+        "boards": 1,
+        "change": 20.02,
+        "industry": "软件开发",
+        "concepts": [
+          "软件开发"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "博彦科技",
+        "code": "002649",
         "boards": 1,
         "change": 10.04,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "科瑞技术",
+        "code": "002957",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "自动化设",
+        "concepts": [
+          "自动化设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华工科技",
+        "code": "000988",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "自动化设",
+        "concepts": [
+          "自动化设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "剑桥科技",
+        "code": "603083",
+        "boards": 1,
+        "change": 10.0,
         "industry": "通信设备",
         "concepts": [
           "通信设备"
@@ -845,13 +2175,2565 @@
         "reason": ""
       },
       {
-        "name": "潞化科技",
-        "code": "600691",
+        "name": "征和工业",
+        "code": "003033",
         "boards": 1,
-        "change": 9.91,
-        "industry": "农化制品",
+        "change": 10.0,
+        "industry": "摩托车及",
         "concepts": [
-          "农化制品"
+          "摩托车及"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "冠石科技",
+        "code": "605588",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "光学光电",
+        "concepts": [
+          "光学光电"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "禾盛新材",
+        "code": "002290",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "家电零部",
+        "concepts": [
+          "家电零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "宇晶股份",
+        "code": "002943",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "灵动股份",
+        "code": "603955",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "基础建设",
+        "concepts": [
+          "基础建设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "广电运通",
+        "code": "002152",
+        "boards": 1,
+        "change": 9.97,
+        "industry": "计算机设",
+        "concepts": [
+          "计算机设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "燕东微",
+        "code": "688172",
+        "boards": 1,
+        "change": 20.01,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中科软",
+        "code": "603927",
+        "boards": 1,
+        "change": 9.97,
+        "industry": "软件开发",
+        "concepts": [
+          "软件开发"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "科森科技",
+        "code": "603626",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "消费电子",
+        "concepts": [
+          "消费电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "汇成真空",
+        "code": "301392",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "维宏股份",
+        "code": "300508",
+        "boards": 1,
+        "change": 20.01,
+        "industry": "计算机设",
+        "concepts": [
+          "计算机设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "东方嘉盛",
+        "code": "002889",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "物流",
+        "concepts": [
+          "物流"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "小崧股份",
+        "code": "002723",
+        "boards": 1,
+        "change": 10.06,
+        "industry": "照明设备",
+        "concepts": [
+          "照明设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "四川长虹",
+        "code": "600839",
+        "boards": 1,
+        "change": 9.95,
+        "industry": "黑色家电",
+        "concepts": [
+          "黑色家电"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "超纯应材",
+        "code": "301717",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "威派格",
+        "code": "603956",
+        "boards": 1,
+        "change": 10.07,
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华之杰",
+        "code": "603400",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "蔚蓝生物",
+        "code": "603739",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "化学制品",
+        "concepts": [
+          "化学制品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "纳尔股份",
+        "code": "002825",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "塑料",
+        "concepts": [
+          "塑料"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "英杰电气",
+        "code": "300820",
+        "boards": 1,
+        "change": 20.01,
+        "industry": "其他电源",
+        "concepts": [
+          "其他电源"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "恒运昌",
+        "code": "688785",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "其他电源",
+        "concepts": [
+          "其他电源"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "臻宝科技",
+        "code": "688797",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "朗博科技",
+        "code": "603655",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "长盈通",
+        "code": "688143",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华虹宏力",
+        "code": "688347",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "德尔股份",
+        "code": "300473",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "晶方科技",
+        "code": "603005",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "联域股份",
+        "code": "001326",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "照明设备",
+        "concepts": [
+          "照明设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "旭光电子",
+        "code": "600353",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "其他电子",
+        "concepts": [
+          "其他电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "航天南湖",
+        "code": "688552",
+        "boards": 1,
+        "change": 19.99,
+        "industry": "军工电子",
+        "concepts": [
+          "军工电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "联合化学",
+        "code": "301209",
+        "boards": 1,
+        "change": 20.01,
+        "industry": "化学制品",
+        "concepts": [
+          "化学制品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "君逸数码",
+        "code": "301172",
+        "boards": 1,
+        "change": 19.97,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "盛科通信-U",
+        "code": "688702",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "夏厦精密",
+        "code": "001306",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "税友股份",
+        "code": "603171",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "正帆科技",
+        "code": "688596",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "诚邦股份",
+        "code": "603316",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "江丰电子",
+        "code": "300666",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "大族激光",
+        "code": "002008",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "自动化设",
+        "concepts": [
+          "自动化设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "超颖电子",
+        "code": "603175",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "柏诚股份",
+        "code": "601133",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "专业工程",
+        "concepts": [
+          "专业工程"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "川大智胜",
+        "code": "002253",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "软件开发",
+        "concepts": [
+          "软件开发"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "伟测科技",
+        "code": "688372",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "长裕集团",
+        "code": "603407",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "化学原料",
+        "concepts": [
+          "化学原料"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "至纯科技",
+        "code": "603690",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "恒基达鑫",
+        "code": "002492",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "物流",
+        "concepts": [
+          "物流"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "天通股份",
+        "code": "600330",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "电子化学",
+        "concepts": [
+          "电子化学"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "深深房Ａ",
+        "code": "000029",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "房地产开",
+        "concepts": [
+          "房地产开"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "奥士康",
+        "code": "002913",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "盛景微",
+        "code": "603375",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "东方中科",
+        "code": "002819",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "新洁能",
+        "code": "605111",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "雷赛智能",
+        "code": "002979",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "自动化设",
+        "concepts": [
+          "自动化设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "沃格光电",
+        "code": "603773",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "光学光电",
+        "concepts": [
+          "光学光电"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华体科技",
+        "code": "603679",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "光学光电",
+        "concepts": [
+          "光学光电"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "源杰科技",
+        "code": "688498",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "国机精工",
+        "code": "002046",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "江南新材",
+        "code": "603124",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "金属新材",
+        "concepts": [
+          "金属新材"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "昭衍新药",
+        "code": "603127",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "医疗服务",
+        "concepts": [
+          "医疗服务"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "诚迈科技",
+        "code": "300598",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "软件开发",
+        "concepts": [
+          "软件开发"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "科德教育",
+        "code": "300192",
+        "boards": 1,
+        "change": 20.01,
+        "industry": "教育",
+        "concepts": [
+          "教育"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "宇环数控",
+        "code": "002903",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "键邦股份",
+        "code": "603285",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "化学制品",
+        "concepts": [
+          "化学制品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "合力科技",
+        "code": "603917",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "广合科技",
+        "code": "001389",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "和泰机电",
+        "code": "001225",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "新金路",
+        "code": "000510",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "化学原料",
+        "concepts": [
+          "化学原料"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "东材科技",
+        "code": "601208",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "塑料",
+        "concepts": [
+          "塑料"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "兆威机电",
+        "code": "003021",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "电机Ⅱ",
+        "concepts": [
+          "电机Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "利通电子",
+        "code": "603629",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "消费电子",
+        "concepts": [
+          "消费电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "泰坦股份",
+        "code": "003036",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "腾信精密",
+        "code": "920298",
+        "boards": 1,
+        "change": 30.0,
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中瓷电子",
+        "code": "003031",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "钶锐锶",
+        "code": "688827",
+        "boards": 1,
+        "change": 19.99,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "张江高科",
+        "code": "600895",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "房地产开",
+        "concepts": [
+          "房地产开"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "新炬网络",
+        "code": "605398",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "通富微电",
+        "code": "002156",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华海清科",
+        "code": "688120",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "国恩股份",
+        "code": "002768",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "塑料",
+        "concepts": [
+          "塑料"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "新大洲A",
+        "code": "000571",
+        "boards": 1,
+        "change": 9.92,
+        "industry": "煤炭开采",
+        "concepts": [
+          "煤炭开采"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "新时达",
+        "code": "002527",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "天普股份",
+        "code": "605255",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "科安达",
+        "code": "002972",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "轨交设备",
+        "concepts": [
+          "轨交设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "晶华新材",
+        "code": "603683",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "化学制品",
+        "concepts": [
+          "化学制品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "翔腾新材",
+        "code": "001373",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "光学光电",
+        "concepts": [
+          "光学光电"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "紫光股份",
+        "code": "000938",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "汇绿生态",
+        "code": "001267",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "博通集成",
+        "code": "603068",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "风华高科",
+        "code": "000636",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "可川科技",
+        "code": "603052",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "消费电子",
+        "concepts": [
+          "消费电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "凯众股份",
+        "code": "603037",
+        "boards": 1,
+        "change": 9.96,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "瑞芯微",
+        "code": "603893",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华峰测控",
+        "code": "688200",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "宏和科技",
+        "code": "603256",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "玻璃玻纤",
+        "concepts": [
+          "玻璃玻纤"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "东方钽业",
+        "code": "000962",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "小金属",
+        "concepts": [
+          "小金属"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "长光华芯",
+        "code": "688048",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "亚翔集成",
+        "code": "603929",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "专业工程",
+        "concepts": [
+          "专业工程"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "杰瑞股份",
+        "code": "002353",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "长飞光纤",
+        "code": "601869",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "洁美科技",
+        "code": "002859",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "其他电子",
+        "concepts": [
+          "其他电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "电光科技",
+        "code": "002730",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "智明达",
+        "code": "688636",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "军工电子",
+        "concepts": [
+          "军工电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "科思科技",
+        "code": "688788",
+        "boards": 1,
+        "change": 20.02,
+        "industry": "军工电子",
+        "concepts": [
+          "军工电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "深圳新星",
+        "code": "603978",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "金属新材",
+        "concepts": [
+          "金属新材"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "兴业科技",
+        "code": "002674",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "纺织制造",
+        "concepts": [
+          "纺织制造"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "罗曼股份",
+        "code": "605289",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "专业工程",
+        "concepts": [
+          "专业工程"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "有研新材",
+        "code": "600206",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "芯原股份",
+        "code": "688521",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "沪电股份",
+        "code": "002463",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "乔治白",
+        "code": "002687",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "服装家纺",
+        "concepts": [
+          "服装家纺"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "万丰股份",
+        "code": "603172",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "化学制品",
+        "concepts": [
+          "化学制品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "博杰股份",
+        "code": "002975",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "自动化设",
+        "concepts": [
+          "自动化设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "拓荆科技",
+        "code": "688072",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "安集科技",
+        "code": "688019",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "电子化学",
+        "concepts": [
+          "电子化学"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "弘讯科技",
+        "code": "603015",
+        "boards": 1,
+        "change": 10.05,
+        "industry": "自动化设",
+        "concepts": [
+          "自动化设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "伟隆股份",
+        "code": "002871",
+        "boards": 1,
+        "change": 10.04,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "力鼎光电",
+        "code": "605118",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "计算机设",
+        "concepts": [
+          "计算机设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "大元泵业",
+        "code": "603757",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "金安国纪",
+        "code": "002636",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "四川双马",
+        "code": "000935",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "多元金融",
+        "concepts": [
+          "多元金融"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "豪美新材",
+        "code": "002988",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "工业金属",
+        "concepts": [
+          "工业金属"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "茂莱光学",
+        "code": "688502",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "光学光电",
+        "concepts": [
+          "光学光电"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "冰轮环境",
+        "code": "000811",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "红板科技",
+        "code": "603459",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "香山股份",
+        "code": "002870",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "芯源微",
+        "code": "688037",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "宏景科技",
+        "code": "301396",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "国科微",
+        "code": "300672",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "德明利",
+        "code": "001309",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "维通利",
+        "code": "001393",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "电网设备",
+        "concepts": [
+          "电网设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "德邦科技",
+        "code": "688035",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "电子化学",
+        "concepts": [
+          "电子化学"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "优迅股份",
+        "code": "688807",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "先锋精科",
+        "code": "688605",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "甬矽电子",
+        "code": "688362",
+        "boards": 1,
+        "change": 20.01,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "德尔未来",
+        "code": "002631",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "家居用品",
+        "concepts": [
+          "家居用品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "波长光电",
+        "code": "301421",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "光学光电",
+        "concepts": [
+          "光学光电"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "景旺电子",
+        "code": "603228",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "春晖智控",
+        "code": "300943",
+        "boards": 1,
+        "change": 19.98,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "欧莱新材",
+        "code": "688530",
+        "boards": 1,
+        "change": 19.99,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "东睦股份",
+        "code": "600114",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "深科技",
+        "code": "000021",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "消费电子",
+        "concepts": [
+          "消费电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "鸿富瀚",
+        "code": "301086",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "消费电子",
+        "concepts": [
+          "消费电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "光力科技",
+        "code": "300480",
+        "boards": 1,
+        "change": 19.98,
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "永茂泰",
+        "code": "605208",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "工业金属",
+        "concepts": [
+          "工业金属"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "继峰股份",
+        "code": "603997",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "有研硅",
+        "code": "688432",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中坚科技",
+        "code": "002779",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "上纬新材",
+        "code": "688585",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "塑料",
+        "concepts": [
+          "塑料"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "五洲新春",
+        "code": "603667",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "亨通光电",
+        "code": "600487",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "生益科技",
+        "code": "600183",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "太极实业",
+        "code": "600667",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "工程咨询",
+        "concepts": [
+          "工程咨询"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "宏昌电子",
+        "code": "603002",
+        "boards": 1,
+        "change": 10.04,
+        "industry": "电子化学",
+        "concepts": [
+          "电子化学"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "恒林股份",
+        "code": "603661",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "家居用品",
+        "concepts": [
+          "家居用品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "胜科纳米",
+        "code": "688757",
+        "boards": 1,
+        "change": 19.99,
+        "industry": "专业服务",
+        "concepts": [
+          "专业服务"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "兆易创新",
+        "code": "603986",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "盛合晶微",
+        "code": "688820",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华盛昌",
+        "code": "002980",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "电网设备",
+        "concepts": [
+          "电网设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "盛美上海",
+        "code": "688082",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "裕太微-U",
+        "code": "688515",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "联诚精密",
+        "code": "002921",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "士兰微",
+        "code": "600460",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "凤凰光学",
+        "code": "600071",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "光学光电",
+        "concepts": [
+          "光学光电"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "杰克科技",
+        "code": "603337",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "博腾股份",
+        "code": "300363",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "医疗服务",
+        "concepts": [
+          "医疗服务"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "兴业银锡",
+        "code": "000426",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "贵金属",
+        "concepts": [
+          "贵金属"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "安孚科技",
+        "code": "603031",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "电池",
+        "concepts": [
+          "电池"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "麦格米特",
+        "code": "002851",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "其他电源",
+        "concepts": [
+          "其他电源"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "大为股份",
+        "code": "002213",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "屹唐股份",
+        "code": "688729",
+        "boards": 1,
+        "change": 19.98,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "烽火通信",
+        "code": "600498",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中恒电气",
+        "code": "002364",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "其他电源",
+        "concepts": [
+          "其他电源"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中钨高新",
+        "code": "000657",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "小金属",
+        "concepts": [
+          "小金属"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "京泉华",
+        "code": "002885",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "其他电子",
+        "concepts": [
+          "其他电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华达科技",
+        "code": "603358",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "宁波华翔",
+        "code": "002048",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "江化微",
+        "code": "603078",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "电子化学",
+        "concepts": [
+          "电子化学"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "石英股份",
+        "code": "603688",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "非金属材",
+        "concepts": [
+          "非金属材"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "金富科技",
+        "code": "003018",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "包装印刷",
+        "concepts": [
+          "包装印刷"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "仕佳光子",
+        "code": "688313",
+        "boards": 1,
+        "change": 20.01,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "深桑达Ａ",
+        "code": "000032",
+        "boards": 1,
+        "change": 10.03,
+        "industry": "专业工程",
+        "concepts": [
+          "专业工程"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "长龄液压",
+        "code": "605389",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "工程机械",
+        "concepts": [
+          "工程机械"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "永创智能",
+        "code": "603901",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "美湖股份",
+        "code": "603319",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "田中精机",
+        "code": "300461",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "自动化设",
+        "concepts": [
+          "自动化设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "兴福电子",
+        "code": "688545",
+        "boards": 1,
+        "change": 19.99,
+        "industry": "电子化学",
+        "concepts": [
+          "电子化学"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "昊华科技",
+        "code": "600378",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "化学制品",
+        "concepts": [
+          "化学制品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "凯盛科技",
+        "code": "600552",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "光学光电",
+        "concepts": [
+          "光学光电"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "福达合金",
+        "code": "603045",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "金属新材",
+        "concepts": [
+          "金属新材"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "欧陆通",
+        "code": "300870",
+        "boards": 1,
+        "change": 20.01,
+        "industry": "其他电源",
+        "concepts": [
+          "其他电源"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中石科技",
+        "code": "300684",
+        "boards": 1,
+        "change": 20.01,
+        "industry": "电子化学",
+        "concepts": [
+          "电子化学"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "格林达",
+        "code": "603931",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "电子化学",
+        "concepts": [
+          "电子化学"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "鹏鼎控股",
+        "code": "002938",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "珂玛科技",
+        "code": "301611",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "禾望电气",
+        "code": "603063",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "风电设备",
+        "concepts": [
+          "风电设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "和远气体",
+        "code": "002971",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "化学制品",
+        "concepts": [
+          "化学制品"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "三维股份",
+        "code": "603033",
+        "boards": 1,
+        "change": 10.04,
+        "industry": "橡胶",
+        "concepts": [
+          "橡胶"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "泰晶科技",
+        "code": "603738",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "科达利",
+        "code": "002850",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "电池",
+        "concepts": [
+          "电池"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "永鼎股份",
+        "code": "600105",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华勤技术",
+        "code": "603296",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "消费电子",
+        "concepts": [
+          "消费电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华天科技",
+        "code": "002185",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中旗新材",
+        "code": "001212",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "装修建材",
+        "concepts": [
+          "装修建材"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中国长城",
+        "code": "000066",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "计算机设",
+        "concepts": [
+          "计算机设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中微公司",
+        "code": "688012",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中国巨石",
+        "code": "600176",
+        "boards": 1,
+        "change": 9.98,
+        "industry": "玻璃玻纤",
+        "concepts": [
+          "玻璃玻纤"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "云南锗业",
+        "code": "002428",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "小金属",
+        "concepts": [
+          "小金属"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "天永智能",
+        "code": "603895",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "专用设备",
+        "concepts": [
+          "专用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "三孚股份",
+        "code": "603938",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "化学原料",
+        "concepts": [
+          "化学原料"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "耐科装备",
+        "code": "688419",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "能科科技",
+        "code": "603859",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "科华数据",
+        "code": "002335",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "其他电源",
+        "concepts": [
+          "其他电源"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "新易盛",
+        "code": "300502",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "浪潮信息",
+        "code": "000977",
+        "boards": 1,
+        "change": 10.01,
+        "industry": "计算机设",
+        "concepts": [
+          "计算机设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "长江通信",
+        "code": "600345",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "易德龙",
+        "code": "603380",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "消费电子",
+        "concepts": [
+          "消费电子"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "宸展光电",
+        "code": "003019",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "光学光电",
+        "concepts": [
+          "光学光电"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "金桥信息",
+        "code": "603918",
+        "boards": 1,
+        "change": 9.96,
+        "industry": "IT服务Ⅱ",
+        "concepts": [
+          "IT服务Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "埃科光电",
+        "code": "688610",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "通用设备",
+        "concepts": [
+          "通用设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "飞乐音响",
+        "code": "600651",
+        "boards": 1,
+        "change": 10.1,
+        "industry": "汽车零部",
+        "concepts": [
+          "汽车零部"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "宝鼎科技",
+        "code": "002552",
+        "boards": 1,
+        "change": 10.0,
+        "industry": "元件",
+        "concepts": [
+          "元件"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "云赛智联",
+        "code": "600602",
+        "boards": 1,
+        "change": 10.02,
+        "industry": "软件开发",
+        "concepts": [
+          "软件开发"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "华信永道",
+        "code": "920592",
+        "boards": 1,
+        "change": 29.96,
+        "industry": "软件开发",
+        "concepts": [
+          "软件开发"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "鼎通科技",
+        "code": "688668",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "新相微",
+        "code": "688593",
+        "boards": 1,
+        "change": 20.0,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "粤芯半导-U",
+        "code": "301660",
+        "boards": 1,
+        "change": 20.01,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "振华股份",
+        "code": "603067",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "化学原料",
+        "concepts": [
+          "化学原料"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "中科曙光",
+        "code": "603019",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "计算机设",
+        "concepts": [
+          "计算机设"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "群兴玩具",
+        "code": "002575",
+        "boards": 1,
+        "change": 10.08,
+        "industry": "综合Ⅱ",
+        "concepts": [
+          "综合Ⅱ"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "通鼎互联",
+        "code": "002491",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "特发信息",
+        "code": "000070",
+        "boards": 1,
+        "change": 9.99,
+        "industry": "通信设备",
+        "concepts": [
+          "通信设备"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "仁东控股",
+        "code": "002647",
+        "boards": 1,
+        "change": 10.09,
+        "industry": "多元金融",
+        "concepts": [
+          "多元金融"
+        ],
+        "reason": ""
+      },
+      {
+        "name": "锴威特",
+        "code": "688693",
+        "boards": 1,
+        "change": 19.99,
+        "industry": "半导体",
+        "concepts": [
+          "半导体"
         ],
         "reason": ""
       }
@@ -859,714 +4741,718 @@
   },
   "themes": [
     {
-      "name": "元件",
-      "limitUp": 5,
-      "maxBoard": 1,
+      "name": "半导体",
+      "limitUp": 64,
+      "maxBoard": 2,
       "leaders": [
-        "骏亚科技",
-        "东晶电子",
-        "贤丰控股"
+        "三佳科技",
+        "大港股份",
+        "金海通"
       ]
     },
     {
-      "name": "化学制品",
-      "limitUp": 5,
-      "maxBoard": 1,
+      "name": "IT服务Ⅱ",
+      "limitUp": 34,
+      "maxBoard": 2,
       "leaders": [
-        "金三江",
-        "北化股份",
-        "江南化工"
-      ]
-    },
-    {
-      "name": "通用设备",
-      "limitUp": 5,
-      "maxBoard": 1,
-      "leaders": [
-        "雪人集团",
-        "大业股份",
-        "神驰机电"
+        "常山北明",
+        "浙大网新",
+        "大位科技"
       ]
     },
     {
       "name": "汽车零部",
-      "limitUp": 4,
-      "maxBoard": 5,
+      "limitUp": 24,
+      "maxBoard": 6,
       "leaders": [
         "克来机电",
-        "襄阳轴承",
-        "福达股份"
+        "光洋股份",
+        "成飞集成"
       ]
     },
     {
-      "name": "农化制品",
-      "limitUp": 4,
+      "name": "通用设备",
+      "limitUp": 24,
       "maxBoard": 2,
       "leaders": [
-        "赤天化",
-        "泸天化",
-        "金正大"
+        "泰嘉股份",
+        "汇洲智能",
+        "宁波东力"
       ]
     },
     {
-      "name": "一般零售",
-      "limitUp": 3,
-      "maxBoard": 4,
-      "leaders": [
-        "杭州解百",
-        "中央商场",
-        "新世界"
-      ]
-    },
-    {
-      "name": "装修装饰",
-      "limitUp": 3,
-      "maxBoard": 3,
-      "leaders": [
-        "全筑股份",
-        "东易日盛",
-        "金 螳 螂"
-      ]
-    },
-    {
-      "name": "造纸",
-      "limitUp": 3,
+      "name": "元件",
+      "limitUp": 21,
       "maxBoard": 2,
       "leaders": [
-        "青山纸业",
-        "山鹰国际",
-        "岳阳林纸"
+        "骏亚科技",
+        "东晶电子",
+        "崇达技术"
       ]
     },
     {
-      "name": "化学原料",
-      "limitUp": 2,
-      "maxBoard": 3,
+      "name": "通信设备",
+      "limitUp": 21,
+      "maxBoard": 2,
       "leaders": [
-        "金牛化工",
-        "善水科技"
+        "楚天龙",
+        "鼎信通讯",
+        "意华股份"
+      ]
+    },
+    {
+      "name": "专用设备",
+      "limitUp": 18,
+      "maxBoard": 1,
+      "leaders": [
+        "南兴股份",
+        "芯碁微装",
+        "洪田股份"
+      ]
+    },
+    {
+      "name": "软件开发",
+      "limitUp": 16,
+      "maxBoard": 2,
+      "leaders": [
+        "拓维信息",
+        "天源迪科",
+        "法本信息"
+      ]
+    },
+    {
+      "name": "光学光电",
+      "limitUp": 13,
+      "maxBoard": 1,
+      "leaders": [
+        "秋田微",
+        "腾景科技",
+        "福晶科技"
       ]
     },
     {
       "name": "计算机设",
-      "limitUp": 2,
-      "maxBoard": 2,
+      "limitUp": 12,
+      "maxBoard": 3,
       "leaders": [
         "证通电子",
-        "旋极信息"
+        "旋极信息",
+        "恒为科技"
       ]
     },
     {
-      "name": "渔业",
-      "limitUp": 2,
-      "maxBoard": 2,
-      "leaders": [
-        "好当家",
-        "中水渔业"
-      ]
-    },
-    {
-      "name": "包装印刷",
-      "limitUp": 2,
+      "name": "消费电子",
+      "limitUp": 11,
       "maxBoard": 1,
       "leaders": [
-        "顺灏股份",
-        "大胜达"
+        "捷荣技术",
+        "胜蓝股份",
+        "恒铭达"
+      ]
+    },
+    {
+      "name": "化学制品",
+      "limitUp": 10,
+      "maxBoard": 2,
+      "leaders": [
+        "鹿山新材",
+        "华软科技",
+        "阿科力"
       ]
     }
   ],
   "lhb": [
     {
-      "name": "拓维信息",
-      "code": "002261",
-      "reason": "日涨幅偏离值达到7%的前5只证券",
-      "change": 10.03,
-      "buy": 525964741.52,
-      "sell": 126534834.73,
-      "net": 399429906.79
+      "name": "新易盛",
+      "code": "300502",
+      "reason": "日涨幅达到15%的前5只证券",
+      "change": 20.0,
+      "buy": 2557750608.37,
+      "sell": 1929935837.04,
+      "net": 627814771.33
+    },
+    {
+      "name": "江丰电子",
+      "code": "300666",
+      "reason": "日涨幅达到15%的前5只证券",
+      "change": 20.0,
+      "buy": 759131419.9,
+      "sell": 257686779.55,
+      "net": 501444640.35
+    },
+    {
+      "name": "长川科技",
+      "code": "300604",
+      "reason": "日涨幅达到15%的前5只证券",
+      "change": 20.0,
+      "buy": 1185674616.62,
+      "sell": 741326106.12,
+      "net": 444348510.5
+    },
+    {
+      "name": "九阳股份",
+      "code": "002242",
+      "reason": "日振幅值达到15%的前5只证券",
+      "change": 0.6,
+      "buy": 1197368470.41,
+      "sell": 834352931.71,
+      "net": 363015538.7
+    },
+    {
+      "name": "宏景科技",
+      "code": "301396",
+      "reason": "日涨幅达到15%的前5只证券",
+      "change": 20.0,
+      "buy": 764807312.59,
+      "sell": 426287386.22,
+      "net": 338519926.37
     },
     {
       "name": "旋极信息",
       "code": "300324",
-      "reason": "日涨幅达到15%的前5只证券",
-      "change": 20,
-      "buy": 459264817.34,
-      "sell": 125077715.81,
-      "net": 334187101.53
+      "reason": "连续三个交易日内，涨幅偏离值累计达到30%的证券",
+      "change": 20.04,
+      "buy": 630556085.84,
+      "sell": 349677878.9,
+      "net": 280878206.94
     },
     {
-      "name": "盛合晶微",
-      "code": "688820",
+      "name": "仕佳光子",
+      "code": "688313",
       "reason": "有价格涨跌幅限制的日收盘价格涨幅达到15%的前五只证券",
-      "change": 18.94,
-      "buy": 470273968.38,
-      "sell": 149972650.9,
-      "net": 320301317.48
-    },
-    {
-      "name": "青山纸业",
-      "code": "600103",
-      "reason": "非S证券连续三个交易日内收盘价格涨幅偏离值累计达到20%的证券",
-      "change": 10.05,
-      "buy": 663133140.56,
-      "sell": 359630533.65,
-      "net": 303502606.91
-    },
-    {
-      "name": "襄阳轴承",
-      "code": "000678",
-      "reason": "日振幅值达到15%的前5只证券",
-      "change": 10.02,
-      "buy": 494401157.05,
-      "sell": 207843645.78,
-      "net": 286557511.27
-    },
-    {
-      "name": "襄阳轴承",
-      "code": "000678",
-      "reason": "日涨幅偏离值达到7%的前5只证券",
-      "change": 10.02,
-      "buy": 494401157.05,
-      "sell": 207843645.78,
-      "net": 286557511.27
-    },
-    {
-      "name": "冰山冷热",
-      "code": "000530",
-      "reason": "日涨幅偏离值达到7%的前5只证券",
-      "change": 10,
-      "buy": 524899413.55,
-      "sell": 270227344.46,
-      "net": 254672069.09
-    },
-    {
-      "name": "金健米业",
-      "code": "600127",
-      "reason": "有价格涨跌幅限制的日收盘价格涨幅偏离值达到7%的前五只证券",
-      "change": 10.06,
-      "buy": 367769501.93,
-      "sell": 115979244.48,
-      "net": 251790257.45
-    },
-    {
-      "name": "冰山冷热",
-      "code": "000530",
-      "reason": "连续三个交易日内，涨幅偏离值累计达到20%的证券",
-      "change": 10,
-      "buy": 712220397.29,
-      "sell": 593492136.84,
-      "net": 118728260.45
-    },
-    {
-      "name": "证通电子",
-      "code": "002197",
-      "reason": "连续三个交易日内，涨幅偏离值累计达到20%的证券",
-      "change": 9.98,
-      "buy": 188828813.64,
-      "sell": 70318799.4,
-      "net": 118510014.24
-    },
-    {
-      "name": "襄阳轴承",
-      "code": "000678",
-      "reason": "连续三个交易日内，涨幅偏离值累计达到20%的证券",
-      "change": 10.02,
-      "buy": 871283528.6,
-      "sell": 755754389.36,
-      "net": 115529139.24
+      "change": 20.01,
+      "buy": 659993818.19,
+      "sell": 441197089.54,
+      "net": 218796728.65
     },
     {
       "name": "金禄电子",
       "code": "301282",
-      "reason": "日涨幅达到15%的前5只证券",
-      "change": 19.39,
-      "buy": 270343655.21,
-      "sell": 158836196.14,
-      "net": 111507459.07
+      "reason": "连续三个交易日内，涨幅偏离值累计达到30%的证券",
+      "change": 18.07,
+      "buy": 539355212.95,
+      "sell": 348379075.6,
+      "net": 190976137.35
     },
     {
-      "name": "东方海洋",
-      "code": "002086",
-      "reason": "日换手率达到20%的前5只证券",
-      "change": 9.91,
-      "buy": 421933365.46,
-      "sell": 325346876.98,
-      "net": 96586488.48
+      "name": "鼎龙转债",
+      "code": "123255",
+      "reason": "日涨幅达到15%的前5只可转债",
+      "change": 20,
+      "buy": 587372682.03,
+      "sell": 514980219.16,
+      "net": 72392462.8699999
     },
     {
-      "name": "东方海洋",
-      "code": "002086",
-      "reason": "日涨幅偏离值达到7%的前5只证券",
-      "change": 9.91,
-      "buy": 421933365.46,
-      "sell": 325346876.98,
-      "net": 96586488.48
-    },
-    {
-      "name": "江化微",
-      "code": "603078",
-      "reason": "有价格涨跌幅限制的日价格振幅达到15%的前五只证券",
-      "change": 6.58,
-      "buy": 175730825.73,
-      "sell": 88403260.7,
-      "net": 87327565.03
-    },
-    {
-      "name": "汇洲智能",
-      "code": "002122",
-      "reason": "日振幅值达到15%的前5只证券",
-      "change": 5.85,
-      "buy": 258660838.74,
-      "sell": 180765305.55,
-      "net": 77895533.19
-    },
-    {
-      "name": "岳阳林纸",
-      "code": "600963",
-      "reason": "有价格涨跌幅限制的日收盘价格涨幅偏离值达到7%的前五只证券",
-      "change": 10.09,
-      "buy": 81579707.11,
-      "sell": 32399957.5,
-      "net": 49179749.61
-    },
-    {
-      "name": "中央商场",
-      "code": "600280",
+      "name": "华胜天成",
+      "code": "600410",
       "reason": "非S证券连续三个交易日内收盘价格涨幅偏离值累计达到20%的证券",
-      "change": 9.93,
-      "buy": 116471292.85,
-      "sell": 72004207.06,
-      "net": 44467085.79
-    },
-    {
-      "name": "青山纸业",
-      "code": "600103",
-      "reason": "有价格涨跌幅限制的日收盘价格涨幅偏离值达到7%的前五只证券",
-      "change": 10.05,
-      "buy": 351938813.2,
-      "sell": 312226473.05,
-      "net": 39712340.15
-    },
-    {
-      "name": "青山纸业",
-      "code": "600103",
-      "reason": "有价格涨跌幅限制的日换手率达到20%的前五只证券",
-      "change": 10.05,
-      "buy": 351938813.2,
-      "sell": 312226473.05,
-      "net": 39712340.15
+      "change": 10,
+      "buy": 1155520380.34,
+      "sell": 1086650218.91,
+      "net": 68870161.4299998
     },
     {
       "name": "真视通",
       "code": "002771",
       "reason": "日换手率达到20%的前5只证券",
-      "change": 4.64,
-      "buy": 149507622.91,
-      "sell": 116737361.4,
-      "net": 32770261.51
+      "change": 7.65,
+      "buy": 191888010.2,
+      "sell": 132594497.66,
+      "net": 59293512.54
     },
     {
-      "name": "信邦智能",
-      "code": "301112",
-      "reason": "日涨幅达到15%的前5只证券",
-      "change": 19.05,
-      "buy": 44785143.5,
-      "sell": 20134579.62,
-      "net": 24650563.88
+      "name": "沈鼓集团",
+      "code": "601091",
+      "reason": "有价格涨跌幅限制的日换手率达到20%的前五只证券",
+      "change": 4.53,
+      "buy": 96308097.08,
+      "sell": 53690101.21,
+      "net": 42617995.87
     },
     {
-      "name": "城市传媒",
-      "code": "600229",
+      "name": "腾信精密",
+      "code": "920298",
+      "reason": "当日收盘价涨幅达到20%的前5只股票",
+      "change": 30,
+      "buy": 84405566.09,
+      "sell": 42805287.83,
+      "net": 41600278.26
+    },
+    {
+      "name": "腾信精密",
+      "code": "920298",
+      "reason": "当日价格振幅达到30%的前5只股票",
+      "change": 30,
+      "buy": 84405566.09,
+      "sell": 42805287.83,
+      "net": 41600278.26
+    },
+    {
+      "name": "腾信精密",
+      "code": "920298",
+      "reason": "当日换手率达到20%的前5只股票",
+      "change": 30,
+      "buy": 84405566.09,
+      "sell": 42805287.83,
+      "net": 41600278.26
+    },
+    {
+      "name": "杰华特",
+      "code": "688141",
+      "reason": "有价格涨跌幅限制的日收盘价格涨幅达到15%的前五只证券",
+      "change": 20.01,
+      "buy": 415816334.58,
+      "sell": 377830816.64,
+      "net": 37985517.94
+    },
+    {
+      "name": "兴欣新材",
+      "code": "001358",
+      "reason": "日振幅值达到15%的前5只证券",
+      "change": 4.08,
+      "buy": 60797802.73,
+      "sell": 27447471.27,
+      "net": 33350331.46
+    },
+    {
+      "name": "华升股份",
+      "code": "600156",
       "reason": "非S证券连续三个交易日内收盘价格涨幅偏离值累计达到20%的证券",
-      "change": 9.98,
-      "buy": 120096736.04,
-      "sell": 95549323.22,
-      "net": 24547412.82
+      "change": 8.8,
+      "buy": 215579033.42,
+      "sell": 182300380.13,
+      "net": 33278653.29
     },
     {
-      "name": "杭州解百",
-      "code": "600814",
-      "reason": "非S证券连续三个交易日内收盘价格涨幅偏离值累计达到20%的证券",
-      "change": 10.06,
-      "buy": 230229130.41,
-      "sell": 210402218.13,
-      "net": 19826912.28
+      "name": "艾融软件",
+      "code": "920799",
+      "reason": "当日价格振幅达到30%的前5只股票",
+      "change": 30,
+      "buy": 57040684.19,
+      "sell": 24490079.02,
+      "net": 32550605.17
+    },
+    {
+      "name": "艾融软件",
+      "code": "920799",
+      "reason": "当日收盘价涨幅达到20%的前5只股票",
+      "change": 30,
+      "buy": 57040684.19,
+      "sell": 24490079.02,
+      "net": 32550605.17
+    },
+    {
+      "name": "华信永道",
+      "code": "920592",
+      "reason": "当日价格振幅达到30%的前5只股票",
+      "change": 29.96,
+      "buy": 48859631.25,
+      "sell": 16769365.76,
+      "net": 32090265.49
+    },
+    {
+      "name": "华信永道",
+      "code": "920592",
+      "reason": "当日收盘价涨幅达到20%的前5只股票",
+      "change": 29.96,
+      "buy": 48859631.25,
+      "sell": 16769365.76,
+      "net": 32090265.49
+    },
+    {
+      "name": "钶锐锶",
+      "code": "688827",
+      "reason": "有价格涨跌幅限制的日换手率达到30%的前五只证券",
+      "change": 19.99,
+      "buy": 72680945.33,
+      "sell": 42818390.34,
+      "net": 29862554.99
+    },
+    {
+      "name": "并行科技",
+      "code": "920493",
+      "reason": "当日收盘价涨幅达到20%的前5只股票",
+      "change": 27.78,
+      "buy": 67609385.24,
+      "sell": 41042685.08,
+      "net": 26566700.16
     },
     {
       "name": "*ST威领",
       "code": "002667",
-      "reason": "日跌幅偏离值达到7%的前5只证券",
-      "change": -9.12,
-      "buy": 46566300,
-      "sell": 27779514,
-      "net": 18786786
+      "reason": "日振幅值达到15%的前5只证券",
+      "change": 9.98,
+      "buy": 73421041,
+      "sell": 49101229,
+      "net": 24319812
     },
     {
-      "name": "福达股份",
-      "code": "603166",
-      "reason": "有价格涨跌幅限制的日收盘价格涨幅偏离值达到7%的前五只证券",
-      "change": 10.05,
-      "buy": 79738302.8,
-      "sell": 63269463.8,
-      "net": 16468839
+      "name": "菲沃泰",
+      "code": "688371",
+      "reason": "有价格涨跌幅限制的日收盘价格涨幅达到15%的前五只证券",
+      "change": 20.03,
+      "buy": 55187844.59,
+      "sell": 33058295.55,
+      "net": 22129549.04
     },
     {
-      "name": "金三江",
-      "code": "301059",
-      "reason": "日涨幅达到15%的前5只证券",
-      "change": 20.04,
-      "buy": 54180673.2,
-      "sell": 41907690.2,
-      "net": 12272983
-    },
-    {
-      "name": "中京电子",
-      "code": "002579",
+      "name": "北纬科技",
+      "code": "002148",
       "reason": "日换手率达到20%的前5只证券",
-      "change": 7.91,
-      "buy": 553514983.83,
-      "sell": 541290116.04,
-      "net": 12224867.7900001
+      "change": -5.66,
+      "buy": 173849172.61,
+      "sell": 151989348.89,
+      "net": 21859823.72
     },
     {
-      "name": "鼎智科技",
-      "code": "920593",
-      "reason": "当日收盘价跌幅达到-20%的前5只股票",
-      "change": -30,
-      "buy": 30691093.85,
-      "sell": 20462876.49,
-      "net": 10228217.36
-    },
-    {
-      "name": "龙江交通",
-      "code": "601188",
-      "reason": "有价格涨跌幅限制的日换手率达到20%的前五只证券",
-      "change": 4.51,
-      "buy": 131490201.22,
-      "sell": 122277941.3,
-      "net": 9212259.92
-    },
-    {
-      "name": "宏达高科",
-      "code": "002144",
-      "reason": "连续三个交易日内，涨幅偏离值累计达到20%的证券",
-      "change": 10.02,
-      "buy": 69964904,
-      "sell": 61710228,
-      "net": 8254676
-    },
-    {
-      "name": "菊乐股份",
-      "code": "920309",
-      "reason": "当日换手率达到20%的前5只股票",
-      "change": -5.41,
-      "buy": 15191936.74,
-      "sell": 9650447.9,
-      "net": 5541488.84
-    },
-    {
-      "name": "野马电池",
-      "code": "605378",
-      "reason": "有价格涨跌幅限制的日收盘价格跌幅偏离值达到7%的前五只证券",
-      "change": -10.01,
-      "buy": 15172577.52,
-      "sell": 10500024.04,
-      "net": 4672553.48
-    },
-    {
-      "name": "善水科技",
-      "code": "301190",
-      "reason": "日涨幅达到15%的前5只证券",
-      "change": 20,
-      "buy": 81741872.41,
-      "sell": 77554277.59,
-      "net": 4187594.81999999
-    },
-    {
-      "name": "赤天化",
-      "code": "600227",
-      "reason": "有价格涨跌幅限制的日换手率达到20%的前五只证券",
-      "change": 9.91,
-      "buy": 126628701,
-      "sell": 123288024.78,
-      "net": 3340676.22
-    },
-    {
-      "name": "扬州金泉",
-      "code": "603307",
-      "reason": "有价格涨跌幅限制的日收盘价格跌幅偏离值达到7%的前五只证券",
-      "change": -9.48,
-      "buy": 8014289.15,
-      "sell": 5898103.23,
-      "net": 2116185.92
+      "name": "北纬科技",
+      "code": "002148",
+      "reason": "日振幅值达到15%的前5只证券",
+      "change": -5.66,
+      "buy": 173849172.61,
+      "sell": 151989348.89,
+      "net": 21859823.72
     },
     {
       "name": "贝特利",
       "code": "301697",
       "reason": "日换手率达到30%的前5只证券",
-      "change": -5.36,
-      "buy": 55059816.96,
-      "sell": 53058946.31,
-      "net": 2000870.65
+      "change": 8.63,
+      "buy": 70339348.3,
+      "sell": 50718281.35,
+      "net": 19621066.95
     },
     {
-      "name": "ST大烨",
-      "code": "300670",
-      "reason": "日跌幅达到15%的前5只证券",
-      "change": -20,
-      "buy": 12277561,
-      "sell": 10354185.2,
-      "net": 1923375.8
+      "name": "德林海",
+      "code": "688069",
+      "reason": "有价格涨跌幅限制的日收盘价格涨幅达到15%的前五只证券",
+      "change": 20.02,
+      "buy": 31064584.46,
+      "sell": 15398035.5,
+      "net": 15666548.96
     },
     {
-      "name": "*ST华幸",
-      "code": "600340",
-      "reason": "非S证券连续三个交易日内收盘价格涨幅偏离值累计达到20%的证券",
-      "change": 9.71,
-      "buy": 22336319.5,
-      "sell": 21501563.56,
-      "net": 834755.940000001
+      "name": "科思科技",
+      "code": "688788",
+      "reason": "有价格涨跌幅限制的日收盘价格涨幅达到15%的前五只证券",
+      "change": 20.02,
+      "buy": 38495557.7,
+      "sell": 24535488.62,
+      "net": 13960069.08
     },
     {
-      "name": "闽灿坤B",
-      "code": "200512",
-      "reason": "日涨幅偏离值达到7%的前5只证券",
-      "change": 6.99,
-      "buy": 940735.78,
-      "sell": 468199.98,
-      "net": 472535.8
+      "name": "汉鑫科技",
+      "code": "920092",
+      "reason": "当日收盘价涨幅达到20%的前5只股票",
+      "change": 29.97,
+      "buy": 26412159.1,
+      "sell": 13877609.49,
+      "net": 12534549.61
+    },
+    {
+      "name": "龙江交通",
+      "code": "601188",
+      "reason": "有价格涨跌幅限制的日收盘价格跌幅偏离值达到7%的前五只证券",
+      "change": -5,
+      "buy": 136547462,
+      "sell": 125032276.22,
+      "net": 11515185.78
+    },
+    {
+      "name": "文峰光电",
+      "code": "920296",
+      "reason": "当日换手率达到20%的前5只股票",
+      "change": 16.38,
+      "buy": 24263662.6,
+      "sell": 13849226.46,
+      "net": 10414436.14
+    },
+    {
+      "name": "微导转债",
+      "code": "118058",
+      "reason": "非上市首日,当日收盘价涨幅达15%的前五只可转债",
+      "change": 20.0,
+      "buy": 806611660,
+      "sell": 797538020,
+      "net": 9073640
+    },
+    {
+      "name": "好当家",
+      "code": "600467",
+      "reason": "有价格涨跌幅限制的日收盘价格跌幅偏离值达到7%的前五只证券",
+      "change": -4.04,
+      "buy": 158548190.84,
+      "sell": 151858776.78,
+      "net": 6689414.06
+    },
+    {
+      "name": "好当家",
+      "code": "600467",
+      "reason": "有价格涨跌幅限制的日换手率达到20%的前五只证券",
+      "change": -4.04,
+      "buy": 158548190.84,
+      "sell": 151858776.78,
+      "net": 6689414.06
+    },
+    {
+      "name": "好当家",
+      "code": "600467",
+      "reason": "有价格涨跌幅限制的日价格振幅达到15%的前五只证券",
+      "change": -4.04,
+      "buy": 158548190.84,
+      "sell": 151858776.78,
+      "net": 6689414.06
     },
     {
       "name": "华晟智能",
       "code": "920067",
       "reason": "当日换手率达到20%的前5只股票",
-      "change": -9.9,
-      "buy": 22487032.67,
-      "sell": 22180760.6,
-      "net": 306272.07
-    },
-    {
-      "name": "辰奕智能",
-      "code": "301578",
-      "reason": "日换手率达到30%的前5只证券",
-      "change": 8.82,
-      "buy": 65343391.74,
-      "sell": 65249972.77,
-      "net": 93418.9699999988
-    },
-    {
-      "name": "ST节能",
-      "code": "000820",
-      "reason": "日跌幅偏离值达到7%的前5只证券",
-      "change": -10.11,
-      "buy": 1002240,
-      "sell": 1188480,
-      "net": -186240
-    },
-    {
-      "name": "*ST建艺",
-      "code": "002789",
-      "reason": "连续三个交易日内，涨幅偏离值累计达到20%的证券",
       "change": 10.06,
-      "buy": 21488619.8,
-      "sell": 21709698,
-      "net": -221078.199999999
+      "buy": 25389290.67,
+      "sell": 18767094.29,
+      "net": 6622196.38
     },
     {
-      "name": "*ST发展",
-      "code": "000838",
-      "reason": "连续三个交易日内，涨幅偏离值累计达到20%的证券",
-      "change": 7.46,
-      "buy": 18724110,
-      "sell": 19142433,
-      "net": -418323
-    },
-    {
-      "name": "*ST东珠",
-      "code": "603359",
-      "reason": "非S证券连续三个交易日内收盘价格涨幅偏离值累计达到20%的证券",
-      "change": 4.08,
-      "buy": 7310703,
-      "sell": 8417643.96,
-      "net": -1106940.96
-    },
-    {
-      "name": "*ST瑞茂",
-      "code": "600180",
-      "reason": "有价格涨跌幅限制的日价格振幅达到15%的前五只证券",
-      "change": 9.84,
-      "buy": 2448986,
-      "sell": 5043814,
-      "net": -2594828
-    },
-    {
-      "name": "盛德转债",
-      "code": "123270",
-      "reason": "日涨幅达到15%的前5只可转债",
+      "name": "华懋转债",
+      "code": "113677",
+      "reason": "非上市首日,当日收盘价涨幅达15%的前五只可转债",
       "change": 20.0,
-      "buy": 1627573648.29,
-      "sell": 1633197688.44,
-      "net": -5624040.15000009
+      "buy": 739040180,
+      "sell": 732574220,
+      "net": 6465960
     },
     {
-      "name": "惠城转债",
-      "code": "123118",
-      "reason": "连续三个交易日内，涨幅偏离值累计达到30%的可转债",
-      "change": 11.11,
-      "buy": 2040012391.07,
-      "sell": 2048510638.42,
-      "net": -8498247.35000014
-    },
-    {
-      "name": "好当家",
-      "code": "600467",
-      "reason": "非S证券连续三个交易日内收盘价格涨幅偏离值累计达到20%的证券",
-      "change": 10,
-      "buy": 203146048.87,
-      "sell": 212380140.75,
-      "net": -9234091.88
-    }
-  ],
-  "top_gainers": [
-    {
-      "name": "克来机电",
-      "code": "603960",
-      "price": 20.46,
-      "change_10d": 61.1,
-      "logic": "汽车零部件 / -，5连板"
-    },
-    {
-      "name": "凡拓数创",
-      "code": "301313",
-      "price": 77.9,
-      "change_10d": 58.01,
-      "logic": "数字媒体 / -，近期活跃"
-    },
-    {
-      "name": "中京电子",
-      "code": "002579",
-      "price": 19.23,
-      "change_10d": 58.01,
-      "logic": "元件 / -，近期活跃"
-    },
-    {
-      "name": "金新农",
-      "code": "002548",
-      "price": 5.33,
-      "change_10d": 55.85,
-      "logic": "饲料 / -，近期活跃"
-    },
-    {
-      "name": "创源股份",
-      "code": "300703",
-      "price": 16.3,
-      "change_10d": 52.91,
-      "logic": "文娱用品 / -，近期活跃"
-    },
-    {
-      "name": "好当家",
-      "code": "600467",
-      "price": 3.96,
-      "change_10d": 52.31,
-      "logic": "渔业 / -，2连板"
-    },
-    {
-      "name": "冰山冷热",
-      "code": "000530",
-      "price": 16.17,
-      "change_10d": 44.76,
-      "logic": "通用设备 / -，1连板"
+      "name": "中贝转债",
+      "code": "113678",
+      "reason": "非上市首日,当日收盘价涨幅达15%的前五只可转债",
+      "change": 20,
+      "buy": 660604390,
+      "sell": 654974030,
+      "net": 5630360
     },
     {
       "name": "果麦文化",
       "code": "301052",
-      "price": 47.3,
-      "change_10d": 43.86,
-      "logic": "出版 / -，近期活跃"
+      "reason": "日换手率达到30%的前5只证券",
+      "change": -0.38,
+      "buy": 131883366.29,
+      "sell": 128444238.48,
+      "net": 3439127.81
     },
     {
-      "name": "杭州解百",
-      "code": "600814",
-      "price": 9.19,
-      "change_10d": 42.92,
-      "logic": "一般零售 / -，4连板"
+      "name": "菊乐股份",
+      "code": "920309",
+      "reason": "当日换手率达到20%的前5只股票",
+      "change": 7.01,
+      "buy": 20691619.33,
+      "sell": 17774382.05,
+      "net": 2917237.28
+    },
+    {
+      "name": "创源股份",
+      "code": "300703",
+      "reason": "日振幅值达到30%的前5只证券",
+      "change": 5.83,
+      "buy": 85720876.03,
+      "sell": 84700540.58,
+      "net": 1020335.45
+    },
+    {
+      "name": "东方环宇",
+      "code": "603706",
+      "reason": "有价格涨跌幅限制的日收盘价格跌幅偏离值达到7%的前五只证券",
+      "change": -4.16,
+      "buy": 19073770,
+      "sell": 18439957,
+      "net": 633813
+    },
+    {
+      "name": "ST晨鸣B",
+      "code": "200488",
+      "reason": "日涨幅偏离值达到7%的前5只证券",
+      "change": 11.11,
+      "buy": 704065.07,
+      "sell": 618978.76,
+      "net": 85086.3099999999
+    },
+    {
+      "name": "*ST皇庭B",
+      "code": "200056",
+      "reason": "日涨幅偏离值达到7%的前5只证券",
+      "change": 9.09,
+      "buy": 117595.47,
+      "sell": 98912.76,
+      "net": 18682.71
+    },
+    {
+      "name": "卡莱特",
+      "code": "301391",
+      "reason": "严重异常期间日收盘价格涨幅偏离值累计达到100%的证券",
+      "change": 20.01,
+      "buy": 6418943177.68,
+      "sell": 6418943177.68,
+      "net": 0
+    },
+    {
+      "name": "红四方",
+      "code": "603395",
+      "reason": "有价格涨跌幅限制的日价格振幅达到15%的前五只证券",
+      "change": -1.08,
+      "buy": 22675130.51,
+      "sell": 22729934.94,
+      "net": -54804.4299999997
+    },
+    {
+      "name": "ST大烨",
+      "code": "300670",
+      "reason": "连续三个交易日内，跌幅偏离值累计达到30%的证券",
+      "change": 0.56,
+      "buy": 32588611.5,
+      "sell": 32734441.08,
+      "net": -145829.579999998
+    }
+  ],
+  "top_gainers": [
+    {
+      "name": "创源股份",
+      "code": "300703",
+      "price": 17.25,
+      "change_10d": 67.48,
+      "logic": "文娱用品 / -，近期活跃"
+    },
+    {
+      "name": "克来机电",
+      "code": "603960",
+      "price": 22.51,
+      "change_10d": 61.13,
+      "logic": "汽车零部件 / -，6连板"
+    },
+    {
+      "name": "中京电子",
+      "code": "002579",
+      "price": 21.1,
+      "change_10d": 57.58,
+      "logic": "元件 / -，近期活跃"
+    },
+    {
+      "name": "天孚通信",
+      "code": "300394",
+      "price": 160.52,
+      "change_10d": 57.1,
+      "logic": "通信设备 / -，近期活跃"
     },
     {
       "name": "汇洲智能",
       "code": "002122",
-      "price": 3.8,
-      "change_10d": 41.26,
+      "price": 4.18,
+      "change_10d": 55.39,
+      "logic": "通用设备 / -，1连板"
+    },
+    {
+      "name": "杭州解百",
+      "code": "600814",
+      "price": 9.53,
+      "change_10d": 51.99,
+      "logic": "一般零售 / -，近期活跃"
+    },
+    {
+      "name": "安培龙",
+      "code": "301413",
+      "price": 93.9,
+      "change_10d": 50.72,
       "logic": "通用设备 / -，近期活跃"
     },
     {
-      "name": "盛剑科技",
-      "code": "603324",
-      "price": 35.5,
-      "change_10d": 40.93,
-      "logic": "环保设备Ⅱ / -，2连板"
+      "name": "同星科技",
+      "code": "301252",
+      "price": 44.27,
+      "change_10d": 50.07,
+      "logic": "家电零部件Ⅱ / -，近期活跃"
     },
     {
-      "name": "东方海洋",
-      "code": "002086",
-      "price": 4.77,
-      "change_10d": 39.88,
-      "logic": "农产品加工 / -，1连板"
+      "name": "利君股份",
+      "code": "002651",
+      "price": 9.56,
+      "change_10d": 49.84,
+      "logic": "航空装备Ⅱ / -，4连板"
     },
     {
-      "name": "龙版传媒",
-      "code": "605577",
-      "price": 20.59,
-      "change_10d": 39.88,
-      "logic": "出版 / -，近期活跃"
+      "name": "全筑股份",
+      "code": "603030",
+      "price": 3.16,
+      "change_10d": 49.76,
+      "logic": "装修装饰Ⅱ / -，4连板"
     },
     {
-      "name": "金牛化工",
-      "code": "600722",
-      "price": 14.47,
-      "change_10d": 38.07,
-      "logic": "化学原料 / -，3连板"
+      "name": "慧博云通",
+      "code": "301316",
+      "price": 38.65,
+      "change_10d": 46.62,
+      "logic": "IT服务Ⅱ / -，1连板"
     },
     {
       "name": "天圣制药",
       "code": "002872",
-      "price": 7.81,
-      "change_10d": 36.78,
-      "logic": "化学制药 / -，3连板"
-    },
-    {
-      "name": "德龙汇能",
-      "code": "000593",
-      "price": 21.77,
-      "change_10d": 36.75,
-      "logic": "燃气Ⅱ / -，近期活跃"
-    },
-    {
-      "name": "真视通",
-      "code": "002771",
-      "price": 19.6,
-      "change_10d": 36.3,
-      "logic": "IT服务Ⅱ / -，近期活跃"
-    },
-    {
-      "name": "长华集团",
-      "code": "605018",
-      "price": 12.68,
-      "change_10d": 35.91,
-      "logic": "汽车零部件 / -，近期活跃"
+      "price": 8.59,
+      "change_10d": 46.59,
+      "logic": "化学制药 / -，4连板"
     },
     {
       "name": "九阳股份",
       "code": "002242",
-      "price": 41.9,
-      "change_10d": 34.25,
+      "price": 42.15,
+      "change_10d": 45.55,
       "logic": "小家电 / -，近期活跃"
     },
     {
-      "name": "东晶电子",
-      "code": "002199",
-      "price": 11.29,
-      "change_10d": 31.43,
-      "logic": "元件 / -，1连板"
+      "name": "旋极信息",
+      "code": "300324",
+      "price": 6.05,
+      "change_10d": 43.71,
+      "logic": "计算机设备 / -，2连板"
+    },
+    {
+      "name": "恒工精密",
+      "code": "301261",
+      "price": 79.68,
+      "change_10d": 43.44,
+      "logic": "通用设备 / -，近期活跃"
+    },
+    {
+      "name": "维宏股份",
+      "code": "300508",
+      "price": 45.77,
+      "change_10d": 42.81,
+      "logic": "计算机设备 / -，1连板"
+    },
+    {
+      "name": "宁波东力",
+      "code": "002164",
+      "price": 23.17,
+      "change_10d": 42.06,
+      "logic": "通用设备 / -，1连板"
+    },
+    {
+      "name": "金牛化工",
+      "code": "600722",
+      "price": 15.16,
+      "change_10d": 41.02,
+      "logic": "化学原料 / -，近期活跃"
+    },
+    {
+      "name": "银禧科技",
+      "code": "300221",
+      "price": 12.13,
+      "change_10d": 40.39,
+      "logic": "塑料 / -，近期活跃"
+    },
+    {
+      "name": "铁流股份",
+      "code": "603926",
+      "price": 18.87,
+      "change_10d": 39.78,
+      "logic": "汽车零部件 / -，近期活跃"
     }
   ]
 }
